@@ -251,9 +251,10 @@ async function loadQuestions(md, topicIds) {
         answer: sections.answer ? md.render(sections.answer) : '',
         followups: sections.followups ? md.render(sections.followups) : '',
       },
-      // Shipped alongside the HTML so the in-page editor can load the original
-      // Markdown without a round-trip to GitHub.
-      raw: sections,
+      // The original body, shipped alongside the HTML so the in-page editor can
+      // load it without a round-trip to GitHub. Kept whole rather than split so
+      // an edit round-trips losslessly.
+      raw: content.trim(),
       searchBody,
     })
   }

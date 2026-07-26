@@ -34,6 +34,6 @@ export interface QuestionSections {
 export interface QuestionBody {
   slug: string
   html: QuestionSections
-  /** Original Markdown, so the in-page editor can load it without GitHub. */
-  raw: QuestionSections
+  /** Original Markdown body, so the in-page editor can load it without GitHub. */
+  raw: string
 }

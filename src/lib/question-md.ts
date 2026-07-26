@@ -5,10 +5,18 @@ export interface QuestionFields {
   tags: string
   companies: string
   time: string
-  question: string
-  answer: string
-  followups: string
+  /** The whole Markdown body, headings included — one document, one editor. */
+  body: string
 }
+
+/** New questions start from this scaffold so the sections are never forgotten. */
+export const BODY_TEMPLATE = `## Question
+
+## Answer
+
+## Follow-ups
+
+`
 
 export const EMPTY_FIELDS: QuestionFields = {
   title: '',
@@ -17,9 +25,7 @@ export const EMPTY_FIELDS: QuestionFields = {
   tags: '',
   companies: '',
   time: '',
-  question: '',
-  answer: '',
-  followups: '',
+  body: BODY_TEMPLATE,
 }
 
 export function slugify(text: string): string {
@@ -42,6 +48,51 @@ function csv(value: string): string[] {
     .filter(Boolean)
 }
 
+/**
+ * Mirrors the section split in scripts/build-content.mjs, so the form can warn
+ * about an empty answer before the build does.
+ */
+export function splitSections(body: string): {
+  question: string
+  answer: string
+  followups: string
+} {
+  const sections = { question: [] as string[], answer: [] as string[], followups: [] as string[] }
+  let current: keyof typeof sections = 'question'
+  let sawHeading = false
+
+  for (const line of body.split(/\r?\n/)) {
+    const heading = /^##\s+(.*\S)\s*$/.exec(line)
+    if (heading) {
+      const label = heading[1].toLowerCase().replace(/[^a-z]/g, '')
+      if (label === 'question' || label === 'problem') {
+        current = 'question'
+        sawHeading = true
+        continue
+      }
+      if (label === 'answer' || label === 'solution') {
+        current = 'answer'
+        sawHeading = true
+        continue
+      }
+      if (label === 'followups' || label === 'followup' || label === 'probes') {
+        current = 'followups'
+        sawHeading = true
+        continue
+      }
+    }
+    sections[current].push(line)
+  }
+
+  if (!sawHeading) return { question: '', answer: body.trim(), followups: '' }
+
+  return {
+    question: sections.question.join('\n').trim(),
+    answer: sections.answer.join('\n').trim(),
+    followups: sections.followups.join('\n').trim(),
+  }
+}
+
 /** Renders the form state back into the exact Markdown file the build expects. */
 export function composeMarkdown(fields: QuestionFields): string {
   const lines = [
@@ -61,43 +112,17 @@ export function composeMarkdown(fields: QuestionFields): string {
     lines.push(`time: ${Number(fields.time)}`)
   }
 
-  lines.push(
-    `updated: ${new Date().toISOString().slice(0, 10)}`,
-    '---',
-    '',
-    '## Question',
-    '',
-    fields.question.trim() || '…',
-    '',
-    '## Answer',
-    '',
-    fields.answer.trim() || '…',
-  )
+  lines.push(`updated: ${new Date().toISOString().slice(0, 10)}`, '---', '')
 
-  if (fields.followups.trim()) {
-    lines.push('', '## Follow-ups', '', fields.followups.trim())
-  }
-
-  lines.push('')
-  return lines.join('\n')
-}
-
-/** The Markdown a preview should render: all three sections, in page order. */
-export function previewMarkdown(fields: QuestionFields): string {
-  const parts = []
-  if (fields.question.trim()) parts.push('## Question\n\n' + fields.question.trim())
-  if (fields.answer.trim()) parts.push('## Answer\n\n' + fields.answer.trim())
-  if (fields.followups.trim()) {
-    parts.push('## Follow-ups\n\n' + fields.followups.trim())
-  }
-  return parts.join('\n\n') || '_Nothing to preview yet._'
+  return `${lines.join('\n')}\n${fields.body.trim()}\n`
 }
 
 export function missingFields(fields: QuestionFields): string[] {
   const problems: string[] = []
+  const sections = splitSections(fields.body)
   if (!fields.title.trim()) problems.push('a title')
   if (fields.topics.length === 0) problems.push('at least one topic')
-  if (!fields.question.trim()) problems.push('the question text')
-  if (!fields.answer.trim()) problems.push('the answer')
+  if (!sections.question.trim()) problems.push('the question text')
+  if (!sections.answer.trim()) problems.push('the answer')
   return problems
 }

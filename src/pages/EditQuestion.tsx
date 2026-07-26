@@ -39,9 +39,7 @@ export default function EditQuestion() {
       tags: meta.tags.join(', '),
       companies: meta.companies.join(', '),
       time: meta.time === null ? '' : String(meta.time),
-      question: body.raw.question,
-      answer: body.raw.answer,
-      followups: body.raw.followups,
+      body: body.raw,
     }
   }, [meta, body])
 
@@ -63,13 +61,8 @@ export default function EditQuestion() {
       <h1 className="font-mono text-xs font-semibold tracking-widest text-ember-500 uppercase">
         ■ Edit question
       </h1>
-      <p className="mt-2 max-w-2xl text-sm text-carbon-300">
-        Editing <span className="font-mono text-carbon-100">{meta.title}</span>.
-        Changes go to GitHub — directly for maintainers, as a pull request for
-        everyone else.
-      </p>
 
-      <div className="mt-8">
+      <div className="mt-4">
         {failed && (
           <p className="border border-dashed border-carbon-700 px-4 py-8 text-center font-mono text-sm text-carbon-400">
             Couldn't load the source of this question. Try reloading.

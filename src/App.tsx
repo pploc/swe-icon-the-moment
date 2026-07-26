@@ -129,6 +129,9 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [])
 
+  const isEditorRoute =
+    location.pathname === '/new' || location.pathname.endsWith('/edit')
+
   function onSearch(event: FormEvent) {
     event.preventDefault()
     const q = query.trim()
@@ -228,7 +231,12 @@ export default function App() {
           navOpen ? 'lg:ml-80' : 'ml-0'
         }`}
       >
-        <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 lg:px-10">
+        {/* The two-pane editor wants every pixel; reading views stay narrow. */}
+        <main
+          className={`mx-auto w-full flex-1 px-4 py-8 lg:px-10 ${
+            isEditorRoute ? 'max-w-[110rem]' : 'max-w-6xl'
+          }`}
+        >
           <Outlet />
         </main>
 
