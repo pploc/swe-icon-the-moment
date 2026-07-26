@@ -159,8 +159,11 @@ for (const topic of manifest.topics) {
 
 // --- app-only routes --------------------------------------------------------
 
+// Keep in sync with the routes in src/main.tsx — a route missing here still
+// works (404.html boots the app) but answers with a 404 status.
 const APP_ROUTES = [
   ['/search', 'Search', 'Full-text search across every question and answer.'],
+  ['/practice', 'Practice', 'Spaced-repetition drilling over the question bank.'],
   ['/new', 'Add a question', 'Write a new interview question.'],
   ['/drafts', 'Drafts', 'Questions that still need an answer.'],
 ]
