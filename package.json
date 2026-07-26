@@ -8,10 +8,12 @@
     "content": "node scripts/build-content.mjs",
     "content:check": "node scripts/build-content.mjs --check",
     "dev": "npm run content && vite",
-    "build": "npm run content && tsc -b --noEmit && vite build",
+    "build": "npm run content && tsc --noEmit && vite build",
+    "postbuild": "node -e \"require('node:fs').copyFileSync('dist/index.html','dist/404.html')\"",
     "preview": "vite preview"
   },
   "dependencies": {
+    "mermaid": "^11.16.0",
     "minisearch": "^7.1.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

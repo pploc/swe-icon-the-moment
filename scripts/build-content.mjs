@@ -86,11 +86,19 @@ async function createRenderer() {
 
   const loaded = new Set(highlighter.getLoadedLanguages())
 
+  const escapeHtml = (s) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
   const md = new MarkdownIt({
     html: true,
     linkify: true,
     typographer: true,
     highlight(code, lang) {
+      // ```mermaid fences become diagram blocks, rendered client-side only on
+      // pages that contain one (markdown-it uses a returned <pre…> verbatim).
+      if (lang === 'mermaid') {
+        return `<pre class="mermaid">${escapeHtml(code.trim())}</pre>`
+      }
       const language = loaded.has(lang) ? lang : 'text'
       return highlighter.codeToHtml(code, {
         lang: language,
