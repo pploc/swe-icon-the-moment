@@ -5,7 +5,6 @@ title: One-line question as the interviewer would ask it
 topics: [networking]        # ≥1 id from content/topics.yaml — the build fails otherwise
 roles: [backend, infra]     # backend | infra | sre | platform | fullstack
 tags: [tcp, example]        # free-form, used by search
-companies: []               # optional: where this was asked
 time: 15                    # optional: minutes to answer
 updated: 2026-07-26
 ---

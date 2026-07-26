@@ -37,7 +37,6 @@ export default function EditQuestion() {
       topics: meta.topics,
       roles: meta.roles,
       tags: meta.tags.join(', '),
-      companies: meta.companies.join(', '),
       time: meta.time === null ? '' : String(meta.time),
       body: body.raw,
     }

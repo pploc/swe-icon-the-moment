@@ -8,7 +8,9 @@ import {
 } from 'react-router-dom'
 import { groups, questions, topics } from '@/generated/content'
 import { Logo } from '@/components/Logo'
+import { CommandPalette } from '@/components/CommandPalette'
 import { orderedGroupIds } from '@/lib/nav'
+import { randomSlug } from '@/lib/random'
 import { REPO_URL } from '@/lib/repo'
 import { useTheme } from '@/lib/theme'
 
@@ -34,6 +36,9 @@ function topicLinkClass({ isActive }: { isActive: boolean }) {
 }
 
 function Sidebar() {
+  const navigate = useNavigate()
+  const drafts = questions.filter((q) => q.draft).length
+
   return (
     <nav className="space-y-7">
       <div className="space-y-1">
@@ -43,9 +48,25 @@ function Sidebar() {
         <NavLink to="/search" className={mainLinkClass}>
           ⌕ Search
         </NavLink>
+        <button
+          type="button"
+          onClick={() => {
+            const slug = randomSlug()
+            if (slug) navigate(`/q/${slug}`)
+          }}
+          className={`${mainLinkClass({ isActive: false })} w-full text-left`}
+        >
+          ⚄ Random
+        </button>
         <NavLink to="/new" className={mainLinkClass}>
           + Add question
         </NavLink>
+        {drafts > 0 && (
+          <NavLink to="/drafts" className={mainLinkClass}>
+            ✎ Drafts
+            <span className="ml-2 font-normal text-carbon-400">{drafts}</span>
+          </NavLink>
+        )}
       </div>
 
       {orderedGroupIds().map((groupId) => {
@@ -140,6 +161,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
+      <CommandPalette />
+
       <header className="sticky top-0 z-40 border-b border-carbon-700 bg-carbon-950/95 backdrop-blur">
         <div className="relative flex h-14 items-center gap-3 px-3">
           <button
@@ -177,7 +200,7 @@ export default function App() {
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search questions…    /"
+              placeholder="Search…   /   or ⌘K"
               aria-label="Search questions"
               className="w-full border border-carbon-700 bg-carbon-900 px-3 py-1.5 text-center text-sm placeholder:text-carbon-400 focus:border-ember-500 focus:text-left focus:outline-none"
             />
@@ -253,6 +276,7 @@ export default function App() {
               add a question
             </Link>
             <span className="hidden sm:inline">
+              <kbd className="border border-carbon-700 px-1">⌘K</kbd> palette ·{' '}
               <kbd className="border border-carbon-700 px-1">[</kbd> sidebar ·{' '}
               <kbd className="border border-carbon-700 px-1">/</kbd> search
             </span>

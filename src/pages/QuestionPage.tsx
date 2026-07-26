@@ -19,6 +19,10 @@ export default function QuestionPage() {
   const [state, setState] = useState<LoadState>({ status: 'loading' })
   const [revealed, setRevealed] = useState(false)
 
+  const related = (meta?.related ?? [])
+    .map((slug) => questions.find((q) => q.slug === slug))
+    .filter((q) => q !== undefined)
+
   useMermaid([state, revealed])
 
   useEffect(() => {
@@ -71,6 +75,11 @@ export default function QuestionPage() {
         </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-2">
+          {meta.draft && (
+            <span className="border border-ember-500 px-1.5 py-0.5 font-mono text-[11px] tracking-wide text-ember-400 uppercase">
+              draft
+            </span>
+          )}
           {meta.topics.map((t) => (
             <TopicChip key={t} topicId={t} />
           ))}
@@ -155,6 +164,29 @@ export default function QuestionPage() {
             </>
           )}
         </div>
+      )}
+
+      {related.length > 0 && (
+        <section className="mt-12 border-t border-carbon-700 pt-6">
+          <h2 className="mb-3 font-mono text-xs font-semibold tracking-widest text-ember-500 uppercase">
+            ■ Related
+          </h2>
+          <ul className="divide-y divide-carbon-800 border border-carbon-700">
+            {related.map((other) => (
+              <li key={other.slug}>
+                <Link
+                  to={`/q/${other.slug}`}
+                  className="group flex items-baseline gap-3 bg-carbon-900 px-4 py-2.5 transition-colors hover:bg-carbon-850"
+                >
+                  <span className="text-sm group-hover:text-ember-400">{other.title}</span>
+                  <span className="ml-auto shrink-0 font-mono text-[11px] text-carbon-400">
+                    {other.topics.join(' · ')}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
 
       <footer className="mt-12 flex flex-wrap gap-4 border-t border-carbon-700 pt-4 font-mono text-xs text-carbon-400">

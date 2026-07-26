@@ -231,6 +231,12 @@ async function loadQuestions(md, topicIds) {
     const sections = splitSections(content)
     if (!sections.answer) warn(file, 'has no answer section yet')
 
+    // A question with no real answer is still worth publishing — it just shows
+    // up under /drafts so the gap is visible instead of buried.
+    const answerText = toPlainText(sections.answer)
+    const draft =
+      answerText.length < 40 || /^(todo|tbd|wip)\b/i.test(answerText.trim())
+
     const searchBody = toPlainText(
       [sections.question, sections.answer, sections.followups].filter(Boolean).join('\n\n'),
     )
@@ -241,7 +247,8 @@ async function loadQuestions(md, topicIds) {
       topics,
       roles,
       tags: asArray(data.tags),
-      companies: asArray(data.companies),
+      draft,
+      related: [],
       time: typeof data.time === 'number' ? data.time : null,
       updated: data.updated ? String(data.updated).slice(0, 10) : null,
       source: path.relative(ROOT, file).replace(/\\/g, '/'),
@@ -260,6 +267,30 @@ async function loadQuestions(md, topicIds) {
   }
 
   return questions
+}
+
+// --- relationships ----------------------------------------------------------
+
+/**
+ * Cheap content-based recommendations: questions that share topics and tags.
+ * Computed here so the client ships a list of slugs rather than a similarity
+ * routine over the whole corpus.
+ */
+function linkRelated(questions) {
+  for (const question of questions) {
+    question.related = questions
+      .filter((other) => other.slug !== question.slug)
+      .map((other) => ({
+        slug: other.slug,
+        score:
+          other.topics.filter((t) => question.topics.includes(t)).length * 3 +
+          other.tags.filter((t) => question.tags.includes(t)).length * 2,
+      }))
+      .filter((match) => match.score > 0)
+      .sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug))
+      .slice(0, 4)
+      .map((match) => match.slug)
+  }
 }
 
 // --- emit -------------------------------------------------------------------
@@ -288,7 +319,7 @@ async function emit(groups, topics, questions) {
         slug: q.slug,
         title: q.title,
         body: q.searchBody,
-        tags: [...q.tags, ...q.companies].join(' '),
+        tags: q.tags.join(' '),
       })),
     ),
   )
@@ -319,6 +350,16 @@ export const builtAt = ${JSON.stringify(new Date().toISOString())}
 `
 
   await fs.writeFile(path.join(GENERATED_DIR, 'content.ts'), module)
+
+  // Build-only sidecar for scripts/prerender.mjs. Not published.
+  await fs.writeFile(
+    path.join(ROOT, '.content-manifest.json'),
+    JSON.stringify({
+      groups,
+      topics: topics.map((t) => ({ ...t, count: counts.get(t.id) ?? 0 })),
+      questions: meta,
+    }),
+  )
 }
 
 // --- main -------------------------------------------------------------------
@@ -327,6 +368,7 @@ const { groups, topics } = await loadTopics()
 const topicIds = new Set(topics.map((t) => t.id))
 const md = await createRenderer()
 const questions = await loadQuestions(md, topicIds)
+linkRelated(questions)
 
 for (const message of warnings) console.warn(`  warn  ${message}`)
 

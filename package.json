@@ -8,8 +8,7 @@
     "content": "node scripts/build-content.mjs",
     "content:check": "node scripts/build-content.mjs --check",
     "dev": "npm run content && vite",
-    "build": "npm run content && tsc --noEmit && vite build",
-    "postbuild": "node -e \"require('node:fs').copyFileSync('dist/index.html','dist/404.html')\"",
+    "build": "npm run content && tsc --noEmit && vite build && node scripts/prerender.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

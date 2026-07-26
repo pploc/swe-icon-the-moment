@@ -3,7 +3,6 @@ title: Design a URL shortener
 topics: [system-design]
 roles: [backend]
 tags: [design, estimation, sharding]
-companies: []
 time: 45
 updated: 2026-07-26
 ---

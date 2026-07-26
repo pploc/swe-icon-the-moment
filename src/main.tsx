@@ -8,6 +8,7 @@ import QuestionPage from '@/pages/QuestionPage'
 import SearchPage from '@/pages/SearchPage'
 import NewQuestion from '@/pages/NewQuestion'
 import EditQuestion from '@/pages/EditQuestion'
+import DraftsPage from '@/pages/DraftsPage'
 import NotFound from '@/pages/NotFound'
 import '@/index.css'
 
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="q/:slug/edit" element={<EditQuestion />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="new" element={<NewQuestion />} />
+          <Route path="drafts" element={<DraftsPage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

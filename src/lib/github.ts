@@ -130,6 +130,23 @@ export async function commitFile({
   }
 }
 
+/** Removes a file from main. Used by rename (write new, drop old) and delete. */
+export async function deleteFile({
+  path,
+  message,
+}: {
+  path: string
+  message: string
+}): Promise<void> {
+  const sha = await fileSha(path)
+  if (!sha) return
+
+  await api(`/repos/${OWNER}/${REPO}/contents/${encodeURI(path)}`, {
+    method: 'DELETE',
+    body: JSON.stringify({ message, sha, branch: BRANCH }),
+  })
+}
+
 /** Waits for a just-created fork to become usable (GitHub forks async). */
 async function waitForFork(login: string): Promise<void> {
   for (let attempt = 0; attempt < 15; attempt++) {
@@ -157,11 +174,14 @@ export async function proposeViaPullRequest({
   content,
   message,
   body,
+  removePath,
 }: {
   path: string
   content: string
   message: string
   body: string
+  /** Set when renaming: the old file is deleted in the same pull request. */
+  removePath?: string
 }): Promise<ProposalResult> {
   const { login } = await api<{ login: string }>('/user')
 
@@ -195,6 +215,16 @@ export async function proposeViaPullRequest({
       ...(sha ? { sha } : {}),
     }),
   })
+
+  if (removePath && removePath !== path) {
+    const oldSha = await fileSha(removePath)
+    if (oldSha) {
+      await api(`/repos/${login}/${REPO}/contents/${encodeURI(removePath)}`, {
+        method: 'DELETE',
+        body: JSON.stringify({ message: `Remove ${removePath}`, sha: oldSha, branch }),
+      })
+    }
+  }
 
   const pull = await api<{ html_url: string }>(`/repos/${OWNER}/${REPO}/pulls`, {
     method: 'POST',

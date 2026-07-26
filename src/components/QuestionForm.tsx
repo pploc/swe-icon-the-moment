@@ -7,11 +7,20 @@ import { useMermaid } from '@/lib/useMermaid'
 import { editUrl, newFileUrl } from '@/lib/repo'
 import {
   commitFile,
+  deleteFile,
   getToken,
   proposeViaPullRequest,
   verifyToken,
   type Identity,
 } from '@/lib/github'
+import {
+  clearDraft,
+  describeAge,
+  draftKey,
+  loadDraft,
+  sameFields,
+  saveDraft,
+} from '@/lib/draft-storage'
 import {
   composeMarkdown,
   missingFields,
@@ -40,6 +49,7 @@ type SaveState =
   | { status: 'saving' }
   | { status: 'saved'; commitUrl: string }
   | { status: 'proposed'; pullRequestUrl: string }
+  | { status: 'deleted' }
   | { status: 'error'; message: string }
 
 function toggled(list: string[], value: string): string[] {
@@ -60,27 +70,58 @@ export function QuestionForm({
   source?: string
 }) {
   const [fields, setFields] = useState(initial)
-  const [slug, setSlug] = useState('')
-  const [slugTouched, setSlugTouched] = useState(false)
+  const [slug, setSlug] = useState(fixedSlug ?? '')
+  const [slugTouched, setSlugTouched] = useState(Boolean(fixedSlug))
   const [detailsOpen, setDetailsOpen] = useState(mode === 'create')
   const [pane, setPane] = useState<'write' | 'preview'>('write')
   const [html, setHtml] = useState('')
   const [copied, setCopied] = useState(false)
   const [identity, setIdentity] = useState<Identity | null>(null)
   const [save, setSave] = useState<SaveState>({ status: 'idle' })
+  const [restored, setRestored] = useState<number | null>(null)
+  const [confirmDelete, setConfirmDelete] = useState(false)
 
-  useEffect(() => setFields(initial), [initial])
+  const storageKey = draftKey(mode, fixedSlug)
+
+  useEffect(() => {
+    setFields(initial)
+    setSlug(fixedSlug ?? '')
+    setSlugTouched(Boolean(fixedSlug))
+
+    // Offer back anything left unsent from a previous visit.
+    const draft = loadDraft(storageKey)
+    if (draft && !sameFields(draft.fields, initial)) {
+      setFields(draft.fields)
+      setRestored(draft.savedAt)
+    }
+  }, [initial, fixedSlug, storageKey])
 
   useEffect(() => {
     if (getToken()) verifyToken().then(setIdentity, () => setIdentity(null))
   }, [])
+
+  // Autosave, debounced. Only once the user has actually diverged from the
+  // starting point, so an untouched form never leaves a draft behind.
+  useEffect(() => {
+    if (sameFields(fields, initial)) return
+    const timer = setTimeout(() => saveDraft(storageKey, fields), 600)
+    return () => clearTimeout(timer)
+  }, [fields, initial, storageKey])
 
   function update<K extends keyof QuestionFields>(key: K, value: QuestionFields[K]) {
     setFields((current) => ({ ...current, [key]: value }))
     setSave({ status: 'idle' })
   }
 
-  const effectiveSlug = fixedSlug ?? (slugTouched ? slug : slugify(fields.title))
+  function discardDraft() {
+    clearDraft(storageKey)
+    setFields(initial)
+    setRestored(null)
+  }
+
+  const effectiveSlug = slugTouched ? slug : slugify(fields.title)
+  const renamedFrom =
+    mode === 'edit' && fixedSlug && effectiveSlug !== fixedSlug ? source : undefined
   const markdown = useMemo(() => composeMarkdown(fields), [fields])
 
   // The renderer is only pulled in once there is something to render.
@@ -99,9 +140,11 @@ export function QuestionForm({
   const problems = missingFields(fields)
   const valid = problems.length === 0
   const firstTopic = topics.find((t) => fields.topics.includes(t.id))
-  const targetPath =
-    source ??
-    `content/questions/${firstTopic?.group ?? 'backend'}/${effectiveSlug || 'new-question'}.md`
+  // A rename keeps the original folder; only the filename follows the slug.
+  const folder =
+    source?.split('/').slice(0, -1).join('/') ??
+    `content/questions/${firstTopic?.group ?? 'backend'}`
+  const targetPath = `${folder}/${effectiveSlug || 'new-question'}.md`
 
   const selectedTopicNames = topics
     .filter((t) => fields.topics.includes(t.id))
@@ -128,21 +171,49 @@ export function QuestionForm({
    * site); everyone else gets a fork + pull request, so nothing lands unreviewed.
    */
   function saveWithToken() {
-    const message = `${mode === 'create' ? 'Add' : 'Update'} question: ${fields.title.trim()}`
+    const message = renamedFrom
+      ? `Rename question: ${fields.title.trim()}`
+      : `${mode === 'create' ? 'Add' : 'Update'} question: ${fields.title.trim()}`
     setSave({ status: 'saving' })
 
     const request = identity?.canWrite
-      ? commitFile({ path: targetPath, content: markdown, message }).then(
-          ({ commitUrl }) => setSave({ status: 'saved', commitUrl }),
-        )
+      ? commitFile({ path: targetPath, content: markdown, message })
+          .then(async (result) => {
+            // Rename = write the new path, then drop the old one.
+            if (renamedFrom) {
+              await deleteFile({ path: renamedFrom, message: `Remove ${renamedFrom}` })
+            }
+            return result
+          })
+          .then(({ commitUrl }) => {
+            clearDraft(storageKey)
+            setSave({ status: 'saved', commitUrl })
+          })
       : proposeViaPullRequest({
           path: targetPath,
           content: markdown,
           message,
           body: `Submitted from the site's ${mode === 'create' ? 'add' : 'edit'} form.`,
-        }).then(({ pullRequestUrl }) => setSave({ status: 'proposed', pullRequestUrl }))
+          removePath: renamedFrom,
+        }).then(({ pullRequestUrl }) => {
+          clearDraft(storageKey)
+          setSave({ status: 'proposed', pullRequestUrl })
+        })
 
     request.catch((error: Error) => setSave({ status: 'error', message: error.message }))
+  }
+
+  /** Removes the question entirely. Maintainers only — needs push access. */
+  function removeQuestion() {
+    if (!source) return
+    setSave({ status: 'saving' })
+    deleteFile({ path: source, message: `Remove question: ${fields.title.trim()}` })
+      .then(() => {
+        clearDraft(storageKey)
+        setConfirmDelete(false)
+        setSave({ status: 'deleted' })
+      })
+      .catch((error: Error) => setSave({ status: 'error', message: error.message }))
   }
 
   /** No token: hand off to GitHub's own editor. */
@@ -151,13 +222,37 @@ export function QuestionForm({
   }
 
   const saveLabel = identity?.canWrite
-    ? mode === 'create'
-      ? 'Publish'
-      : 'Save'
+    ? renamedFrom
+      ? 'Save & rename'
+      : mode === 'create'
+        ? 'Publish'
+        : 'Save'
     : 'Propose (PR)'
 
   return (
     <div className="space-y-3">
+      {restored !== null && (
+        <div className="flex flex-wrap items-center gap-3 border border-ember-500 bg-carbon-900 px-3 py-2 text-xs">
+          <span className="text-carbon-100">
+            Restored an unsaved draft from {describeAge(restored)}.
+          </span>
+          <button
+            type="button"
+            onClick={discardDraft}
+            className="font-mono text-ember-400 underline"
+          >
+            discard it
+          </button>
+          <button
+            type="button"
+            onClick={() => setRestored(null)}
+            className="ml-auto font-mono text-carbon-400 hover:text-carbon-100"
+          >
+            keep ✕
+          </button>
+        </div>
+      )}
+
       {/* Title + actions ---------------------------------------------------- */}
       <div className="flex flex-wrap items-center gap-3">
         <input
@@ -288,18 +383,6 @@ export function QuestionForm({
                   className={inputClass}
                 />
               </div>
-              <div className="min-w-44 flex-1">
-                <label htmlFor="qf-companies" className={fieldLabel}>
-                  Companies
-                </label>
-                <input
-                  id="qf-companies"
-                  value={fields.companies}
-                  onChange={(e) => update('companies', e.target.value)}
-                  placeholder="optional"
-                  className={inputClass}
-                />
-              </div>
               <div className="w-24">
                 <label htmlFor="qf-time" className={fieldLabel}>
                   Minutes
@@ -313,23 +396,60 @@ export function QuestionForm({
                   className={inputClass}
                 />
               </div>
-              {mode === 'create' && (
-                <div className="min-w-44 flex-1">
-                  <label htmlFor="qf-slug" className={fieldLabel}>
-                    Filename
-                  </label>
-                  <input
-                    id="qf-slug"
-                    value={effectiveSlug}
-                    onChange={(e) => {
-                      setSlugTouched(true)
-                      setSlug(slugify(e.target.value))
-                    }}
-                    className={`${inputClass} font-mono`}
-                  />
-                </div>
-              )}
+              <div className="min-w-44 flex-1">
+                <label htmlFor="qf-slug" className={fieldLabel}>
+                  Filename {renamedFrom && <span className="text-ember-400">(rename)</span>}
+                </label>
+                <input
+                  id="qf-slug"
+                  value={effectiveSlug}
+                  onChange={(e) => {
+                    setSlugTouched(true)
+                    setSlug(slugify(e.target.value))
+                  }}
+                  className={`${inputClass} font-mono`}
+                />
+                {renamedFrom && (
+                  <p className="mt-1 font-mono text-[11px] text-carbon-400">
+                    was {fixedSlug}.md — the URL changes with it
+                  </p>
+                )}
+              </div>
             </div>
+
+            {mode === 'edit' && identity?.canWrite && (
+              <div className="flex items-center gap-3 border-t border-carbon-700 pt-3">
+                {confirmDelete ? (
+                  <>
+                    <span className="font-mono text-xs text-carbon-300">
+                      Delete this question for good?
+                    </span>
+                    <button
+                      type="button"
+                      onClick={removeQuestion}
+                      className="border border-signal-danger px-3 py-1 font-mono text-xs font-semibold text-signal-danger uppercase transition-colors hover:bg-signal-danger hover:text-carbon-950"
+                    >
+                      Yes, delete
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setConfirmDelete(false)}
+                      className="font-mono text-xs text-carbon-400 underline hover:text-carbon-100"
+                    >
+                      cancel
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setConfirmDelete(true)}
+                    className="font-mono text-xs text-carbon-400 underline hover:text-signal-danger"
+                  >
+                    delete this question
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -409,6 +529,13 @@ export function QuestionForm({
                 View pull request
               </a>{' '}
               — CI validates it, and it goes live once a maintainer merges.
+            </p>
+          )}
+
+          {save.status === 'deleted' && (
+            <p className="border border-ember-500 bg-carbon-900 p-3 text-xs text-carbon-100">
+              Question deleted. It disappears from the site once the rebuild
+              finishes — about a minute.
             </p>
           )}
 

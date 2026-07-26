@@ -18,7 +18,10 @@ export interface QuestionMeta {
   topics: string[]
   roles: string[]
   tags: string[]
-  companies: string[]
+  /** True when the answer is missing or still a placeholder — see /drafts. */
+  draft: boolean
+  /** Slugs of questions sharing topics/tags, ranked at build time. */
+  related: string[]
   time: number | null
   updated: string | null
   source: string

@@ -3,7 +3,6 @@ export interface QuestionFields {
   topics: string[]
   roles: string[]
   tags: string
-  companies: string
   time: string
   /** The whole Markdown body, headings included — one document, one editor. */
   body: string
@@ -23,7 +22,6 @@ export const EMPTY_FIELDS: QuestionFields = {
   topics: [],
   roles: [],
   tags: '',
-  companies: '',
   time: '',
   body: BODY_TEMPLATE,
 }
@@ -104,9 +102,6 @@ export function composeMarkdown(fields: QuestionFields): string {
 
   const tags = csv(fields.tags)
   if (tags.length > 0) lines.push(`tags: [${tags.join(', ')}]`)
-
-  const companies = csv(fields.companies)
-  if (companies.length > 0) lines.push(`companies: [${companies.join(', ')}]`)
 
   if (fields.time.trim() && !Number.isNaN(Number(fields.time))) {
     lines.push(`time: ${Number(fields.time)}`)

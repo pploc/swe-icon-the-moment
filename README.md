@@ -7,6 +7,19 @@ database** — git is the database.
 
 **Live site:** https://pploc.github.io/swe-icon-the-moment/
 
+## Using the site
+
+| | |
+| --- | --- |
+| `⌘K` / `Ctrl+K` | Command palette — jump to any question, topic, or action |
+| `/` | Focus search (results appear as you type, with topic and role facets) |
+| `[` | Show/hide the sidebar |
+| **Random** | Pulls up an arbitrary question to drill on |
+| **Drafts** | Questions whose answer is missing or still a placeholder |
+
+Each question page ends with related questions, ranked at build time by shared
+topics and tags.
+
 ## Add or edit a question
 
 **From the site.** [+ Add question](https://pploc.github.io/swe-icon-the-moment/new)
@@ -19,6 +32,10 @@ lands depends on who you are:
 | Maintainer with a connected token | Commits straight to `main`; the site redeploys in ~1 min |
 | Anyone else with a connected token | Pushes to your fork and opens a **pull request** |
 | No token connected | Opens GitHub's editor pre-filled — non-collaborators get GitHub's fork-and-PR flow automatically |
+
+The editor is split write/preview with a formatting toolbar, autosaves to your
+browser as you type (so a closed tab doesn't lose work), and — for maintainers
+— can rename a question by editing its filename or delete it outright.
 
 Tokens are optional, [fine-grained](https://github.com/settings/personal-access-tokens/new),
 stored only in your browser's localStorage, and sent only to api.github.com.
@@ -35,7 +52,6 @@ title: A hot cache key expires — how do you survive the stampede?
 topics: [caching, performance]   # required, ≥1 id from content/topics.yaml
 roles: [backend, sre]
 tags: [redis, stampede]
-companies: []
 time: 20
 updated: 2026-07-26
 ---
@@ -114,6 +130,12 @@ content/topics.yaml ─────┤─ scripts/build-content.mjs ──► sr
                          │        (runs at build time)    public/data/q/<slug>.json  (HTML + source)
                          └───────────────────────────────► public/data/search.json    (search corpus)
 ```
+
+After Vite builds, `scripts/prerender.mjs` writes a real HTML file per route.
+Without it GitHub Pages answers every deep link with `404.html` — the app still
+worked, but the *status code* was 404, so crawlers skipped the page and link
+previews came up empty. Each page now carries its own title, description, and
+Open Graph tags, plus a `sitemap.xml` and `robots.txt`.
 
 Markdown is rendered at build time (markdown-it + Shiki), so reading a question
 ships no parser or highlighter. [`shared/markdown.mjs`](shared/markdown.mjs)
