@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 @import 'katex/dist/katex.min.css';
+/* Self-hosted so the site stays dependency-free at runtime. */
+@import '@fontsource-variable/jetbrains-mono';
 
 /* ---------------------------------------------------------------------------
  * Theme: carbon + ember, modern flat. No shadows, no gradients — hierarchy
@@ -34,7 +36,8 @@
     ui-sans-serif, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
     sans-serif;
   --font-mono:
-    ui-monospace, 'Cascadia Code', 'Segoe UI Mono', Menlo, Consolas, monospace;
+    'JetBrains Mono Variable', ui-monospace, 'Cascadia Code', Menlo, Consolas,
+    monospace;
 }
 
 :root[data-theme='light'] {

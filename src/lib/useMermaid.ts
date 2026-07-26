@@ -52,7 +52,7 @@ export function useMermaid(deps: unknown[]) {
           startOnLoad: false,
           theme: theme === 'light' ? 'default' : 'dark',
           themeVariables: {
-            fontFamily: 'ui-monospace, Consolas, monospace',
+            fontFamily: "'JetBrains Mono Variable', ui-monospace, monospace",
             primaryBorderColor: '#ff6b1a',
             ...THEME_VARIABLES[theme],
           },
