@@ -21,18 +21,18 @@ const isDesktop = () =>
   typeof window !== 'undefined' && window.matchMedia('(min-width: 1024px)').matches
 
 function mainLinkClass({ isActive }: { isActive: boolean }) {
-  return `block border-l-2 px-3 py-2 font-mono text-xs font-semibold tracking-wide uppercase transition-colors ${
+  return `block rounded-lg px-3 py-2 font-mono text-xs font-semibold tracking-wide uppercase transition-colors ${
     isActive
-      ? 'border-ember-500 bg-carbon-900 text-ember-400'
-      : 'border-transparent text-carbon-300 hover:border-carbon-600 hover:text-carbon-50'
+      ? 'bg-ember-500/15 text-ember-400'
+      : 'text-carbon-300 hover:bg-carbon-900 hover:text-carbon-50'
   }`
 }
 
 function topicLinkClass({ isActive }: { isActive: boolean }) {
-  return `flex items-center gap-2.5 border-l-2 px-3 py-1.5 text-sm transition-colors ${
+  return `flex items-center gap-2.5 rounded-lg px-3 py-1.5 text-sm transition-colors ${
     isActive
-      ? 'border-ember-500 bg-carbon-900 text-ember-400'
-      : 'border-transparent text-carbon-300 hover:border-carbon-600 hover:text-carbon-50'
+      ? 'bg-ember-500/15 text-ember-400'
+      : 'text-carbon-300 hover:bg-carbon-900 hover:text-carbon-50'
   }`
 }
 
@@ -252,7 +252,7 @@ export default function App() {
       )}
 
       <aside
-        className={`fixed top-14 left-0 z-30 h-[calc(100vh-3.5rem)] w-80 overflow-y-auto border-r border-carbon-700 bg-carbon-950 px-3 py-6 transition-transform duration-200 ${
+        className={`fixed top-14 left-0 z-30 h-[calc(100vh-3.5rem)] w-80 overflow-y-auto rounded-r-2xl border-r border-carbon-700 bg-carbon-950 px-3 py-6 transition-transform duration-200 lg:rounded-none ${
           navOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >

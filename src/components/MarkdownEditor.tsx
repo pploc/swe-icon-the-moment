@@ -289,7 +289,7 @@ export function MarkdownEditor({
         onKeyDown={onKeyDown}
         placeholder={placeholder}
         spellCheck
-        className="min-h-0 flex-1 resize-none bg-carbon-900 p-4 font-mono text-sm leading-relaxed text-carbon-100 placeholder:text-carbon-400 focus:outline-none"
+        className="min-h-0 flex-1 resize-none rounded-none bg-carbon-900 p-4 font-mono text-sm leading-relaxed text-carbon-100 placeholder:text-carbon-400 focus:outline-none"
       />
     </div>
   )

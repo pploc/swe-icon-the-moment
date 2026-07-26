@@ -318,11 +318,11 @@ export function QuestionForm({
       </div>
 
       {/* Metadata drawer ---------------------------------------------------- */}
-      <div className="border border-carbon-700 bg-carbon-900">
+      <div className="overflow-hidden border border-carbon-700 bg-carbon-900">
         <button
           type="button"
           onClick={() => setDetailsOpen((open) => !open)}
-          className="flex w-full items-center gap-3 px-3 py-2 text-left font-mono text-xs text-carbon-400 transition-colors hover:text-carbon-100"
+          className="flex w-full items-center gap-3 rounded-none px-3 py-2 text-left font-mono text-xs text-carbon-400 transition-colors hover:bg-carbon-850 hover:text-carbon-100"
         >
           <span className="text-ember-500">{detailsOpen ? '▾' : '▸'}</span>
           <span className="tracking-wide uppercase">Details</span>
@@ -480,7 +480,7 @@ export function QuestionForm({
         ))}
       </div>
 
-      <div className="grid h-[calc(100vh-19rem)] min-h-[30rem] grid-cols-1 border border-carbon-700 lg:grid-cols-2">
+      <div className="grid h-[calc(100vh-19rem)] min-h-[30rem] grid-cols-1 overflow-hidden rounded-2xl border border-carbon-700 lg:grid-cols-2">
         <div className={`min-h-0 ${pane === 'write' ? 'flex' : 'hidden'} flex-col lg:flex`}>
           <MarkdownEditor
             value={fields.body}

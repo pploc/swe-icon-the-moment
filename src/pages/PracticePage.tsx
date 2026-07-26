@@ -399,9 +399,9 @@ export default function PracticePage() {
             end session
           </button>
         </div>
-        <div className="mt-2 h-0.5 bg-carbon-800">
+        <div className="mt-2 h-1 overflow-hidden rounded-full bg-carbon-800">
           <div
-            className="h-full bg-ember-500 transition-[width] duration-300"
+            className="h-full rounded-full bg-ember-500 transition-[width] duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>

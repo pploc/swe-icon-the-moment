@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div className="space-y-12">
-      <section className="border border-carbon-700 bg-carbon-900 p-6 sm:p-10">
+      <section className="animate-rise rounded-2xl border border-carbon-700 bg-carbon-900 p-6 sm:p-10">
         <p className="font-mono text-xs tracking-widest text-ember-500 uppercase">
           ■ interview question bank
         </p>

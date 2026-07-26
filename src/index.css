@@ -72,16 +72,28 @@
  * square as they should.
  * ------------------------------------------------------------------------- */
 @layer base {
-  :where(button, input, textarea, select, kbd, summary, [class~='border']) {
-    border-radius: 0.375rem;
+  :where(button, input, textarea, select, kbd, summary, a[class~='border'], [class~='border']) {
+    border-radius: 0.75rem;
   }
 
-  :where(.prose pre, .prose table, .prose img, .prose details, .prose .callout) {
-    border-radius: 0.5rem;
+  :where(
+      .prose pre,
+      .prose table,
+      .prose img,
+      .prose details,
+      .prose .callout,
+      .prose blockquote
+    ) {
+    border-radius: 1rem;
   }
 
   :where(.prose code, .prose th, .prose td) {
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
+  }
+
+  /* Tiny elements read as pills at the full radius. */
+  :where(kbd) {
+    border-radius: 0.375rem;
   }
 }
 
@@ -502,8 +514,8 @@ body {
   display: inline-block;
   min-width: 1.1rem;
   border: 1px solid var(--color-carbon-700);
-  border-radius: 0.25rem;
-  padding: 0 0.25rem;
+  border-radius: 0.5rem;
+  padding: 0 0.3rem;
   margin-left: 0.35rem;
   font-family: var(--font-mono);
   font-size: 0.7rem;

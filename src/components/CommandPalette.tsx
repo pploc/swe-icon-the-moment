@@ -151,7 +151,7 @@ export function CommandPalette() {
       onClick={() => setOpen(false)}
     >
       <div
-        className="w-full max-w-xl border border-carbon-700 bg-carbon-950"
+        className="animate-pop w-full max-w-xl overflow-hidden rounded-2xl border border-carbon-700 bg-carbon-950"
         onClick={(event) => event.stopPropagation()}
       >
         <input
@@ -161,17 +161,17 @@ export function CommandPalette() {
           onKeyDown={onKeyDown}
           placeholder="Jump to a question, topic or action…"
           aria-label="Command palette"
-          className="w-full border-b border-carbon-700 bg-carbon-900 px-4 py-3 text-sm placeholder:text-carbon-400 focus:outline-none"
+          className="w-full rounded-none border-b border-carbon-700 bg-carbon-900 px-4 py-3 text-sm placeholder:text-carbon-400 focus:outline-none"
         />
 
-        <ul ref={listRef} className="max-h-[50vh] overflow-y-auto">
+        <ul ref={listRef} className="max-h-[50vh] overflow-y-auto p-1.5">
           {matches.map((item, index) => (
             <li key={item.id}>
               <button
                 type="button"
                 onMouseEnter={() => setActive(index)}
                 onClick={item.run}
-                className={`flex w-full items-baseline gap-3 px-4 py-2 text-left text-sm transition-colors ${
+                className={`flex w-full items-baseline gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors ${
                   index === active ? 'bg-carbon-850 text-ember-400' : 'text-carbon-100'
                 }`}
               >

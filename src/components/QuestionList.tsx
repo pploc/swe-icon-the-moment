@@ -43,7 +43,8 @@ export function QuestionList({
   }
 
   return (
-    <ul className="divide-y divide-carbon-800 border border-carbon-700">
+    // overflow-hidden keeps the rows' backgrounds inside the rounded corners
+    <ul className="divide-y divide-carbon-800 overflow-hidden border border-carbon-700">
       {questions.map((q) => (
         <li key={q.slug}>
           <Link

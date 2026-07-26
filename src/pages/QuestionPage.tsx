@@ -177,7 +177,7 @@ export default function QuestionPage() {
           <h2 className="mb-3 font-mono text-xs font-semibold tracking-widest text-ember-500 uppercase">
             ■ Related
           </h2>
-          <ul className="divide-y divide-carbon-800 border border-carbon-700">
+          <ul className="divide-y divide-carbon-800 overflow-hidden border border-carbon-700">
             {related.map((other) => (
               <li key={other.slug}>
                 <Link
