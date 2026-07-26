@@ -28,6 +28,9 @@ const manifest = JSON.parse(
 )
 const template = await fs.readFile(path.join(DIST, 'index.html'), 'utf8')
 
+/** Browser tabs read "SWE-ITM: <page>", so the brand stays visible when truncated. */
+const pageTitle = (text) => `${SITE_NAME}: ${text}`
+
 function escapeAttr(text) {
   return String(text)
     .replace(/&/g, '&amp;')
@@ -90,7 +93,7 @@ function record(routePath, lastmod) {
 await fs.writeFile(
   path.join(DIST, 'index.html'),
   buildPage({
-    title: `${SITE_NAME} — ${TAGLINE}`,
+    title: pageTitle(TAGLINE),
     description: `A searchable bank of ${manifest.questions.length} backend and infrastructure engineering interview questions across ${manifest.topics.length} topics.`,
     url: `${SITE}/`,
     noscript: `<h1>${SITE_NAME}</h1><ul>${manifest.topics
@@ -119,7 +122,7 @@ for (const question of manifest.questions) {
   await write(
     `/q/${question.slug}`,
     buildPage({
-      title: `${question.title} — ${SITE_NAME}`,
+      title: pageTitle(question.title),
       description: summarise(question.excerpt || question.title),
       url: `${SITE}/q/${question.slug}`,
       noscript,
@@ -131,7 +134,7 @@ for (const question of manifest.questions) {
   await write(
     `/q/${question.slug}/edit`,
     buildPage({
-      title: `Edit: ${question.title} — ${SITE_NAME}`,
+      title: pageTitle(`Edit — ${question.title}`),
       description: `Edit "${question.title}".`,
       url: `${SITE}/q/${question.slug}/edit`,
       noindex: true,
@@ -145,7 +148,7 @@ for (const topic of manifest.topics) {
   await write(
     `/topic/${topic.id}`,
     buildPage({
-      title: `${topic.name} — ${SITE_NAME}`,
+      title: pageTitle(topic.name),
       description: `${topic.blurb} ${topic.count} interview question${topic.count === 1 ? '' : 's'}.`,
       url: `${SITE}/topic/${topic.id}`,
       noscript: `<h1>${escapeAttr(topic.name)}</h1><ul>${manifest.questions
@@ -172,7 +175,7 @@ for (const [route, title, description] of APP_ROUTES) {
   await write(
     route,
     buildPage({
-      title: `${title} — ${SITE_NAME}`,
+      title: pageTitle(title),
       description,
       url: `${SITE}${route}`,
       noindex: route !== '/search',
@@ -186,7 +189,7 @@ for (const [route, title, description] of APP_ROUTES) {
 await fs.writeFile(
   path.join(DIST, '404.html'),
   buildPage({
-    title: `Not found — ${SITE_NAME}`,
+    title: pageTitle('Not found'),
     description: TAGLINE,
     url: `${SITE}/404`,
     noindex: true,

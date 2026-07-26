@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { builtAt, questions, topics } from '@/generated/content'
+import { questions, topics } from '@/generated/content'
 import { Logo } from '@/components/Logo'
 import { REPO_URL } from '@/lib/repo'
 
@@ -109,7 +109,6 @@ export function Footer() {
           </div>
 
           <div className="ml-auto flex items-center gap-4">
-            <span>built {builtAt.slice(0, 10)}</span>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="border border-carbon-700 px-2.5 py-1 text-carbon-400 transition-colors hover:border-ember-500 hover:text-ember-400"
