@@ -1,8 +1,16 @@
 /** Everything that points back at the GitHub repo lives here. */
 export const REPO_URL = 'https://github.com/pploc/swe-icon-the-moment'
 
-/** Pre-filled "new file" page so a question can be added from the browser. */
-export const NEW_QUESTION_URL = `${REPO_URL}/new/main/content/questions`
+/**
+ * GitHub's "create new file" editor, pre-filled via query params. Committing
+ * there (directly, or via the fork-and-PR flow GitHub offers to non-writers)
+ * triggers CI validation and a redeploy.
+ */
+export function newFileUrl(filename: string, content: string): string {
+  return `${REPO_URL}/new/main/content/questions?filename=${encodeURIComponent(
+    filename,
+  )}&value=${encodeURIComponent(content)}`
+}
 
 export function editUrl(source: string): string {
   return `${REPO_URL}/edit/main/${source}`

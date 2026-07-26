@@ -6,6 +6,7 @@ import Home from '@/pages/Home'
 import TopicPage from '@/pages/TopicPage'
 import QuestionPage from '@/pages/QuestionPage'
 import SearchPage from '@/pages/SearchPage'
+import NewQuestion from '@/pages/NewQuestion'
 import NotFound from '@/pages/NotFound'
 import '@/index.css'
 
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="topic/:topicId" element={<TopicPage />} />
           <Route path="q/:slug" element={<QuestionPage />} />
           <Route path="search" element={<SearchPage />} />
+          <Route path="new" element={<NewQuestion />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

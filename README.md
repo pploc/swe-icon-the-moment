@@ -9,6 +9,13 @@ database** — git is the database.
 
 ## Add a question
 
+**Easiest: the [+ Add question](https://pploc.github.io/swe-icon-the-moment/new)
+form on the site.** Fill it in, hit "Open on GitHub" — the Markdown file
+arrives pre-filled in GitHub's editor, you commit (or GitHub opens a PR for
+you), CI validates, and the site redeploys itself.
+
+Or by hand:
+
 1. Copy [`content/questions/_template.md`](content/questions/_template.md)
    into `content/questions/` (any subfolder — folders are just organisation).
    The **filename becomes the URL slug**: `cache-stampede.md` → `/q/cache-stampede`.

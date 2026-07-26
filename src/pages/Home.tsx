@@ -1,14 +1,9 @@
 import { Link } from 'react-router-dom'
 import { groups, questions, topics } from '@/generated/content'
-import { NEW_QUESTION_URL } from '@/lib/repo'
-
-const GROUP_ORDER = ['fundamentals', 'backend', 'infrastructure', 'career']
+import { orderedGroupIds } from '@/lib/nav'
 
 export default function Home() {
-  const groupIds = [
-    ...GROUP_ORDER.filter((id) => id in groups),
-    ...Object.keys(groups).filter((id) => !GROUP_ORDER.includes(id)),
-  ]
+  const groupIds = orderedGroupIds()
 
   return (
     <div className="space-y-12">
@@ -34,14 +29,12 @@ export default function Home() {
             <span className="text-xl font-bold text-ember-500">{topics.length}</span>{' '}
             <span className="text-carbon-400">topics</span>
           </span>
-          <a
-            href={NEW_QUESTION_URL}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to="/new"
             className="ml-auto self-center border border-ember-500 bg-ember-500 px-4 py-2 text-xs font-semibold tracking-wide text-carbon-950 uppercase transition-colors hover:bg-ember-400 hover:border-ember-400"
           >
             + Add a question
-          </a>
+          </Link>
         </div>
       </section>
 
