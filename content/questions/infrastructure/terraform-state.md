@@ -1,7 +1,6 @@
 ---
 title: Why does Terraform need state, and how do you run it safely in a team?
 topics: [cloud-iac]
-difficulty: mid
 roles: [infra, platform]
 tags: [terraform, state, drift, locking]
 time: 20

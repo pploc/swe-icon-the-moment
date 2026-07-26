@@ -3,7 +3,6 @@
 # Files starting with "_" are ignored by the build.
 title: One-line question as the interviewer would ask it
 topics: [networking]        # ≥1 id from content/topics.yaml — the build fails otherwise
-difficulty: mid             # junior | mid | senior | staff
 roles: [backend, infra]     # backend | infra | sre | platform | fullstack
 tags: [tcp, example]        # free-form, used by search
 companies: []               # optional: where this was asked
@@ -13,10 +12,10 @@ updated: 2026-07-26
 
 ## Question
 
-The full prompt, exactly as you'd pose it. Code blocks, tables, and images all
-work — this is plain Markdown. Diagrams too: a fenced block with language
-`mermaid` renders as a diagram (flowchart, sequence, ER, state, gantt…), and
-ASCII diagrams inside normal code fences work as well.
+The full prompt, exactly as you'd pose it. Standard Markdown all the way:
+tables, task lists, footnotes, definition lists, callouts (`::: warning`),
+math (`$x^2$`), highlighted code fences, and ```mermaid diagrams. See the
+"Supported Markdown" table in the README for the full list.
 
 ## Answer
 

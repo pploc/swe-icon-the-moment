@@ -1,7 +1,6 @@
 ---
 title: What is a deadlock, and how do you prevent one?
 topics: [concurrency]
-difficulty: mid
 roles: [backend]
 tags: [deadlock, locks, mutex]
 time: 15

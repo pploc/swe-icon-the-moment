@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { questions } from '@/generated/content'
-import { DifficultyBadge, Tag, TopicChip } from '@/components/badges'
-import { editUrl, sourceUrl } from '@/lib/repo'
+import { Tag, TopicChip } from '@/components/badges'
+import { useMermaid } from '@/lib/useMermaid'
+import { sourceUrl } from '@/lib/repo'
 import NotFound from '@/pages/NotFound'
 import type { QuestionBody } from '@/lib/types'
 
@@ -10,40 +11,6 @@ type LoadState =
   | { status: 'loading' }
   | { status: 'error' }
   | { status: 'ready'; body: QuestionBody }
-
-/**
- * Renders any ```mermaid blocks in the visible HTML. The library (~1MB) is
- * imported lazily, so pages without diagrams never pay for it.
- */
-function useMermaid(deps: unknown[]) {
-  useEffect(() => {
-    const nodes = document.querySelectorAll<HTMLElement>(
-      'pre.mermaid:not([data-processed])',
-    )
-    if (nodes.length === 0) return
-
-    let cancelled = false
-    import('mermaid').then(({ default: mermaid }) => {
-      if (cancelled) return
-      mermaid.initialize({
-        startOnLoad: false,
-        theme: 'dark',
-        themeVariables: {
-          fontFamily: 'ui-monospace, Consolas, monospace',
-          primaryColor: '#202020',
-          primaryBorderColor: '#ff6b1a',
-          primaryTextColor: '#f4f4f2',
-          lineColor: '#8f8f8f',
-        },
-      })
-      mermaid.run({ nodes: Array.from(nodes) }).catch(() => {})
-    })
-    return () => {
-      cancelled = true
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps)
-}
 
 export default function QuestionPage() {
   const { slug } = useParams()
@@ -91,9 +58,19 @@ export default function QuestionPage() {
       </nav>
 
       <header>
-        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{meta.title}</h1>
+        <div className="flex items-start gap-4">
+          <h1 className="flex-1 text-2xl font-bold tracking-tight sm:text-3xl">
+            {meta.title}
+          </h1>
+          <Link
+            to={`/q/${meta.slug}/edit`}
+            className="mt-1 shrink-0 border border-carbon-700 px-3 py-1.5 font-mono text-xs font-semibold tracking-wide text-carbon-300 uppercase transition-colors hover:border-ember-500 hover:text-ember-400"
+          >
+            ✎ Edit
+          </Link>
+        </div>
+
         <div className="mt-3 flex flex-wrap items-center gap-2">
-          <DifficultyBadge difficulty={meta.difficulty} />
           {meta.topics.map((t) => (
             <TopicChip key={t} topicId={t} />
           ))}
@@ -111,6 +88,7 @@ export default function QuestionPage() {
             </span>
           )}
         </div>
+
         {meta.tags.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1">
             {meta.tags.map((t) => (
@@ -180,11 +158,11 @@ export default function QuestionPage() {
       )}
 
       <footer className="mt-12 flex flex-wrap gap-4 border-t border-carbon-700 pt-4 font-mono text-xs text-carbon-400">
+        <Link to={`/q/${meta.slug}/edit`} className="hover:text-ember-400">
+          edit in page
+        </Link>
         <a href={sourceUrl(meta.source)} target="_blank" rel="noreferrer" className="hover:text-ember-400">
           view markdown source
-        </a>
-        <a href={editUrl(meta.source)} target="_blank" rel="noreferrer" className="hover:text-ember-400">
-          suggest an edit
         </a>
       </footer>
     </article>

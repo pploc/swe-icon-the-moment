@@ -1,7 +1,6 @@
 ---
 title: What happens between `kubectl apply` and a running pod?
 topics: [containers]
-difficulty: senior
 roles: [infra, platform, sre]
 tags: [kubernetes, scheduler, kubelet, controllers]
 time: 25

@@ -1,7 +1,6 @@
 ---
 title: Your query is slow despite an index — why?
 topics: [databases, performance]
-difficulty: senior
 roles: [backend]
 tags: [postgres, indexes, query-plans, btree]
 time: 20

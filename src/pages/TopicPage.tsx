@@ -3,28 +3,35 @@ import { Link, useParams } from 'react-router-dom'
 import { questions, topics } from '@/generated/content'
 import { QuestionList } from '@/components/QuestionList'
 import NotFound from '@/pages/NotFound'
-import type { Difficulty } from '@/lib/types'
-
-const DIFFICULTIES: Difficulty[] = ['junior', 'mid', 'senior', 'staff']
 
 export default function TopicPage() {
   const { topicId } = useParams()
-  const [difficulty, setDifficulty] = useState<Difficulty | 'all'>('all')
+  const [role, setRole] = useState('all')
   const [filter, setFilter] = useState('')
 
   const topic = topics.find((t) => t.id === topicId)
+
+  // Only the roles actually used by this topic's questions are worth showing.
+  const roles = useMemo(() => {
+    if (!topic) return []
+    const found = new Set<string>()
+    for (const q of questions) {
+      if (q.topics.includes(topic.id)) q.roles.forEach((r) => found.add(r))
+    }
+    return [...found].sort()
+  }, [topic])
 
   const matches = useMemo(() => {
     if (!topic) return []
     const needle = filter.trim().toLowerCase()
     return questions.filter((q) => {
       if (!q.topics.includes(topic.id)) return false
-      if (difficulty !== 'all' && q.difficulty !== difficulty) return false
+      if (role !== 'all' && !q.roles.includes(role)) return false
       if (!needle) return true
       const haystack = `${q.title} ${q.excerpt} ${q.tags.join(' ')}`.toLowerCase()
       return haystack.includes(needle)
     })
-  }, [topic, difficulty, filter])
+  }, [topic, role, filter])
 
   if (!topic) return <NotFound />
 
@@ -51,19 +58,20 @@ export default function TopicPage() {
       </div>
 
       <div className="mt-6 flex flex-wrap items-center gap-2">
-        {(['all', ...DIFFICULTIES] as const).map((level) => (
-          <button
-            key={level}
-            onClick={() => setDifficulty(level)}
-            className={`border px-2.5 py-1 font-mono text-xs uppercase transition-colors ${
-              difficulty === level
-                ? 'border-ember-500 bg-ember-500 font-semibold text-carbon-950'
-                : 'border-carbon-700 text-carbon-300 hover:border-ember-500 hover:text-ember-400'
-            }`}
-          >
-            {level}
-          </button>
-        ))}
+        {roles.length > 1 &&
+          ['all', ...roles].map((option) => (
+            <button
+              key={option}
+              onClick={() => setRole(option)}
+              className={`border px-2.5 py-1 font-mono text-xs uppercase transition-colors ${
+                role === option
+                  ? 'border-ember-500 bg-ember-500 font-semibold text-carbon-950'
+                  : 'border-carbon-700 text-carbon-300 hover:border-ember-500 hover:text-ember-400'
+              }`}
+            >
+              {option}
+            </button>
+          ))}
         <input
           type="search"
           value={filter}

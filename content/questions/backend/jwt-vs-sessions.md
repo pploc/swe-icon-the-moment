@@ -1,7 +1,6 @@
 ---
 title: JWTs vs server-side sessions — how do you decide?
 topics: [security, api-design]
-difficulty: mid
 roles: [backend]
 tags: [jwt, sessions, auth, revocation]
 time: 20

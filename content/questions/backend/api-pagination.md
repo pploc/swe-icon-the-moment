@@ -1,7 +1,6 @@
 ---
 title: Offset vs cursor pagination — which and why?
 topics: [api-design, databases]
-difficulty: mid
 roles: [backend]
 tags: [pagination, rest, cursors]
 time: 15

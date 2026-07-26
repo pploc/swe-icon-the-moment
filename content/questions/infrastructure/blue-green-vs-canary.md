@@ -1,7 +1,6 @@
 ---
 title: Blue/green vs canary vs rolling — pick a deployment strategy
 topics: [cicd, sre]
-difficulty: mid
 roles: [infra, platform, sre]
 tags: [deployment, canary, rollback, feature-flags]
 time: 20

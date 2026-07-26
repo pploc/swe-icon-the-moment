@@ -1,7 +1,6 @@
 ---
 title: You're paged at 3am — walk me through your first 15 minutes
 topics: [sre]
-difficulty: senior
 roles: [sre, infra, backend]
 tags: [incident-response, on-call, mitigation]
 time: 20

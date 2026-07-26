@@ -1,7 +1,6 @@
 ---
 title: A hot cache key expires — how do you survive the stampede?
 topics: [caching, performance]
-difficulty: senior
 roles: [backend, sre]
 tags: [redis, stampede, ttl, invalidation]
 time: 20

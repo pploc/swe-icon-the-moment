@@ -1,18 +1,33 @@
 <!doctype html>
-<html lang="en" class="bg-carbon-950">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="dark light" />
     <meta
       name="description"
       content="A searchable, topic-organised bank of backend & infrastructure engineering interview questions."
     />
-    <title>SWE-ITM — backend & infra interview bank</title>
+    <title>SWE-ITM</title>
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ctext x='16' y='21' font-family='Consolas,Menlo,monospace' font-size='13' font-weight='bold' fill='%23ff6b1a' text-anchor='middle'%3EITM%3C/text%3E%3Crect x='4' y='26' width='24' height='3' fill='%23ff6b1a'/%3E%3C/svg%3E"
     />
+    <script>
+      // Set the theme before first paint so there is no flash of the wrong one.
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('itm:theme')
+          var theme =
+            stored ||
+            (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+          document.documentElement.dataset.theme = theme
+          document.documentElement.style.colorScheme = theme
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark'
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

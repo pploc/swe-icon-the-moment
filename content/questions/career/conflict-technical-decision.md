@@ -1,7 +1,6 @@
 ---
 title: Tell me about a time you disagreed with a technical decision
 topics: [behavioral]
-difficulty: mid
 roles: [backend, infra, sre, platform]
 tags: [behavioral, star, conflict]
 time: 10

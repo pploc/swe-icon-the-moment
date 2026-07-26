@@ -1,7 +1,6 @@
 ---
 title: At-least-once, at-most-once, exactly-once — what does Kafka actually give you?
 topics: [messaging, distributed-systems]
-difficulty: senior
 roles: [backend, platform]
 tags: [kafka, delivery-semantics, offsets, consumers]
 time: 25

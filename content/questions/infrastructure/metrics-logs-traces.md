@@ -1,7 +1,6 @@
 ---
 title: Metrics, logs, traces — what does each one actually buy you?
 topics: [observability]
-difficulty: mid
 roles: [sre, infra, backend]
 tags: [observability, tracing, prometheus, slo]
 time: 20

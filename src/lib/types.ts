@@ -12,13 +12,10 @@ export interface Topic {
   count: number
 }
 
-export type Difficulty = 'junior' | 'mid' | 'senior' | 'staff'
-
 export interface QuestionMeta {
   slug: string
   title: string
   topics: string[]
-  difficulty: Difficulty
   roles: string[]
   tags: string[]
   companies: string[]
@@ -28,11 +25,15 @@ export interface QuestionMeta {
   excerpt: string
 }
 
+export interface QuestionSections {
+  question: string
+  answer: string
+  followups: string
+}
+
 export interface QuestionBody {
   slug: string
-  html: {
-    question: string
-    answer: string
-    followups: string
-  }
+  html: QuestionSections
+  /** Original Markdown, so the in-page editor can load it without GitHub. */
+  raw: QuestionSections
 }

@@ -1,7 +1,6 @@
 ---
 title: What happens when you run a command in a Linux shell?
 topics: [os-linux]
-difficulty: mid
 roles: [infra, sre, backend]
 tags: [fork, exec, processes, syscalls]
 time: 20

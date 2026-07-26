@@ -1,7 +1,6 @@
 ---
 title: How do you deal with a flaky test suite?
 topics: [testing, cicd]
-difficulty: mid
 roles: [backend, platform]
 tags: [flaky-tests, ci, determinism]
 time: 15

@@ -1,7 +1,6 @@
 ---
 title: How does garbage collection work in a modern runtime?
 topics: [languages]
-difficulty: senior
 roles: [backend]
 tags: [gc, jvm, golang, memory]
 time: 20

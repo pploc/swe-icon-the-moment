@@ -1,7 +1,6 @@
 ---
 title: What happens when you type a URL and press enter?
 topics: [networking]
-difficulty: mid
 roles: [backend, infra]
 tags: [dns, tcp, tls, http]
 time: 25

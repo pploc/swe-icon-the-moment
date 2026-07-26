@@ -1,7 +1,6 @@
 ---
 title: How does a hash map work under the hood?
 topics: [dsa]
-difficulty: junior
 roles: [backend, infra]
 tags: [hashing, collisions, complexity]
 time: 15

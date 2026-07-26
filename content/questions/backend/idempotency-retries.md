@@ -1,7 +1,6 @@
 ---
 title: How do you make a payment API safe to retry?
 topics: [distributed-systems, api-design]
-difficulty: senior
 roles: [backend]
 tags: [idempotency, retries, exactly-once]
 time: 25

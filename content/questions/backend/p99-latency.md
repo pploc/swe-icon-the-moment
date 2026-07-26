@@ -1,7 +1,6 @@
 ---
 title: p50 is fine but p99 is terrible — walk me through your debugging
 topics: [performance, sre]
-difficulty: staff
 roles: [backend, sre]
 tags: [tail-latency, percentiles, profiling]
 time: 30

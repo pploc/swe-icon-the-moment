@@ -1,7 +1,6 @@
 ---
 title: Design a URL shortener
 topics: [system-design]
-difficulty: mid
 roles: [backend]
 tags: [design, estimation, sharding]
 companies: []
