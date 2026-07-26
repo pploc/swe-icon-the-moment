@@ -8,11 +8,11 @@ import {
 } from 'react-router-dom'
 import { groups, questions, topics } from '@/generated/content'
 import { Logo } from '@/components/Logo'
+import { Footer } from '@/components/Footer'
 import { CommandPalette } from '@/components/CommandPalette'
 import { orderedGroupIds } from '@/lib/nav'
 import { randomSlug } from '@/lib/random'
 import { useDueCount } from '@/lib/useDueCount'
-import { REPO_URL } from '@/lib/repo'
 import { useTheme } from '@/lib/theme'
 
 const SIDEBAR_KEY = 'itm:sidebar'
@@ -273,26 +273,7 @@ export default function App() {
           <Outlet />
         </main>
 
-        <footer className="border-t border-carbon-700">
-          <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-6 font-mono text-xs text-carbon-400 lg:px-10">
-            <span>
-              <span className="text-ember-500">■</span> backend &amp; infra
-              interview bank
-            </span>
-            <a href={REPO_URL} target="_blank" rel="noreferrer" className="hover:text-carbon-100">
-              github
-            </a>
-            <Link to="/new" className="hover:text-carbon-100">
-              add a question
-            </Link>
-            <span className="hidden sm:inline">
-              <kbd className="border border-carbon-700 px-1">⌘K</kbd> palette ·{' '}
-              <kbd className="border border-carbon-700 px-1">[</kbd> sidebar ·{' '}
-              <kbd className="border border-carbon-700 px-1">/</kbd> search
-            </span>
-            <span className="ml-auto">content is markdown. site is static. no database.</span>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   )
