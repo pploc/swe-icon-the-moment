@@ -44,5 +44,6 @@ containers, and that readiness gates traffic while liveness restarts.
 ## Follow-ups
 
 - Rolling update: how do maxSurge/maxUnavailable and readiness interact to keep traffic safe?
+- Which rollout strategy would you pick, and why? See [[blue-green-vs-canary]].
 - The pod is Running but the Service returns 503s — where do you look, in order?
 - What do requests/limits do at *scheduling* time vs *runtime*? (Scheduling uses requests; limits enforce via cgroups — CPU throttling, OOM kills.)

@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { questions } from '@/generated/content'
 import { Tag, TopicChip } from '@/components/badges'
 import { useMermaid } from '@/lib/useMermaid'
+import { useInternalLinks } from '@/lib/useInternalLinks'
 import { sourceUrl } from '@/lib/repo'
 import NotFound from '@/pages/NotFound'
 import type { QuestionBody } from '@/lib/types'
@@ -18,6 +19,8 @@ export default function QuestionPage() {
 
   const [state, setState] = useState<LoadState>({ status: 'loading' })
   const [revealed, setRevealed] = useState(false)
+
+  const internalLinks = useInternalLinks()
 
   const related = (meta?.related ?? [])
     .map((slug) => questions.find((q) => q.slug === slug))
@@ -125,6 +128,7 @@ export default function QuestionPage() {
                 ■ Question
               </h2>
               <div
+                {...internalLinks}
                 className="prose"
                 dangerouslySetInnerHTML={{ __html: state.body.html.question }}
               />
@@ -145,6 +149,7 @@ export default function QuestionPage() {
                   ■ Answer
                 </h2>
                 <div
+                  {...internalLinks}
                   className="prose"
                   dangerouslySetInnerHTML={{ __html: state.body.html.answer }}
                 />
@@ -156,6 +161,7 @@ export default function QuestionPage() {
                     ■ Follow-ups
                   </h2>
                   <div
+                    {...internalLinks}
                     className="prose"
                     dangerouslySetInnerHTML={{ __html: state.body.html.followups }}
                   />

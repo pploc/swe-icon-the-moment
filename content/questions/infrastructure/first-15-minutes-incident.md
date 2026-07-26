@@ -45,5 +45,7 @@ noted as you go — for the blameless postmortem *after* users are safe.
 ## Follow-ups
 
 - When is rolling back the *wrong* move? (Irreversible migrations ridden along, data written in new format.)
+- Which deployment strategy would have made that rollback instant? See [[blue-green-vs-canary]].
+- Which signal would you reach for first? See [[metrics-logs-traces]].
 - What makes a postmortem blameless and still useful? What's an action item smell?
 - How do error budgets change the conversation between SRE and product after this incident?

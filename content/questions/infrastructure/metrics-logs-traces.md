@@ -57,3 +57,4 @@ in logs, traces, or wide events.
 - Alert on symptoms vs causes — why, and what's a burn-rate alert?
 - Head-based vs tail-based sampling: costs of each?
 - A partner reports failures for *their* account only; your dashboards are green. Which signal finds it, and what was wrong with the dashboards?
+- Put these signals to work on a real symptom: [[p99-latency]].

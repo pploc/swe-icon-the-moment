@@ -50,5 +50,7 @@ survive), cache stampede on a viral link (single-flight), and abuse
 ## Follow-ups
 
 - Add click analytics without slowing redirects. (Async: log → queue → aggregate.)
+- What delivery guarantees does that analytics pipeline need? See [[kafka-delivery-semantics]].
+- A link goes viral and the cache entry expires — see [[cache-stampede]].
 - Custom aliases — what changes? (Uniqueness contention, reserved words.)
 - Links must expire after 90 days — cheapest correct design? (Lazy expiry on read + background sweep.)

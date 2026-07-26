@@ -9,6 +9,7 @@ import SearchPage from '@/pages/SearchPage'
 import NewQuestion from '@/pages/NewQuestion'
 import EditQuestion from '@/pages/EditQuestion'
 import DraftsPage from '@/pages/DraftsPage'
+import PracticePage from '@/pages/PracticePage'
 import NotFound from '@/pages/NotFound'
 import '@/index.css'
 
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="search" element={<SearchPage />} />
           <Route path="new" element={<NewQuestion />} />
           <Route path="drafts" element={<DraftsPage />} />
+          <Route path="practice" element={<PracticePage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

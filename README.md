@@ -11,6 +11,7 @@ database** — git is the database.
 
 | | |
 | --- | --- |
+| **Practice** | Spaced-repetition drilling — see below |
 | `⌘K` / `Ctrl+K` | Command palette — jump to any question, topic, or action |
 | `/` | Focus search (results appear as you type, with topic and role facets) |
 | `[` | Show/hide the sidebar |
@@ -18,7 +19,24 @@ database** — git is the database.
 | **Drafts** | Questions whose answer is missing or still a placeholder |
 
 Each question page ends with related questions, ranked at build time by shared
-topics and tags.
+topics and tags. Follow-up prompts link to the question that answers them, and
+the ones nothing covers yet show a **+** that opens the editor pre-filled.
+
+## Practice & spaced repetition
+
+`/practice` drills you one question at a time: read it, answer from memory,
+reveal, then rate yourself **Again / Hard / Good / Easy** (keys `1`–`4`, space
+to reveal). An SM-2 scheduler decides when each question comes back — a card
+you find easy drifts from days to weeks to months, one you miss resets and
+returns before the session ends. Each card shows a stopwatch against the
+question's estimated time.
+
+Scope a session by topic, choose due-and-unseen or everything, and cap the
+length. The sidebar and dashboard show how many cards are due.
+
+Review state lives in **this browser's localStorage** — it is per-person, and
+there is no server to sync it with. Use **export** / **import** on the practice
+page to move progress between machines.
 
 ## Add or edit a question
 
@@ -93,6 +111,7 @@ published page:
 | Callouts | `::: warning Title` … `:::` (note · tip · info · warning · danger) |
 | Emoji | `:rocket:` |
 | Raw HTML | `<details><summary>…</summary>` and friends |
+| Question links | `[[slug]]` or `[[slug\|label]]` — validated at build time |
 
 Headings get anchor links automatically. Diagram and math rendering are
 lazy-loaded, so pages that don't use them stay light.

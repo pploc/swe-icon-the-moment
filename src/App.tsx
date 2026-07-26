@@ -11,6 +11,7 @@ import { Logo } from '@/components/Logo'
 import { CommandPalette } from '@/components/CommandPalette'
 import { orderedGroupIds } from '@/lib/nav'
 import { randomSlug } from '@/lib/random'
+import { useDueCount } from '@/lib/useDueCount'
 import { REPO_URL } from '@/lib/repo'
 import { useTheme } from '@/lib/theme'
 
@@ -38,12 +39,21 @@ function topicLinkClass({ isActive }: { isActive: boolean }) {
 function Sidebar() {
   const navigate = useNavigate()
   const drafts = questions.filter((q) => q.draft).length
+  const due = useDueCount()
 
   return (
     <nav className="space-y-7">
       <div className="space-y-1">
         <NavLink to="/" end className={mainLinkClass}>
           ▤ Dashboard
+        </NavLink>
+        <NavLink to="/practice" className={mainLinkClass}>
+          ◈ Practice
+          {due > 0 && (
+            <span className="ml-2 rounded-full bg-ember-500 px-1.5 font-normal text-carbon-950">
+              {due}
+            </span>
+          )}
         </NavLink>
         <NavLink to="/search" className={mainLinkClass}>
           ⌕ Search

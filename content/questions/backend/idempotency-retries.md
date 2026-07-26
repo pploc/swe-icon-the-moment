@@ -49,3 +49,4 @@ dedup tables, `ON CONFLICT DO NOTHING`, conditional writes.
 - The payment provider you call downstream has no idempotency support — now what? (Reconciliation, unique client reference, status polling before retry.)
 - Where does the outbox pattern fit in this picture?
 - How do idempotency keys interact with request bodies that differ between retries? (Reject: same key + different payload = 422.)
+- How does the same at-least-once + idempotent-consumer pattern look on a message bus? See [[kafka-delivery-semantics]].

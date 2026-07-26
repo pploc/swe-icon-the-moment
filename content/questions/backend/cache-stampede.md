@@ -44,3 +44,4 @@ stampede degrades to errors for some instead of an outage for all.
 - The stampede happened on a *nonexistent* key being hammered — different problem, different fix. (Negative caching, bloom filter — cache penetration.)
 - Redis itself restarts cold. How do you warm it without recreating the stampede?
 - Compare this per-key lock with the locking you'd use for cache *consistency* on writes.
+- What does a stampede do to the tail of your latency distribution? See [[p99-latency]].

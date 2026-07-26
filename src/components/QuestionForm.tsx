@@ -4,6 +4,7 @@ import { GitHubConnect } from '@/components/GitHubConnect'
 import { MarkdownEditor } from '@/components/MarkdownEditor'
 import { IconEye, IconPencil } from '@/components/icons'
 import { useMermaid } from '@/lib/useMermaid'
+import { useInternalLinks } from '@/lib/useInternalLinks'
 import { editUrl, newFileUrl } from '@/lib/repo'
 import {
   commitFile,
@@ -82,6 +83,7 @@ export function QuestionForm({
   const [confirmDelete, setConfirmDelete] = useState(false)
 
   const storageKey = draftKey(mode, fixedSlug)
+  const internalLinks = useInternalLinks()
 
   useEffect(() => {
     setFields(initial)
@@ -128,7 +130,7 @@ export function QuestionForm({
   useEffect(() => {
     let cancelled = false
     import('@/lib/markdown').then(({ render }) => {
-      if (!cancelled) setHtml(render(fields.body || '_Nothing to preview yet._'))
+      if (!cancelled) setHtml(render(fields.body || '_Nothing to preview yet._', fixedSlug))
     })
     return () => {
       cancelled = true
@@ -497,6 +499,7 @@ export function QuestionForm({
             Preview
           </div>
           <div
+            {...internalLinks}
             className="prose min-h-0 flex-1 overflow-auto bg-carbon-900 p-5"
             dangerouslySetInnerHTML={{ __html: html }}
           />

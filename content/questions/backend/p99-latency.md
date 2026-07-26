@@ -49,3 +49,5 @@ percentiles across hosts — aggregate histograms.
 - Why is "average of p99s" wrong, and what do you do instead?
 - Hedged requests: when do they help, and how do they go wrong? (Amplifying load on an already-saturated backend.)
 - Your p99 is fine but a top customer's p99 is awful — what's the measurement lesson? (Per-tenant SLIs; global percentiles hide cohorts.)
+- Which observability signal names the guilty span? See [[metrics-logs-traces]].
+- One classic tail-latency source is a cache that all expires at once: [[cache-stampede]].

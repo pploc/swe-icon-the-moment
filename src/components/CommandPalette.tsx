@@ -66,6 +66,7 @@ export function CommandPalette() {
     const actions: Item[] = [
       { id: 'a-home', label: 'Dashboard', hint: 'go', kind: 'action', run: go('/') },
       { id: 'a-new', label: 'Add a question', hint: 'go', kind: 'action', run: go('/new') },
+      { id: 'a-practice', label: 'Practice', hint: 'drill', kind: 'action', run: go('/practice') },
       { id: 'a-search', label: 'Search', hint: 'go', kind: 'action', run: go('/search') },
       { id: 'a-drafts', label: 'Drafts', hint: 'go', kind: 'action', run: go('/drafts') },
       {

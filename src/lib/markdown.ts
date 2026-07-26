@@ -5,6 +5,8 @@ import {
   markdownOptions,
   mermaidFence,
 } from '../../shared/markdown.mjs'
+import { buildIndex, prepareBody } from '../../shared/links.mjs'
+import { questions } from '@/generated/content'
 
 /**
  * Browser-side renderer for the editor preview. Same plugin set as the build,
@@ -12,8 +14,9 @@ import {
  * chunk small. Published pages still get full highlighting.
  */
 let renderer: MarkdownIt | null = null
+let linkIndex: ReturnType<typeof buildIndex> | null = null
 
-export function render(markdown: string): string {
+export function render(markdown: string, selfSlug?: string): string {
   renderer ??= applyMarkdownPlugins(
     new MarkdownIt({
       ...markdownOptions,
@@ -23,5 +26,14 @@ export function render(markdown: string): string {
       },
     }),
   )
-  return renderer.render(markdown)
+  linkIndex ??= buildIndex(questions)
+
+  // Same preparation the build runs, so the preview shows the same links.
+  return renderer.render(
+    prepareBody(markdown, {
+      index: linkIndex,
+      base: import.meta.env.BASE_URL,
+      selfSlug,
+    }),
+  )
 }

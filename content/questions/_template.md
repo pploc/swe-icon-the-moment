@@ -25,3 +25,6 @@ button on the site.
 
 - Probing questions an interviewer might add.
 - What separates a senior answer from a mid-level one.
+- Link to another question with [[its-slug]] — works anywhere in the body.
+  Follow-ups that closely match an existing title link automatically; the rest
+  get a "+" that opens the editor pre-filled with that question.

@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { groups, questions, topics } from '@/generated/content'
 import { orderedGroupIds } from '@/lib/nav'
+import { useDueCount } from '@/lib/useDueCount'
 
 export default function Home() {
   const groupIds = orderedGroupIds()
+  const due = useDueCount()
 
   return (
     <div className="space-y-12">
@@ -20,7 +22,7 @@ export default function Home() {
           file in the repo, assigned to at least one topic. Read the question,
           think, then reveal the answer.
         </p>
-        <div className="mt-6 flex flex-wrap gap-6 font-mono text-sm">
+        <div className="mt-6 flex flex-wrap items-center gap-6 font-mono text-sm">
           <span>
             <span className="text-xl font-bold text-ember-500">{questions.length}</span>{' '}
             <span className="text-carbon-400">questions</span>
@@ -29,12 +31,26 @@ export default function Home() {
             <span className="text-xl font-bold text-ember-500">{topics.length}</span>{' '}
             <span className="text-carbon-400">topics</span>
           </span>
-          <Link
-            to="/new"
-            className="ml-auto self-center border border-ember-500 bg-ember-500 px-4 py-2 text-xs font-semibold tracking-wide text-carbon-950 uppercase transition-colors hover:bg-ember-400 hover:border-ember-400"
-          >
-            + Add a question
-          </Link>
+          {due > 0 && (
+            <span>
+              <span className="text-xl font-bold text-ember-500">{due}</span>{' '}
+              <span className="text-carbon-400">due to review</span>
+            </span>
+          )}
+          <div className="ml-auto flex gap-2">
+            <Link
+              to="/practice"
+              className="self-center rounded-md border border-ember-500 bg-ember-500 px-4 py-2 text-xs font-semibold tracking-wide text-carbon-950 uppercase transition-colors hover:border-ember-400 hover:bg-ember-400"
+            >
+              ◈ {due > 0 ? `Practice ${due}` : 'Practice'}
+            </Link>
+            <Link
+              to="/new"
+              className="self-center rounded-md border border-ember-500 px-4 py-2 text-xs font-semibold tracking-wide text-ember-400 uppercase transition-colors hover:bg-ember-500 hover:text-carbon-950"
+            >
+              + Add
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -49,7 +65,7 @@ export default function Home() {
               <h2 className="text-lg font-bold tracking-tight">{group.name}</h2>
               <p className="hidden text-sm text-carbon-400 sm:block">{group.blurb}</p>
             </div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="stagger grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {groupTopics.map((topic) => (
                 <Link
                   key={topic.id}
