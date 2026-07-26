@@ -56,7 +56,7 @@ export default function SearchPage() {
   }, [index, query])
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-4xl">
       <h1 className="font-mono text-xs font-semibold tracking-widest text-ember-500 uppercase">
         ■ Search
       </h1>

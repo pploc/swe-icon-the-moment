@@ -78,7 +78,7 @@ export default function QuestionPage() {
   if (!meta) return <NotFound />
 
   return (
-    <article className="mx-auto max-w-3xl">
+    <article className="mx-auto max-w-4xl">
       <nav className="mb-6 font-mono text-xs text-carbon-400">
         <Link to="/" className="hover:text-ember-400">
           topics
