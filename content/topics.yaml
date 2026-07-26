@@ -1,0 +1,152 @@
+# ---------------------------------------------------------------------------
+# Topic registry.
+#
+# To add a topic: append an entry below. `id` is what questions reference in
+# their frontmatter `topics:` list — keep it kebab-case and never rename one
+# without updating the questions that use it (the build will tell you if you do).
+#
+#   id      required, unique, kebab-case
+#   name    required, display name
+#   group   required, must match one of the `groups` keys below
+#   blurb   required, one line shown on the topic card
+#   icon    required, a single emoji
+# ---------------------------------------------------------------------------
+
+groups:
+  fundamentals:
+    name: Fundamentals
+    blurb: The layer underneath every backend and infra question.
+  backend:
+    name: Backend Engineering
+    blurb: Designing and running services that hold state and serve traffic.
+  infrastructure:
+    name: Infrastructure & Platform
+    blurb: Everything between your code and a packet arriving at a user.
+  career:
+    name: Career
+    blurb: The half of the loop that is not a whiteboard.
+
+topics:
+  # --- Fundamentals --------------------------------------------------------
+  - id: dsa
+    name: Data Structures & Algorithms
+    group: fundamentals
+    icon: 🧮
+    blurb: Complexity analysis and the structures you are expected to reach for.
+
+  - id: concurrency
+    name: Concurrency & Parallelism
+    group: fundamentals
+    icon: 🧵
+    blurb: Threads, async, locks, races, and the memory model underneath them.
+
+  - id: os-linux
+    name: Operating Systems & Linux
+    group: fundamentals
+    icon: 🐧
+    blurb: Processes, memory, syscalls, filesystems, and debugging a live box.
+
+  - id: networking
+    name: Networking
+    group: fundamentals
+    icon: 🌐
+    blurb: TCP/IP, DNS, TLS, HTTP, load balancers, and where latency hides.
+
+  - id: languages
+    name: Languages & Runtimes
+    group: fundamentals
+    icon: ⚙️
+    blurb: GC, memory models, and runtime behaviour in Go, Java, Python, Rust.
+
+  # --- Backend -------------------------------------------------------------
+  - id: system-design
+    name: System Design
+    group: backend
+    icon: 🏗️
+    blurb: Open-ended design rounds — requirements, estimation, and trade-offs.
+
+  - id: databases
+    name: Databases & SQL
+    group: backend
+    icon: 🗄️
+    blurb: Indexes, query plans, transactions, isolation levels, and modelling.
+
+  - id: distributed-systems
+    name: Distributed Systems
+    group: backend
+    icon: 🕸️
+    blurb: Consensus, replication, partial failure, CAP, and clock skew.
+
+  - id: api-design
+    name: API Design
+    group: backend
+    icon: 🔌
+    blurb: REST, gRPC, GraphQL, versioning, pagination, and contracts.
+
+  - id: caching
+    name: Caching
+    group: backend
+    icon: ⚡
+    blurb: Eviction, invalidation, stampedes, and multi-tier cache layouts.
+
+  - id: messaging
+    name: Message Queues & Streaming
+    group: backend
+    icon: 📬
+    blurb: Kafka, RabbitMQ, SQS, delivery semantics, ordering, and backpressure.
+
+  - id: security
+    name: Security & Auth
+    group: backend
+    icon: 🔐
+    blurb: AuthN/AuthZ, OAuth, JWT, secrets, and the common vulnerability classes.
+
+  - id: performance
+    name: Performance & Scalability
+    group: backend
+    icon: 📈
+    blurb: Profiling, tail latency, capacity planning, and load shedding.
+
+  - id: testing
+    name: Testing & Quality
+    group: backend
+    icon: 🧪
+    blurb: Test pyramids, fakes vs mocks, flakiness, and testing distributed code.
+
+  # --- Infrastructure ------------------------------------------------------
+  - id: containers
+    name: Containers & Orchestration
+    group: infrastructure
+    icon: 📦
+    blurb: Docker internals, Kubernetes scheduling, networking, and storage.
+
+  - id: cloud-iac
+    name: Cloud & Infrastructure as Code
+    group: infrastructure
+    icon: ☁️
+    blurb: AWS/GCP primitives, Terraform, IAM, and multi-account topologies.
+
+  - id: cicd
+    name: CI/CD & Release Engineering
+    group: infrastructure
+    icon: 🚀
+    blurb: Pipelines, artefacts, blue/green, canaries, and safe rollbacks.
+
+  - id: observability
+    name: Observability
+    group: infrastructure
+    icon: 🔭
+    blurb: Metrics, logs, traces, cardinality, SLOs, and useful alerting.
+
+  - id: sre
+    name: Incident Response & SRE
+    group: infrastructure
+    icon: 🚨
+    blurb: On-call, error budgets, debugging production, and postmortems.
+
+  # --- Career --------------------------------------------------------------
+  - id: behavioral
+    name: Behavioral & Leadership
+    group: career
+    icon: 💬
+    blurb: Conflict, ownership, ambiguity, and STAR-shaped stories that land.

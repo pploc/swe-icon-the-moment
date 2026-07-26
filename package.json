@@ -1,0 +1,37 @@
+{
+  "name": "swe-icon-the-moment",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A searchable, topic-organised bank of backend & infrastructure engineering interview questions, written in Markdown.",
+  "scripts": {
+    "content": "node scripts/build-content.mjs",
+    "content:check": "node scripts/build-content.mjs --check",
+    "dev": "npm run content && vite",
+    "build": "npm run content && tsc -b --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "minisearch": "^7.1.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.16",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.0.4",
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "shiki": "^3.13.0",
+    "tailwindcss": "^4.1.16",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9",
+    "yaml": "^2.8.1"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  }
+}
