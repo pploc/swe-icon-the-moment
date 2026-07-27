@@ -10,6 +10,7 @@ import { groups, questions, topics } from '@/generated/content'
 import { Logo } from '@/components/Logo'
 import { Footer } from '@/components/Footer'
 import { CommandPalette } from '@/components/CommandPalette'
+import { DiagramZoomModal } from '@/components/DiagramZoomModal'
 import { orderedGroupIds } from '@/lib/nav'
 import { randomSlug } from '@/lib/random'
 import { useDueCount } from '@/lib/useDueCount'
@@ -172,6 +173,7 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <CommandPalette />
+      <DiagramZoomModal />
 
       <header className="sticky top-0 z-40 border-b border-carbon-700 bg-carbon-950/95 backdrop-blur">
         <div className="relative flex h-14 items-center gap-3 px-3">

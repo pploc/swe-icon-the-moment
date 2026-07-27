@@ -556,10 +556,24 @@ body {
   justify-content: center;
   background: var(--color-carbon-900);
   padding: 1.5rem 1rem;
+  cursor: zoom-in;
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.prose pre.mermaid:hover {
+  border-color: var(--color-ember-500);
 }
 .prose pre.mermaid svg {
   max-width: 100%;
   height: auto;
+  pointer-events: none;
+}
+.prose img {
+  cursor: zoom-in;
+  transition: border-color 0.2s ease;
+}
+.prose img:hover {
+  border-color: var(--color-ember-500);
 }
 
 /* Shiki emits both themes as CSS variables; pick the one in play. */
