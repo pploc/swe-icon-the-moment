@@ -41,10 +41,11 @@ def fetch_data_state_machine(state, value=None):
 
 ```mermaid
 flowchart TD
-    EL[Event Loop] --> |"1. Run ready coroutines"| C[Coroutine runs until await]
-    C --> |"2. Suspends, registers I/O callback"| IO[I/O Operation begins]
-    IO --> |"3. OS completes I/O"| CB[Callback / future resolved]
+    EL["Event Loop"] --> |"1. Run ready coroutines"| C["Coroutine runs until await"]
+    C --> |"2. Suspends, registers I/O callback"| IO["I/O Operation begins"]
+    IO --> |"3. OS completes I/O"| CB["Callback / future resolved"]
     CB --> |"4. Coroutine re-added to ready queue"| EL
+
 ```
 
 **Node.js model:** Single-threaded event loop. `libuv` handles I/O with OS async primitives (`epoll`/`kqueue`). CPU-bound work can be offloaded to the `worker_threads` module or the native thread pool (for file I/O).

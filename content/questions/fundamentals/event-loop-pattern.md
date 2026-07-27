@@ -19,14 +19,15 @@ Explain the event loop concurrency model: how a single thread handles thousands 
 flowchart LR
     subgraph EventLoop["Single-Thread Event Loop"]
         direction TB
-        Poll["epoll_wait()\n(block until event)"] --> Dispatch[Dispatch event to handler]
-        Dispatch --> Timer[Process timer callbacks]
-        Timer --> IO[Process I/O callbacks]
+        Poll["epoll_wait()\n("block until event")"] --> Dispatch["Dispatch event to handler"]
+        Dispatch --> Timer["Process timer callbacks"]
+        Timer --> IO["Process I/O callbacks"]
         IO --> Poll
     end
-    C1[Connection 1] -->|"fd readable"| Poll
-    C2[Connection 2] -->|"fd writable"| Poll
-    C3[Connection N] -->|"timer fired"| Poll
+    C1["Connection 1"] -->|"fd readable"| Poll
+    C2["Connection 2"] -->|"fd writable"| Poll
+    C3["Connection N"] -->|"timer fired"| Poll
+
 ```
 
 **What the event loop does:**

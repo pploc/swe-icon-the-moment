@@ -18,11 +18,12 @@ In modern CI/CD, deploying a new application version (V2) must happen without dr
 
 ```mermaid
 flowchart TD
-    subgraph Transition Phase (Both Versions Active!)
-        V1[Spring Boot App V1\nOld Code] --> DB[(Shared Production DB)]
-        V2[Spring Boot App V2\nNew Code] --> DB
+    subgraph Transition Phase("Both Versions Active!")
+        V1["Spring Boot App V1\nOld Code"] --> DB[("Shared Production DB")]
+        V2["Spring Boot App V2\nNew Code"] --> DB
     end
-    Ingress[Load Balancer / K8s Ingress] -->|Traffic Shift| V1 & V2
+    Ingress["Load Balancer / K8s Ingress"] -->|Traffic Shift| V1 & V2
+
 ```
 
 **1. Database Schema Backward-Compatibility (Expand & Contract Pattern):**

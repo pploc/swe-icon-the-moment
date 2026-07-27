@@ -36,13 +36,22 @@ export function DiagramZoomModal() {
 
         if (diagramEl.tagName.toLowerCase() === 'img') {
           const img = diagramEl as HTMLImageElement
-          html = `<img src="${img.src}" alt="${img.alt || 'Diagram'}" style="max-width: 100%; height: auto;" />`
+          html = `<img src="${img.src}" alt="${img.alt || 'Diagram'}" style="max-width: 100%; max-height: 80vh; object-fit: contain; margin: 0 auto; display: block;" />`
           title = img.alt || 'Image Zoom'
         } else {
           // Mermaid SVG or Container
           const svg = diagramEl.querySelector('svg')
           if (svg) {
-            html = svg.outerHTML
+            // Clone SVG to preserve all inline styles and attributes
+            const clone = svg.cloneNode(true) as SVGElement
+            // Ensure SVG expands responsively inside modal
+            clone.style.width = '100%'
+            clone.style.height = 'auto'
+            clone.style.maxWidth = '100%'
+            clone.style.maxHeight = '75vh'
+            clone.style.display = 'block'
+            clone.style.margin = '0 auto'
+            html = clone.outerHTML
           } else if (diagramEl.innerHTML) {
             html = diagramEl.innerHTML
           }
@@ -120,12 +129,12 @@ export function DiagramZoomModal() {
       }}
     >
       {/* Header bar */}
-      <div className="flex h-14 shrink-0 items-center justify-between border-b border-carbon-700 bg-carbon-900/90 px-4 sm:px-6">
+      <div className="flex h-14 shrink-0 items-center justify-between border-b border-carbon-700 bg-carbon-900 px-4 sm:px-6">
         <div className="flex items-center gap-2">
           <span className="font-mono text-xs font-semibold tracking-widest text-ember-500 uppercase">
             ■ {activeDiagram.title}
           </span>
-          <span className="hidden font-mono text-[11px] text-carbon-400 sm:inline">
+          <span className="font-mono text-[11px] text-carbon-400">
             ({Math.round(scale * 100)}%)
           </span>
         </div>
@@ -187,21 +196,21 @@ export function DiagramZoomModal() {
         onMouseLeave={handleMouseUp}
       >
         <div
-          className="absolute inset-0 flex items-center justify-center p-8 transition-transform duration-75 ease-out"
+          className="absolute inset-0 flex items-center justify-center p-6 transition-transform duration-75 ease-out"
           style={{
             transform: `translate(${pan.x}px, ${pan.y}px) scale(${scale})`,
             transformOrigin: 'center center',
           }}
         >
           <div
-            className="diagram-zoom-content max-h-full max-w-full rounded-xl border border-carbon-700 bg-carbon-900/95 p-6 shadow-2xl [&_svg]:max-h-[80vh] [&_svg]:w-auto [&_svg]:max-w-full"
+            className="diagram-zoom-content flex min-h-[300px] min-w-[320px] max-h-[85vh] max-w-[90vw] items-center justify-center rounded-xl border border-carbon-700 bg-carbon-900 p-6 shadow-2xl overflow-auto"
             dangerouslySetInnerHTML={{ __html: activeDiagram.html }}
           />
         </div>
       </div>
 
       {/* Footer hint */}
-      <div className="flex h-10 shrink-0 items-center justify-between border-t border-carbon-700 bg-carbon-900/90 px-4 font-mono text-[11px] text-carbon-400">
+      <div className="flex h-10 shrink-0 items-center justify-between border-t border-carbon-700 bg-carbon-900 px-4 font-mono text-[11px] text-carbon-400">
         <span>Scroll to zoom · Drag to pan · Esc to close</span>
         <span className="hidden sm:inline">Shortcut: + / - / 0</span>
       </div>

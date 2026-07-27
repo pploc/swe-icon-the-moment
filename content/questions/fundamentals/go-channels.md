@@ -30,13 +30,14 @@ A channel is a typed, goroutine-safe communication pipe. Sending and receiving c
 ```mermaid
 sequenceDiagram
     participant P as Producer Goroutine
-    participant C as Channel (cap=3)
+    participant C as Channel("cap=3")
     participant Q as Consumer Goroutine
     P->>C: send(1) — buffer has space
     P->>C: send(2) — buffer has space
     P->>C: send(3) — buffer full, block!
     Q->>C: receive → 1
     P->>C: send(4) — now has space, unblocks
+
 ```
 
 **Select statement:** Wait on multiple channels:

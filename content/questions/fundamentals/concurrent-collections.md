@@ -17,17 +17,18 @@ Map out the Java concurrent collection landscape: `ConcurrentHashMap`, `CopyOnWr
 
 ```mermaid
 flowchart TD
-    Need[Need thread-safe collection] --> Type{Type?}
-    Type -- Map --> MapQ{Access pattern?}
+    Need["Need thread-safe collection"] --> Type{Type?}
+    Type -- Map --> MapQ{"Access pattern?"}
     MapQ -- point lookup, no order --> CHM[ConcurrentHashMap]
     MapQ -- sorted / range queries --> CSLM[ConcurrentSkipListMap]
-    Type -- List --> ListQ{Write frequency?}
+    Type -- List --> ListQ{"Write frequency?"}
     ListQ -- rare writes, many reads --> COWAL[CopyOnWriteArrayList]
-    ListQ -- frequent writes --> SyncList[SynchronizedList + lock]
+    ListQ -- frequent writes --> SyncList["SynchronizedList + lock"]
     Type -- Queue --> QueueQ{Priority?}
     QueueQ -- FIFO, lock-free --> CLQ[ConcurrentLinkedQueue]
-    QueueQ -- blocking producer-consumer --> BQ[BlockingQueue family]
+    QueueQ -- blocking producer-consumer --> BQ["BlockingQueue family"]
     QueueQ -- priority --> PBQ[PriorityBlockingQueue]
+
 ```
 
 **`ConcurrentHashMap`:**

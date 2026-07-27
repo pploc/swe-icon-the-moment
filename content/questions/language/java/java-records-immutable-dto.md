@@ -69,8 +69,9 @@ public record OrderResponse(
 
 ```mermaid
 flowchart LR
-    JSON["{ 'order_id': 101, 'total': 49.99 }"] -->|Jackson Deserialization| Record[OrderResponse Record]
-    Record -->|Canonical Constructor| ValidatedInstance[Immutable Object Instance]
+    JSON["{ 'order_id': 101, 'total': 49.99 }"] -->|Jackson Deserialization| Record["OrderResponse Record"]
+    Record -->|Canonical Constructor| ValidatedInstance["Immutable Object Instance"]
+
 ```
 
 **3. JPA / Hibernate Trap with Records:**

@@ -48,8 +48,9 @@ Barriers instruct the CPU not to reorder instructions across the barrier.
 
 ```mermaid
 flowchart LR
-    HLL["Java synchronized\nvolatile write/read\nC++ atomic release/acquire"] --> MB[Memory Barriers emitted\nby compiler/JIT]
-    MB --> CPU[CPU respects ordering]
+    HLL["Java synchronized\nvolatile write/read\nC++ atomic release/acquire"] --> MB["Memory Barriers emitted\nby compiler/JIT"]
+    MB --> CPU["CPU respects ordering"]
+
 ```
 
 Java `volatile` write emits a store-load barrier on x86 (`lock add [rsp], 0` or `mfence`). Go's channel operations and `sync/atomic` emit appropriate barriers.

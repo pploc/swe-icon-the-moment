@@ -29,9 +29,10 @@ A nice -20 task (high priority, heavier weight) accumulates vruntime more slowly
 
 ```mermaid
 flowchart LR
-    RBT["RB-Tree (ordered by vruntime)"] --> Min["leftmost = min vruntime\n= next to schedule"]
+    RBT["RB-Tree("ordered by vruntime")"] --> Min["leftmost = min vruntime\n= next to schedule"]
     Min --> CPU["Run on CPU\nvruntime increases"]
     CPU --> RBT
+
 ```
 
 **Nice values:** Range from -20 (highest priority, more CPU) to +19 (lowest). `nice -n 10 ./cpu_heavy` runs a task at nice=10. Default is nice=0. Each nice level is ~10% more/less CPU than adjacent level. Use `renice -n 5 -p <pid>` to change dynamically.

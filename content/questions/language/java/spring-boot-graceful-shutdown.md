@@ -29,13 +29,14 @@ sequenceDiagram
     participant DB as Database / In-flight Requests
     
     K8s->>App: 1. Sends SIGTERM Signal
-    App->>App: 2. Set Readiness Probe -> DOWN (Stop new traffic)
+    App->>App: 2. Set Readiness Probe -> DOWN("Stop new traffic")
     App->>Server: 3. Stop Accepting New Connections
-    Server->>DB: 4. Drain Active Requests (Wait up to timeout)
+    Server->>DB: 4. Drain Active Requests("Wait up to timeout")
     DB-->>Server: 5. All Active Requests Finish
     Server-->>App: 6. Web Server Stopped
-    App->>App: 7. Close Spring ApplicationContext (Beans @PreDestroy)
+    App->>App: 7. Close Spring ApplicationContext("Beans @PreDestroy")
     App->>K8s: 8. Process Exits (0)
+
 ```
 
 **1. Enabling Graceful Shutdown (`application.yml`):**

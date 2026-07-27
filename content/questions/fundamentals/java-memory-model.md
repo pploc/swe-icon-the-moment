@@ -36,10 +36,11 @@ sequenceDiagram
     participant X as Volatile x
     participant B as Thread B
     A->>A: write data = 42
-    A->>X: x = true  (volatile write)
+    A->>X: x = true("volatile write")
     Note over A,X: happens-before edge established
-    B->>X: read x == true (volatile read)
-    B->>B: read data == 42  (guaranteed visible!)
+    B->>X: read x == true("volatile read")
+    B->>B: read data == 42("guaranteed visible!")
+
 ```
 
 **What the JMM permits:** Without HB relationships, the JMM allows reads to see any write — including prior writes by any thread. Compilers can reorder instructions. CPUs can buffer stores. Two threads communicating without synchronization may see completely inconsistent views of memory.

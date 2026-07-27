@@ -25,12 +25,13 @@ Explain eBPF: what it is, how the verifier ensures safety, the key program types
 ```mermaid
 flowchart LR
     BPFCode["BPF C code"] --> Clang["clang -target bpf"] --> Bytecode
-    Bytecode --> Verifier["Kernel verifier\n(safety check)"]
+    Bytecode --> Verifier["Kernel verifier\n("safety check")"]
     Verifier --> JIT["JIT compiler\n→ native x86 code"]
-    JIT --> Hook["Attach to hook\n(kprobe, socket, XDP...)"]
+    JIT --> Hook["Attach to hook\n("kprobe, socket, XDP...")"]
     Hook --> Events["System events trigger\nBPF program"]
-    Events --> Maps["BPF Maps\n(shared kernel-user data)"]
+    Events --> Maps["BPF Maps\n("shared kernel-user data")"]
     Maps --> UserSpace["User-space tool\nreads maps"]
+
 ```
 
 **Key program types:**

@@ -52,11 +52,12 @@ func callDownstream(ctx context.Context, req Request) (Response, error) {
 
 ```mermaid
 flowchart LR
-    R1[Request 1] --> S{Semaphore\ncurrent=50/50}
-    R2[Request 51] --> S
-    S -->|"permit available"| DS[Downstream API]
-    S -->|"no permit\ntimeout"| Err[Error/Fallback]
-    DS -->|"response"| Release[release permit]
+    R1["Request 1"] --> S{"Semaphore\ncurrent=50/50"}
+    R2["Request 51"] --> S
+    S -->|"permit available"| DS["Downstream API"]
+    S -->|"no permit\ntimeout"| Err["Error/Fallback"]
+    DS -->|"response"| Release["release permit"]
+
 ```
 
 **Semaphore vs bounded queue:**

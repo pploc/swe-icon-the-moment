@@ -22,12 +22,13 @@ In other words: every operation appears to take effect atomically at some point 
 ```mermaid
 sequenceDiagram
     participant A as Thread A
-    participant R as Register (value=0)
+    participant R as Register("value=0")
     participant B as Thread B
     A->>R: write(1) [starts]
     B->>R: read() → returns 1
     A->>R: write(1) [completes]
     Note over A,B: Linearizable: write(1) can be ordered before read()
+
 ```
 
 **Non-linearizable example:**

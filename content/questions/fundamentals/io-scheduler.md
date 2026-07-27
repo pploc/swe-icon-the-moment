@@ -24,8 +24,9 @@ Explain the Linux block I/O scheduler: the difference between legacy single-queu
 
 ```mermaid
 flowchart LR
-    SW["Software Queues\n(per-CPU)"] --> HW["Hardware Dispatch Queues\n(per NVMe queue)"]
-    HW --> SSD["NVMe SSD\n(multiple queues)"]
+    SW["Software Queues\n("per-CPU")"] --> HW["Hardware Dispatch Queues\n("per NVMe queue")"]
+    HW --> SSD["NVMe SSD\n("multiple queues")"]
+
 ```
 
 Modern NVMe SSDs support 64+ hardware queues — one per CPU core. The old single-queue model was a bottleneck. `blk-mq` maps software queues to hardware queues for true parallelism.

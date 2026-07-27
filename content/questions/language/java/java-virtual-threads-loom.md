@@ -27,25 +27,26 @@ Virtual threads are lightweight user-mode threads managed by the JVM runtime rat
 ```mermaid
 flowchart TD
     subgraph JVM Memory
-        VT1[Virtual Thread 1]
-        VT2[Virtual Thread 2]
-        VT3[Virtual Thread 3]
-        VT4[Virtual Thread 4]
-        VT5[Virtual Thread N...]
+        VT1["Virtual Thread 1"]
+        VT2["Virtual Thread 2"]
+        VT3["Virtual Thread 3"]
+        VT4["Virtual Thread 4"]
+        VT5["Virtual Thread N..."]
     end
     subgraph ForkJoinPool Scheduler
-        CT1[Carrier Thread 1\n(Platform Thread)]
-        CT2[Carrier Thread 2\n(Platform Thread)]
+        CT1["Carrier Thread 1\n("Platform Thread")"]
+        CT2["Carrier Thread 2\n("Platform Thread")"]
     end
     subgraph OS Kernel
-        KT1[Kernel Thread 1]
-        KT2[Kernel Thread 2]
+        KT1["Kernel Thread 1"]
+        KT2["Kernel Thread 2"]
     end
     
     VT1 & VT2 -->|Mounted| CT1
     VT3 & VT4 & VT5 -->|Mounted| CT2
     CT1 --> KT1
     CT2 --> KT2
+
 ```
 
 **How Unmounting Works (Continuation API):**

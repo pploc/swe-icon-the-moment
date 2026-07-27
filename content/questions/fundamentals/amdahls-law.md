@@ -26,9 +26,10 @@ As N → ∞: `Speedup_max = 1 / (1 - p)`
 ```mermaid
 xychart-beta
     title "Amdahl's Law: Speedup vs Processors"
-    x-axis [1, 2, 4, 8, 16, 32, 64]
+    x-axis["1, 2, 4, 8, 16, 32, 64"]
     y-axis "Speedup" 0 --> 20
-    line [1, 1.9, 3.5, 6.0, 9.0, 12.0, 14.0]
+    line["1, 1.9, 3.5, 6.0, 9.0, 12.0, 14.0"]
+
 ```
 
 **Concrete examples:**

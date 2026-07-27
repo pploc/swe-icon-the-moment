@@ -36,7 +36,8 @@ sequenceDiagram
     Note over prev,curr: prev=B, curr=C
     curr->>curr: next = null
     curr->>curr: C.next = B
-    Note over prev,curr: prev=C (new head), curr=null → done
+    Note over prev,curr: prev=C("new head"), curr=null → done
+
 ```
 
 **Recursive (O(n) stack space):**

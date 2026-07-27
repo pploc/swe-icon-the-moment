@@ -24,14 +24,15 @@ Describe the readers-writers problem, the three classic variants (readers-prefer
 ```mermaid
 flowchart LR
     subgraph Readers_pref["Readers-preference (default)"]
-        RP[New readers jump ahead of waiting writers\n→ writers can starve]
+        RP["New readers jump ahead of waiting writers\n→ writers can starve"]
     end
     subgraph Writers_pref["Writers-preference"]
-        WP[Waiting writers block new readers\n→ readers can starve]
+        WP["Waiting writers block new readers\n→ readers can starve"]
     end
     subgraph Fair["Fair (alternating)"]
-        F[Queue-based: first come, first served\n→ neither starves]
+        F["Queue-based: first come, first served\n→ neither starves"]
     end
+
 ```
 
 **Implementation — readers-preference:**

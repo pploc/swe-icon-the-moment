@@ -23,14 +23,15 @@ Explain Go's GMP concurrency model: what G, M, and P represent, how goroutines a
 flowchart TD
     subgraph P1["P1 (Processor)"]
         LRQ1["Local Run Queue\nG5, G6, G7"]
-        M1["M1 (OS Thread)"] --> G1["G1 running"]
+        M1["M1("OS Thread")"] --> G1["G1 running"]
     end
     subgraph P2["P2 (Processor)"]
         LRQ2["Local Run Queue\nG8"]
-        M2["M2 (OS Thread)"] --> G2["G2 running"]
+        M2["M2("OS Thread")"] --> G2["G2 running"]
     end
     GRQ["Global Run Queue\nG9, G10"] -.->|"steal if local empty"| P1
     LRQ1 -.->|"work steal"| P2
+
 ```
 
 **Scheduling flow:**

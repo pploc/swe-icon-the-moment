@@ -18,12 +18,13 @@ In a microservices architecture with 50+ service instances, updating configurati
 
 ```mermaid
 flowchart LR
-    GitRepo[(Git Repository\napplication.yml\norder-service-prod.yml)] --> ConfigServer[Spring Cloud Config Server\n@EnableConfigServer]
-    ConfigServer -->|1. Fetch Config on Startup| Microservice1[Order Service Prod]
-    ConfigServer -->|1. Fetch Config on Startup| Microservice2[Inventory Service Dev]
+    GitRepo[("Git Repository\napplication.yml\norder-service-prod.yml")] --> ConfigServer["Spring Cloud Config Server\n@EnableConfigServer"]
+    ConfigServer -->|1. Fetch Config on Startup| Microservice1["Order Service Prod"]
+    ConfigServer -->|1. Fetch Config on Startup| Microservice2["Inventory Service Dev"]
     
-    Webhook[Git Push Webhook] -->|2. Webhook Event| Bus[Spring Cloud Bus / RabbitMQ]
+    Webhook["Git Push Webhook"] -->|2. Webhook Event| Bus["Spring Cloud Bus / RabbitMQ"]
     Bus -->|3. Broadcast /actuator/refresh| Microservice1 & Microservice2
+
 ```
 
 **1. Config Server Setup:**

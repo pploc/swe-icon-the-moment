@@ -55,7 +55,7 @@ Phaser phaser = new Phaser(3);
 
 ```mermaid
 flowchart LR
-    subgraph Latch["CountDownLatch (one-shot)"]
+    subgraph Latch["CountDownLatch("one-shot")"]
         W1[Worker] --> |countDown| Gate
         W2[Worker] --> |countDown| Gate
         Gate -->|"await()"| Main
@@ -65,6 +65,7 @@ flowchart LR
         P2 <-->|barrier.await| P3[Thread]
         Note["All meet → run action → proceed"]
     end
+
 ```
 
 **Summary:**

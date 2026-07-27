@@ -56,10 +56,11 @@ class LockFreeStack:
 
 ```mermaid
 flowchart LR
-    A[Contention level] -->|Low| B[Lock-free wins]
-    A -->|High| C[Mutex wins\n(less wasted work)]
-    D[Critical section complexity] -->|Simple| B
+    A["Contention level"] -->|Low| B["Lock-free wins"]
+    A -->|High| C["Mutex wins\n("less wasted work")"]
+    D["Critical section complexity"] -->|Simple| B
     D -->|Complex| C
+
 ```
 
 **Real examples:**

@@ -18,10 +18,11 @@ Spring Kafka wraps Apache Kafka native Java clients with Spring abstractions, pr
 
 ```mermaid
 flowchart LR
-    Producer[Spring Service] -->|KafkaTemplate| KafkaTopic[(Kafka Topic: orders)]
-    KafkaTopic -->|Consumer Group| Container[ConcurrentKafkaListenerContainerFactory\nN Threads = N Partitions]
-    Container --> Listener1[@KafkaListener Thread 1]
-    Container --> Listener2[@KafkaListener Thread 2]
+    Producer["Spring Service"] -->|KafkaTemplate| KafkaTopic[("Kafka Topic: orders")]
+    KafkaTopic -->|Consumer Group| Container["ConcurrentKafkaListenerContainerFactory\nN Threads = N Partitions"]
+    Container --> Listener1["@KafkaListener Thread 1"]
+    Container --> Listener2["@KafkaListener Thread 2"]
+
 ```
 
 **1. Producer Configuration & `KafkaTemplate`:**

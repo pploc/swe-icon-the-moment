@@ -20,16 +20,17 @@ Explain Java's atomic variable classes. When does `AtomicLong` fall short under 
 ```mermaid
 flowchart LR
     subgraph AtomicLong
-        T1[Thread 1] -->|CAS| AL[Single long\n100% contention]
-        T2[Thread 2] -->|CAS retry| AL
-        T3[Thread 3] -->|CAS retry| AL
+        T1["Thread 1"] -->|CAS| AL["Single long\n100% contention"]
+        T2["Thread 2"] -->|CAS retry| AL
+        T3["Thread 3"] -->|CAS retry| AL
     end
     subgraph LongAdder
-        T4[Thread 4] -->|update| C1[Cell 0]
-        T5[Thread 5] -->|update| C2[Cell 1]
-        T6[Thread 6] -->|update| C3[Cell 2]
+        T4["Thread 4"] -->|update| C1["Cell 0"]
+        T5["Thread 5"] -->|update| C2["Cell 1"]
+        T6["Thread 6"] -->|update| C3["Cell 2"]
         C1 & C2 & C3 -->|sum()| Total
     end
+
 ```
 
 **`LongAdder` operation:**

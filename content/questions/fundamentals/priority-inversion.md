@@ -24,9 +24,10 @@ sequenceDiagram
     L->>Lock: acquire()
     H->>Lock: try acquire() — blocked!
     Note over H: Blocked waiting for Lock
-    M->>M: preempts L (higher priority)
+    M->>M: preempts L("higher priority")
     Note over M,L: M runs; L can't release Lock; H stays blocked
     Note over H: High priority task starved by Medium!
+
 ```
 
 **Real incident — Mars Pathfinder (1997):** A high-priority meteorological task shared a mutex with a low-priority data task. A medium-priority communications task starved the low-priority task, causing the high-priority task to miss its deadline, triggering a system reset. Fixed by enabling priority inheritance on the mutex.

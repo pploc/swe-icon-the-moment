@@ -74,11 +74,12 @@ ref.set(new Config());
 
 ```mermaid
 flowchart TD
-    A[Create Object] --> B{All fields final?}
-    B -- yes --> C[Safely published via any mechanism]
-    B -- no --> D{Published via volatile/sync/static?}
+    A["Create Object"] --> B{"All fields final?"}
+    B -- yes --> C["Safely published via any mechanism"]
+    B -- no --> D{"Published via volatile/sync/static?"}
     D -- yes --> E[Safe]
-    D -- no --> F[Unsafe — partial construction risk]
+    D -- no --> F["Unsafe — partial construction risk"]
+
 ```
 
 ## Follow-ups

@@ -22,18 +22,19 @@ Compare Interfaces and Abstract Classes in modern Java (Java 8, 9, 17+): default
 ```mermaid
 flowchart TD
     subgraph Abstract Class
-        AC[abstract class Animal]
-        ACState[Instance Fields: protected String name]
-        ACConst[Constructors: public Animal]
-        ACMethods[Abstract & Concrete Methods]
+        AC["abstract class Animal"]
+        ACState["Instance Fields: protected String name"]
+        ACConst["Constructors: public Animal"]
+        ACMethods["Abstract & Concrete Methods"]
     end
-    subgraph Interface (Java 9+)
-        IF[interface Flyable]
-        IFDefault[default void fly]
-        IFStatic[static void checkWind]
-        IFPrivate[private void validateState]
-        IFConst[NO Instance Fields, NO Constructors]
+    subgraph Interface("Java 9+")
+        IF["interface Flyable"]
+        IFDefault["default void fly"]
+        IFStatic["static void checkWind"]
+        IFPrivate["private void validateState"]
+        IFConst["NO Instance Fields, NO Constructors"]
     end
+
 ```
 
 **Architectural Comparison Matrix:**

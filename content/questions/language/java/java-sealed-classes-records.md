@@ -55,13 +55,14 @@ public class PaymentProcessor {
 
 ```mermaid
 flowchart TD
-    PaymentMethod[Sealed Interface: PaymentMethod]
-    PaymentMethod -->|Permitted| CC[CreditCard Record]
-    PaymentMethod -->|Permitted| BT[BankTransfer Record]
-    PaymentMethod -->|Permitted| CW[CryptoWallet Record]
+    PaymentMethod["Sealed Interface: PaymentMethod"]
+    PaymentMethod -->|Permitted| CC["CreditCard Record"]
+    PaymentMethod -->|Permitted| BT["BankTransfer Record"]
+    PaymentMethod -->|Permitted| CW["CryptoWallet Record"]
     
-    Switch[Pattern Matching switch] -->|Destructure & Match| CC & BT & CW
-    Switch -->|Compiler Verification| Exhaustive[No default branch required!]
+    Switch["Pattern Matching switch"] -->|Destructure & Match| CC & BT & CW
+    Switch -->|Compiler Verification| Exhaustive["No default branch required!"]
+
 ```
 
 **Key Advantages:**

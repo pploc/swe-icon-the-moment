@@ -27,11 +27,12 @@ Explain Spring AOP: the AOP terminology (aspect, join point, pointcut, advice, w
 
 ```mermaid
 flowchart LR
-    Caller --> Proxy["Spring Proxy\n(JDK or CGLIB)"]
+    Caller --> Proxy["Spring Proxy\n("JDK or CGLIB")"]
     Proxy --> Before["@Before advice"]
-    Before --> Target["Real method\n(target bean)"]
+    Before --> Target["Real method\n("target bean")"]
     Target --> After["@After / @AfterReturning\n/ @AfterThrowing"]
     After --> Around["(wraps all of the above)"]
+
 ```
 
 - **JDK Dynamic Proxy:** Works if bean implements an interface. Creates proxy implementing same interface.

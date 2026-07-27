@@ -19,18 +19,19 @@ Trace the execution path of a system call (e.g., `read()`) from the C library th
 
 ```mermaid
 sequenceDiagram
-    participant App as User Program (Ring 3)
+    participant App as User Program("Ring 3")
     participant Glibc as glibc wrapper
     participant CPU as CPU
-    participant K as Kernel (Ring 0)
-    App->>Glibc: read(fd, buf, len)
-    Glibc->>CPU: set rax=0 (syscall #),\nrdi=fd, rsi=buf, rdx=len
+    participant K as Kernel("Ring 0")
+    App->>Glibc: read("fd, buf, len")
+    Glibc->>CPU: set rax=0("syscall #"),\nrdi=fd, rsi=buf, rdx=len
     CPU->>CPU: SYSCALL instruction\n→ switch to kernel stack,\nchange privilege level
     CPU->>K: syscall_entry_64 dispatcher
     K->>K: sys_read() handler
     K->>K: copy data from kernel buffer to user buf
     CPU->>CPU: SYSRET instruction → Ring 3
     Glibc-->>App: return bytes_read
+
 ```
 
 **x86-64 syscall mechanism:**

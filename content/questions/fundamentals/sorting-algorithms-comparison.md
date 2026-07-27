@@ -30,11 +30,12 @@ Walk through the key properties of the four most common comparison sorts. Which 
 
 ```mermaid
 graph LR
-    A[Input Array] --> B{Type?}
-    B -- primitives --> C[Dual-Pivot Quicksort]
-    B -- objects --> D[Timsort / Mergesort]
-    C --> E[In-place, no stability needed]
-    D --> F[Stable, preserves equal-key order]
+    A["Input Array"] --> B{Type?}
+    B -- primitives --> C["Dual-Pivot Quicksort"]
+    B -- objects --> D["Timsort / Mergesort"]
+    C --> E["In-place, no stability needed"]
+    D --> F["Stable, preserves equal-key order"]
+
 ```
 
 **Stability matters** when you sort by multiple keys in sequence: sort by name, then by age → stable age-sort preserves the name order within each age group.

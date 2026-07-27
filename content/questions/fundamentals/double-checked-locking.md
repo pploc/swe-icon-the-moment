@@ -71,10 +71,11 @@ sequenceDiagram
     participant M as Memory
     participant B as Thread B
     A->>M: allocate Singleton
-    A->>M: assign instance = ref (volatile write)
+    A->>M: assign instance = ref("volatile write")
     Note over A,M: All constructor writes flushed first
-    B->>M: read instance (volatile read)
+    B->>M: read instance("volatile read")
     B->>B: sees fully initialized Singleton ✓
+
 ```
 
 ## Follow-ups

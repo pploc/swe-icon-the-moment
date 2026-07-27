@@ -17,10 +17,10 @@ Explain Java Collections Framework internals: `ArrayList` resizing, `LinkedList`
 
 ```mermaid
 flowchart TD
-    Collection[Iterable / Collection]
+    Collection["Iterable / Collection"]
     Collection --> List[List]
     Collection --> Set[Set]
-    Collection --> Queue[Queue / Deque]
+    Collection --> Queue["Queue / Deque"]
     
     List --> ArrayList[ArrayList]
     List --> LinkedList[LinkedList]
@@ -31,6 +31,7 @@ flowchart TD
     Map[Map] --> HashMap[HashMap]
     Map --> TreeMap[TreeMap]
     Map --> LinkedHashMap[LinkedHashMap]
+
 ```
 
 **1. `ArrayList` vs `LinkedList`:**
@@ -44,11 +45,12 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-    Bucket0[Bucket 0] --> Node1[Key1 -> Val1]
-    Bucket1[Bucket 1 (Treeified > 8)] --> RBT[Red-Black Tree Node]
-    RBT --> Left[Left Child]
-    RBT --> Right[Right Child]
-    Bucket2[Bucket 2] --> Node2[Key2 -> Val2]
+    Bucket0["Bucket 0"] --> Node1["Key1 -> Val1"]
+    Bucket1["Bucket 1("Treeified > 8")"] --> RBT["Red-Black Tree Node"]
+    RBT --> Left["Left Child"]
+    RBT --> Right["Right Child"]
+    Bucket2["Bucket 2"] --> Node2["Key2 -> Val2"]
+
 ```
 
 - **Load Factor & Resizing:** Default load factor is `0.75`. When `size > capacity * 0.75`, capacity doubles, and all keys are rehashed into the new table.

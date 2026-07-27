@@ -18,10 +18,11 @@ Micrometer is the dimensional metrics instrumentation facade for Java (think SLF
 
 ```mermaid
 flowchart LR
-    App[Spring Boot Service] -->|Instrument Code| Micrometer[Micrometer MeterRegistry]
-    Micrometer -->|Prometheus Format| Actuator[/actuator/prometheus]
-    Actuator -->|Scrape| PrometheusServer[Prometheus Server]
-    PrometheusServer -->|Visualize| Grafana[Grafana Dashboard]
+    App["Spring Boot Service"] -->|Instrument Code| Micrometer["Micrometer MeterRegistry"]
+    Micrometer -->|Prometheus Format| Actuator["/actuator/prometheus"]
+    Actuator -->|Scrape| PrometheusServer["Prometheus Server"]
+    PrometheusServer -->|Visualize| Grafana["Grafana Dashboard"]
+
 ```
 
 **Core Micrometer Meter Types:**

@@ -80,10 +80,11 @@ com.example.audit.starter.AuditAutoConfiguration
 
 ```mermaid
 flowchart TD
-    App[Consumer Application] -->|1. Adds Dependency| Starter[custom-audit-spring-boot-starter]
+    App["Consumer Application"] -->|1. Adds Dependency| Starter["custom-audit-spring-boot-starter"]
     Starter -->|2. Reads Imports| Imports[AutoConfiguration.imports]
     Imports -->|3. Evaluates Conditions| Config[AuditAutoConfiguration]
-    Config -->|4. Registers Beans| Context[Spring ApplicationContext]
+    Config -->|4. Registers Beans| Context["Spring ApplicationContext"]
+
 ```
 
 **Testing the Custom Starter:**

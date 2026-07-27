@@ -28,14 +28,15 @@ R__refresh_user_view.sql
 
 ```mermaid
 flowchart LR
-    Start[Spring Boot Application Startup] --> FlywayCheck[Flyway Auto-Configuration]
-    FlywayCheck --> SchemaTable[(flyway_schema_history Table)]
+    Start["Spring Boot Application Startup"] --> FlywayCheck["Flyway Auto-Configuration"]
+    FlywayCheck --> SchemaTable[("flyway_schema_history Table")]
     SchemaTable -->|1. Verify Checksums| Checksum{Checksum\nMatch?}
-    Checksum -->|No| Fail[App Startup Fails! Abort]
+    Checksum -->|No| Fail["App Startup Fails! Abort"]
     Checksum -->|Yes| CheckPending{Pending\nScripts?}
-    CheckPending -->|Yes| Apply[Execute Pending SQL\nUpdate flyway_schema_history]
-    CheckPending -->|No| InitHibernate[Initialize JPA / Hibernate]
+    CheckPending -->|Yes| Apply["Execute Pending SQL\nUpdate flyway_schema_history"]
+    CheckPending -->|No| InitHibernate["Initialize JPA / Hibernate"]
     Apply --> InitHibernate
+
 ```
 
 **Flyway Naming Rules:**

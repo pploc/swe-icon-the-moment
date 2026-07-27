@@ -20,18 +20,19 @@ A single-threaded chunk step processing 100,000,000 database records sequentiall
 
 ```mermaid
 flowchart TD
-    Job[Spring Batch Job] --> MasterStep[Manager / Master Step]
-    MasterStep -->|1. Partitioning Data| Partitioner[Custom Partitioner]
-    Partitioner -->|2. Create ExecutionContexts| Split[Partition 1: ID 1-25000\nPartition 2: ID 25001-50000\nPartition 3: ID 50001-75000\nPartition 4: ID 75001-100000]
+    Job["Spring Batch Job"] --> MasterStep["Manager / Master Step"]
+    MasterStep -->|1. Partitioning Data| Partitioner["Custom Partitioner"]
+    Partitioner -->|2. Create ExecutionContexts| Split["Partition 1: ID 1-25000\nPartition 2: ID 25001-50000\nPartition 3: ID 50001-75000\nPartition 4: ID 75001-100000"]
     
     subgraph Parallel Worker Threads / Nodes
-        Split -->|Assign| Worker1[Worker Step 1: Process Chunk]
-        Split -->|Assign| Worker2[Worker Step 2: Process Chunk]
-        Split -->|Assign| Worker3[Worker Step 3: Process Chunk]
-        Split -->|Assign| Worker4[Worker Step 4: Process Chunk]
+        Split -->|Assign| Worker1["Worker Step 1: Process Chunk"]
+        Split -->|Assign| Worker2["Worker Step 2: Process Chunk"]
+        Split -->|Assign| Worker3["Worker Step 3: Process Chunk"]
+        Split -->|Assign| Worker4["Worker Step 4: Process Chunk"]
     end
     
     Worker1 & Worker2 & Worker3 & Worker4 -->|3. Aggregate Status| MasterStep
+
 ```
 
 **1. Implementing a Custom `Partitioner`:**

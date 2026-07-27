@@ -24,12 +24,13 @@ The Fork/Join Framework is designed for divide-and-conquer parallel processing, 
 
 ```mermaid
 flowchart TD
-    Task[Large Task: Array size 1,000,000] -->|Threshold > 10,000?| Fork[Fork Split]
-    Fork --> Sub1[SubTask 1: Left 500,000]
-    Fork --> Sub2[SubTask 2: Right 500,000]
-    Sub1 -->|Recursive Fork| Base1[Compute Base Case]
-    Sub2 -->|Recursive Fork| Base2[Compute Base Case]
-    Base1 & Base2 -->|Join Results| Result[Final Combined Result]
+    Task["Large Task: Array size 1,000,000"] -->|Threshold > 10,000?| Fork["Fork Split"]
+    Fork --> Sub1["SubTask 1: Left 500,000"]
+    Fork --> Sub2["SubTask 2: Right 500,000"]
+    Sub1 -->|Recursive Fork| Base1["Compute Base Case"]
+    Sub2 -->|Recursive Fork| Base2["Compute Base Case"]
+    Base1 & Base2 -->|Join Results| Result["Final Combined Result"]
+
 ```
 
 **Code Example: Parallel Array Sum with `RecursiveTask`:**
@@ -80,12 +81,13 @@ Each worker thread in `ForkJoinPool` maintains its own double-ended queue (Deque
 ```mermaid
 flowchart LR
     subgraph Worker Thread 1 (Active)
-        T1Deque["Deque 1:\n[Task A] [Task B] [Task C] ↓ Push/Pop (Tail)"]
+        T1Deque["Deque 1:\n["Task A"] [Task B] [Task C] ↓ Push/Pop (Tail)"]
     end
     subgraph Worker Thread 2 (Idle)
         T2Deque["Deque 2: (Empty)"]
         T2Deque -->|Steals from Head!| T1Deque
     end
+
 ```
 
 **Parallel Streams & `ForkJoinPool.commonPool()`:**

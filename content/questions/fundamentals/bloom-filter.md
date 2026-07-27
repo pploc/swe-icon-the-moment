@@ -30,7 +30,8 @@ flowchart LR
     Query["Query 'bar'"] -->|h1=1✓| b1
     Query -->|h2=5✓| b5
     Query -->|h3=3✓| b3
-    Query -->|false positive!| Result[Returns 'maybe in set']
+    Query -->|false positive!| Result["Returns 'maybe in set'"]
+
 ```
 
 **Why no false negatives:** If x was inserted, all k of its bits were set to 1. Querying x will always find those bits set. No deletion is possible without risking false negatives (unless using a counting Bloom filter).

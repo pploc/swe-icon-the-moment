@@ -18,11 +18,12 @@ Spring Boot Validation integrates Hibernate Validator (the reference implementat
 
 ```mermaid
 flowchart LR
-    Request[HTTP Request Payload] --> Controller[@Valid / @Validated Parameter]
-    Controller --> Validator[Hibernate Validator Engine]
+    Request["HTTP Request Payload"] --> Controller["@Valid / @Validated Parameter"]
+    Controller --> Validator["Hibernate Validator Engine"]
     Validator -->|Fails| Exception[MethodArgumentNotValidException]
-    Exception --> Advice[@ControllerAdvice Global Exception Handler]
-    Advice --> Response[ProblemDetail / JSON Error Response]
+    Exception --> Advice["@ControllerAdvice Global Exception Handler"]
+    Advice --> Response["ProblemDetail / JSON Error Response"]
+
 ```
 
 **1. Custom Field Constraint Annotation:**

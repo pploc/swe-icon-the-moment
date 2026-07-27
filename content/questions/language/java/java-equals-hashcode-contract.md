@@ -18,9 +18,10 @@ In Java, `Object` defines both `boolean equals(Object obj)` and `int hashCode()`
 
 ```mermaid
 flowchart TD
-    ContractCheck{Are two objects equal via equals?}
-    ContractCheck -->|YES: a.equals-b is true| MustBeEqual["a.hashCode == b.hashCode MUST be TRUE!\n(Strict Requirement)"]
-    ContractCheck -->|NO: a.equals-b is false| HashCollision["a.hashCode and b.hashCode MAY be equal\n(Hash Collision allowed, but distinct values improve performance)"]
+    ContractCheck{"Are two objects equal via equals?"}
+    ContractCheck -->|YES: a.equals-b is true| MustBeEqual["a.hashCode == b.hashCode MUST be TRUE!\n("Strict Requirement")"]
+    ContractCheck -->|NO: a.equals-b is false| HashCollision["a.hashCode and b.hashCode MAY be equal\n("Hash Collision allowed, but distinct values improve performance")"]
+
 ```
 
 **The 3 Rules of the Contract:**

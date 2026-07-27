@@ -45,15 +45,16 @@ Lightweight JVM flags showing lock inflation statistics.
 
 ```mermaid
 flowchart TD
-    A[Symptoms: slow under load] --> B[Thread dump: BLOCKED threads?]
-    B --> C{Same lock?}
-    C -- yes --> D[JFR / async-profiler to quantify]
-    D --> E[Identify hot lock]
-    E --> F{Fix strategy}
-    F --> G[Lock striping]
-    F --> H[Reduce critical section]
-    F --> I[Lock-free structure]
-    F --> J[Read-write lock]
+    A["Symptoms: slow under load"] --> B["Thread dump: BLOCKED threads?"]
+    B --> C{"Same lock?"}
+    C -- yes --> D["JFR / async-profiler to quantify"]
+    D --> E["Identify hot lock"]
+    E --> F{"Fix strategy"}
+    F --> G["Lock striping"]
+    F --> H["Reduce critical section"]
+    F --> I["Lock-free structure"]
+    F --> J["Read-write lock"]
+
 ```
 
 **Fix strategies:**

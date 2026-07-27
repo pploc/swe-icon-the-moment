@@ -18,12 +18,13 @@ Spring Security integrates into Java Servlet containers via `DelegatingFilterPro
 
 ```mermaid
 flowchart TD
-    Request[HTTP Request] --> DFP[DelegatingFilterProxy]
+    Request["HTTP Request"] --> DFP[DelegatingFilterProxy]
     DFP --> FCP[FilterChainProxy]
     FCP --> Matcher{RequestMatcher\nMatches?}
-    Matcher -->|/api/**| Chain1[SecurityFilterChain 1\nJWT Stateless]
-    Matcher -->|/admin/**| Chain2[SecurityFilterChain 2\nForm Login / Session]
-    Matcher -->|No Match| ChainDefault[Default SecurityFilterChain]
+    Matcher -->|/api/**| Chain1["SecurityFilterChain 1\nJWT Stateless"]
+    Matcher -->|/admin/**| Chain2["SecurityFilterChain 2\nForm Login / Session"]
+    Matcher -->|No Match| ChainDefault["Default SecurityFilterChain"]
+
 ```
 
 **1. `WebSecurityCustomizer` (Bypassing Security Entirely):**

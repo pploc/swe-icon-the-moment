@@ -20,19 +20,20 @@ Design a data structure that supports two operations: `addNum(int num)` and `fin
 
 ```mermaid
 flowchart LR
-    subgraph lo["Max-Heap (lower half)"]
+    subgraph lo["Max-Heap("lower half")"]
         direction TB
         L1[5]
         L2[3]
         L3[2]
     end
-    subgraph hi["Min-Heap (upper half)"]
+    subgraph hi["Min-Heap("upper half")"]
         direction TB
         H1[6]
         H2[8]
         H3[9]
     end
     lo -->|"median = avg(5,6)"| hi
+
 ```
 
 **`addNum(num)` — O(log n):**

@@ -25,12 +25,13 @@ Many problems look like they should be greedy but require DP. Explain the formal
 ```mermaid
 flowchart TD
     A[Problem] --> B{Optimal\nSubstructure?}
-    B -- no --> C[Neither — brute force or special algo]
-    B -- yes --> D{Greedy Choice\nProperty?}
-    D -- yes --> E[Greedy ✓ simpler, faster]
+    B -- no --> C["Neither — brute force or special algo"]
+    B -- yes --> D{"Greedy Choice\nProperty?"}
+    D -- yes --> E["Greedy ✓ simpler, faster"]
     D -- no --> F{Overlapping\nSubproblems?}
-    F -- yes --> G[Dynamic Programming]
-    F -- no --> H[Divide & Conquer e.g. mergesort]
+    F -- yes --> G["Dynamic Programming"]
+    F -- no --> H["Divide & Conquer e.g. mergesort"]
+
 ```
 
 **Coin change counterexample for greedy:**

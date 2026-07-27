@@ -15,13 +15,14 @@ You have a graph problem. Walk through the decision of using BFS vs DFS: what gu
 
 ```mermaid
 flowchart TD
-    A[Graph Problem] --> B{Shortest path\nunweighted?}
-    B -- yes --> C[BFS ✓]
-    B -- no --> D{Need all\npaths / detect cycles?}
-    D -- yes --> E[DFS ✓]
-    D -- no --> F{Level-order\n/ spread?}
+    A["Graph Problem"] --> B{"Shortest path\nunweighted?"}
+    B -- yes --> C["BFS ✓"]
+    B -- no --> D{"Need all\npaths / detect cycles?"}
+    D -- yes --> E["DFS ✓"]
+    D -- no --> F{"Level-order\n/ spread?"}
     F -- yes --> C
     F -- no --> E
+
 ```
 
 **BFS (Breadth-First Search):**

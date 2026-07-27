@@ -19,11 +19,12 @@ Java has 8 primitive data types (`byte`, `short`, `int`, `long`, `float`, `doubl
 ```mermaid
 flowchart LR
     subgraph Stack Allocation (Primitive)
-        P[int x = 42] -->|4 bytes raw value| DirectMemory[Stack Memory]
+        P["int x = 42"] -->|4 bytes raw value| DirectMemory["Stack Memory"]
     end
-    subgraph Heap Allocation (Wrapper Object)
-        Ref[Integer y = 42] -->|8-byte reference| HeapHeader[Object Header 12B + int 4B + Padding = 24 Bytes!]
+    subgraph Heap Allocation("Wrapper Object")
+        Ref["Integer y = 42"] -->|8-byte reference| HeapHeader["Object Header 12B + int 4B + Padding = 24 Bytes!"]
     end
+
 ```
 
 **Memory & Performance Comparison:**

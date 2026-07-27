@@ -18,12 +18,13 @@ OpenFeign is a declarative HTTP client library. Instead of writing HTTP request 
 
 ```mermaid
 flowchart LR
-    Service[Spring Service] -->|Inject Interface| Feign[Feign Proxy]
-    Feign -->|1. Interceptor| Auth[Add Auth Token Header]
-    Feign -->|2. LoadBalancer| LB[Spring LoadBalancer: Resolve USER-SERVICE IP]
-    Feign -->|3. HTTP Client| Remote[Remote Microservice]
-    Remote -->|4. Error 404/500| Decoder[Custom ErrorDecoder]
+    Service["Spring Service"] -->|Inject Interface| Feign["Feign Proxy"]
+    Feign -->|1. Interceptor| Auth["Add Auth Token Header"]
+    Feign -->|2. LoadBalancer| LB["Spring LoadBalancer: Resolve USER-SERVICE IP"]
+    Feign -->|3. HTTP Client| Remote["Remote Microservice"]
+    Remote -->|4. Error 404/500| Decoder["Custom ErrorDecoder"]
     Decoder -->|Throw Custom Exception| Service
+
 ```
 
 **1. Enabling and Declaring a `@FeignClient`:**

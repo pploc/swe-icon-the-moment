@@ -28,9 +28,10 @@ Explain inodes: what metadata they store, the difference between hard links and 
 ```mermaid
 flowchart LR
     D[Directory entry\n"myfile" → inode 1234] --> I["Inode 1234\nsize=4096\nuid=1000\nblocks=[12,15,...]"]
-    I --> B1[Data block 12]
-    I --> B2[Data block 15]
+    I --> B1["Data block 12"]
+    I --> B2["Data block 15"]
     I --> B3[...]
+
 ```
 
 **Hard links:** Multiple directory entries pointing to the same inode. `ln file1 file2` — both `file1` and `file2` share inode 1234. Link count increases. File is deleted only when link count reaches 0 AND no process has it open.

@@ -53,10 +53,11 @@ Only one goroutine/thread writes to a particular piece of state; others read via
 State is the result of replaying immutable events. Events are appended to a log (single writer). No concurrent mutation — only append.
 ```mermaid
 flowchart LR
-    Cmd[Command] --> Handler[Handler\n(single writer)]
-    Handler --> Log[(Event Log\nimmutable append)]
-    Log --> View1[Read Model 1]
-    Log --> View2[Read Model 2]
+    Cmd[Command] --> Handler["Handler\n("single writer")"]
+    Handler --> Log[("Event Log\nimmutable append")]
+    Log --> View1["Read Model 1"]
+    Log --> View2["Read Model 2"]
+
 ```
 
 **Decision hierarchy:**

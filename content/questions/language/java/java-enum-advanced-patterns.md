@@ -18,12 +18,13 @@ In Java, an `enum` is a specialized reference class extending `java.lang.Enum`. 
 
 ```mermaid
 flowchart TD
-    Enum[java.lang.Enum Abstract Class] -->|Extends| Status[OrderStatus Enum]
-    Status --> PENDING[PENDING Instance]
-    Status --> PROCESSING[PROCESSING Instance]
-    Status --> COMPLETED[COMPLETED Instance]
+    Enum["java.lang.Enum Abstract Class"] -->|Extends| Status["OrderStatus Enum"]
+    Status --> PENDING["PENDING Instance"]
+    Status --> PROCESSING["PROCESSING Instance"]
+    Status --> COMPLETED["COMPLETED Instance"]
     
-    Interface[Processable Interface] -->|Implemented by| Status
+    Interface["Processable Interface"] -->|Implemented by| Status
+
 ```
 
 **1. Strategy Pattern via Enum Constant-Specific Methods:**

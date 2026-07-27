@@ -30,7 +30,8 @@ sequenceDiagram
     D->>D: copy 4 elements → new array
     D->>D: insert x at index 4
     D->>M: free old array
-    D-->>A: done (size=5, cap=8)
+    D-->>A: done("size=5, cap=8")
+
 ```
 
 **Why 2× (or 1.5×)?**

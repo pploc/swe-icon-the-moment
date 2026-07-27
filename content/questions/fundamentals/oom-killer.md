@@ -50,12 +50,13 @@ OOMScoreAdjust=-1000
 
 ```mermaid
 flowchart TD
-    Alloc[Memory allocation fails] --> Reclaim[Try reclaim:\npage cache, slab]
-    Reclaim --> Swap{Swap available?}
-    Swap -- yes --> SwapOut[Swap pages out]
-    Swap -- no --> Scan[Scan all processes\ncompute oom_score]
-    Scan --> Kill[Kill highest score process]
-    Kill --> Log[dmesg: Out of memory: Kill process...]
+    Alloc["Memory allocation fails"] --> Reclaim["Try reclaim:\npage cache, slab"]
+    Reclaim --> Swap{"Swap available?"}
+    Swap -- yes --> SwapOut["Swap pages out"]
+    Swap -- no --> Scan["Scan all processes\ncompute oom_score"]
+    Scan --> Kill["Kill highest score process"]
+    Kill --> Log["dmesg: Out of memory: Kill process..."]
+
 ```
 
 **Kubernetes OOM:** When a container exceeds its memory limit, it gets a cgroup OOM kill. The pod's `OOMKilled` status is set. K8s `kubectl describe pod` shows `OOMKilled: true` in `lastState.terminated.reason`.

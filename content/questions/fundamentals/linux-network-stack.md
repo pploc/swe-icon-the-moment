@@ -17,16 +17,17 @@ Trace an incoming TCP packet from NIC to the application: DMA into ring buffer, 
 
 ```mermaid
 flowchart TD
-    Packet[Packet arrives at NIC] --> DMA["DMA into NIC ring buffer\n(kernel memory, no CPU)"]
-    DMA --> IRQ["Interrupt → NAPI poll\n(disable further interrupts)"]
-    IRQ --> SKB["Create sk_buff\n(socket buffer)\nframe header stripped"]
-    SKB --> L2["L2 processing\n(Ethernet, bridge, vlan)"]
-    L2 --> NF1["netfilter: PREROUTING\n(iptables/nftables)"]
-    NF1 --> Route["Routing decision\n(local or forward?)"]
-    Route --> NF2["netfilter: INPUT\n(firewall rules)"]
-    NF2 --> L4["L4 processing\n(TCP: reassembly,\nACK, flow control)"]
-    L4 --> SockBuf["Socket receive buffer\n(sk->sk_receive_queue)"]
+    Packet["Packet arrives at NIC"] --> DMA["DMA into NIC ring buffer\n("kernel memory, no CPU")"]
+    DMA --> IRQ["Interrupt → NAPI poll\n("disable further interrupts")"]
+    IRQ --> SKB["Create sk_buff\n("socket buffer")\nframe header stripped"]
+    SKB --> L2["L2 processing\n("Ethernet, bridge, vlan")"]
+    L2 --> NF1["netfilter: PREROUTING\n("iptables/nftables")"]
+    NF1 --> Route["Routing decision\n("local or forward?")"]
+    Route --> NF2["netfilter: INPUT\n("firewall rules")"]
+    NF2 --> L4["L4 processing\n("TCP: reassembly,\nACK, flow control")"]
+    L4 --> SockBuf["Socket receive buffer\n("sk->sk_receive_queue")"]
     SockBuf --> App["Application recv()"]
+
 ```
 
 **Key data structures:**

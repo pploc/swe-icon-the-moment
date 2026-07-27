@@ -27,11 +27,12 @@ Compare `select`, `poll`, and `epoll`: the algorithmic complexity difference, ho
 
 ```mermaid
 flowchart LR
-    App -->|"epoll_ctl(ADD fd)"| KernelTable["Kernel interest table\n(hash/rbtree of watched FDs)"]
-    Network -->|"data arrives on fd5"| Ready["Ready list\n(kernel appends fd5)"]
+    App -->|"epoll_ctl("ADD fd")"| KernelTable["Kernel interest table\n("hash/rbtree of watched FDs")"]
+    Network -->|"data arrives on fd5"| Ready["Ready list\n("kernel appends fd5")"]
     App -->|"epoll_wait()"| Ready
     Ready -->|"returns [fd5]"| App
     Note["Only returns READY fds\nNo scanning all FDs"]
+
 ```
 
 `epoll_ctl(EPOLL_CTL_ADD)` — registers an fd once. Kernel maintains an internal list of watched FDs.

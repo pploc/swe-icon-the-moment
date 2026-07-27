@@ -43,10 +43,11 @@ ip route add blackhole 10.10.0.0/16
 
 ```mermaid
 flowchart LR
-    Packet[Outgoing packet] --> Rules["Routing rules\n(ip rule list)"]
-    Rules -->|"from 10.0.1.0/24"| Table100["Table 100\n(ISP A routes)"]
-    Rules -->|"mark 0x1"| Table200["Table 200\n(ISP B routes)"]
+    Packet["Outgoing packet"] --> Rules["Routing rules\n("ip rule list")"]
+    Rules -->|"from 10.0.1.0/24"| Table100["Table 100\n("ISP A routes")"]
+    Rules -->|"mark 0x1"| Table200["Table 200\n("ISP B routes")"]
     Rules -->|"default"| Main["Main table"]
+
 ```
 
 ```bash

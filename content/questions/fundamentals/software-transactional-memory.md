@@ -40,14 +40,15 @@ Explain Software Transactional Memory (STM): how it provides atomic, consistent,
 sequenceDiagram
     participant T1 as Transaction 1
     participant T2 as Transaction 2
-    participant Ref as Ref (val=100)
+    participant Ref as Ref("val=100")
     T1->>Ref: read(100)
     T2->>Ref: write(150), commit
-    T1->>T1: compute (100 - 20 = 80)
+    T1->>T1: compute("100 - 20 = 80")
     T1->>Ref: try commit: Ref changed! Retry.
     T1->>Ref: read(150)
-    T1->>T1: compute (150 - 20 = 130)
+    T1->>T1: compute("150 - 20 = 130")
     T1->>Ref: commit (130) ✓
+
 ```
 
 **STM vs locks:**

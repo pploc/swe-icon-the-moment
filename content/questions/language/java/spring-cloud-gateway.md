@@ -18,14 +18,15 @@ Spring Cloud Gateway is built on Netty, Spring WebFlux, and Project Reactor. It 
 
 ```mermaid
 flowchart LR
-    Client[Client Request] --> Handler[Gateway Handler Mapping]
-    Handler --> Predicate{Route Predicate\nMatch?}
-    Predicate -->|Yes| FilterChain[Gateway Filter Chain]
-    FilterChain -->|Pre-Filter| Netty[Netty Client]
-    Netty --> Microservice[Downstream Microservice]
+    Client["Client Request"] --> Handler["Gateway Handler Mapping"]
+    Handler --> Predicate{"Route Predicate\nMatch?"}
+    Predicate -->|Yes| FilterChain["Gateway Filter Chain"]
+    FilterChain -->|Pre-Filter| Netty["Netty Client"]
+    Netty --> Microservice["Downstream Microservice"]
     Microservice -->|Response| Netty
     Netty -->|Post-Filter| FilterChain
     FilterChain --> Client
+
 ```
 
 **Core Concepts:**

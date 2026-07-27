@@ -19,16 +19,17 @@ In microservice architectures, instances scale up/down dynamically with ephemera
 ```mermaid
 flowchart TD
     subgraph Registry
-        EurekaServer[Eureka Server\nRegistry: ORDER-SERVICE -> 10.0.1.5:8080, 10.0.1.6:8080]
+        EurekaServer["Eureka Server\nRegistry: ORDER-SERVICE -> 10.0.1.5:8080, 10.0.1.6:8080"]
     end
     subgraph Microservices
-        Order1[Order Service Instance 1\n10.0.1.5:8080] -->|1. Register & Send Heartbeat 30s| EurekaServer
-        Order2[Order Service Instance 2\n10.0.1.6:8080] -->|1. Register & Send Heartbeat 30s| EurekaServer
+        Order1["Order Service Instance 1\n10.0.1.5:8080"] -->|1. Register & Send Heartbeat 30s| EurekaServer
+        Order2["Order Service Instance 2\n10.0.1.6:8080"] -->|1. Register & Send Heartbeat 30s| EurekaServer
         
-        API[API Gateway / Client] -->|2. Fetch Registry Cache| EurekaServer
+        API["API Gateway / Client"] -->|2. Fetch Registry Cache| EurekaServer
         API -->|3. Client-Side Load Balance| Order1
         API -->|3. Client-Side Load Balance| Order2
     end
+
 ```
 
 **1. Eureka Server Setup:**

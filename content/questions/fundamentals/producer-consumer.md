@@ -88,13 +88,14 @@ All synchronization is encapsulated. This is the recommended production approach
 ```mermaid
 sequenceDiagram
     participant P as Producer
-    participant Q as BlockingQueue (N=3)
+    participant Q as BlockingQueue("N=3")
     participant C as Consumer
     P->>Q: put(A), put(B), put(C) - full
     P->>Q: put(D) - BLOCKS (full)
     C->>Q: take() → A
     Q-->>P: unblocks
     P->>Q: put(D) success
+
 ```
 
 ## Follow-ups

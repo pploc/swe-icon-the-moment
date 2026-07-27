@@ -35,10 +35,11 @@ sequenceDiagram
     participant VolatileVar as Volatile Variable (state)
     participant Thread2 as Thread 2
     Thread1->>Thread1: Write data = 42
-    Thread1->>VolatileVar: Write state = true (Volatile Write + StoreStore/StoreLoad)
+    Thread1->>VolatileVar: Write state = true("Volatile Write + StoreStore/StoreLoad")
     Note over Thread1,Thread2: Happens-Before Edge
-    Thread2->>VolatileVar: Read state == true (Volatile Read + LoadLoad/LoadStore)
-    Thread2->>Thread2: Read data (guaranteed to see 42!)
+    Thread2->>VolatileVar: Read state == true("Volatile Read + LoadLoad/LoadStore")
+    Thread2->>Thread2: Read data("guaranteed to see 42!")
+
 ```
 
 **Memory Barriers (Fences):**

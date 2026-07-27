@@ -22,13 +22,14 @@ Off-heap memory is memory allocated outside the standard JVM Garbage-Collected (
 
 ```mermaid
 flowchart TD
-    subgraph On-Heap Transfer (2 Copies)
-        HeapMem[JVM Heap Object] -->|1. Copy to Native Buffer| TempBuffer[Temp Native Buffer]
-        TempBuffer -->|2. DMA Transfer| NIC1[Network Card / Disk]
+    subgraph On-Heap Transfer("2 Copies")
+        HeapMem["JVM Heap Object"] -->|1. Copy to Native Buffer| TempBuffer["Temp Native Buffer"]
+        TempBuffer -->|2. DMA Transfer| NIC1["Network Card / Disk"]
     end
-    subgraph Off-Heap Transfer (Zero-Copy)
-        DirectBuffer[Direct Off-Heap Memory] -->|1. Direct DMA Transfer| NIC2[Network Card / Disk]
+    subgraph Off-Heap Transfer("Zero-Copy")
+        DirectBuffer["Direct Off-Heap Memory"] -->|1. Direct DMA Transfer| NIC2["Network Card / Disk"]
     end
+
 ```
 
 **1. Traditional `ByteBuffer.allocateDirect()`:**

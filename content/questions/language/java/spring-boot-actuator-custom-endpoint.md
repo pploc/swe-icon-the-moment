@@ -18,9 +18,10 @@ While Spring Boot Actuator provides built-in operational endpoints (`/health`, `
 
 ```mermaid
 flowchart LR
-    Admin[Admin / SRE / Monitoring System] -->|1. HTTP GET /actuator/feature-flags| WebEndpoint[@Endpoint Custom Bean]
-    Admin -->|2. HTTP POST /actuator/feature-flags| WriteOp[@WriteOperation Toggle Flag]
-    WebEndpoint --> JMX[Exposed automatically over JMX MBean too!]
+    Admin["Admin / SRE / Monitoring System"] -->|1. HTTP GET /actuator/feature-flags| WebEndpoint["@Endpoint Custom Bean"]
+    Admin -->|2. HTTP POST /actuator/feature-flags| WriteOp["@WriteOperation Toggle Flag"]
+    WebEndpoint --> JMX["Exposed automatically over JMX MBean too!"]
+
 ```
 
 **1. Creating a Custom `@Endpoint` Bean:**

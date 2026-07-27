@@ -39,11 +39,12 @@ system more than three silos.
 
 ```mermaid
 flowchart LR
-    A[Metric alert:<br>SLO burn rate] --> B[Dashboard:<br>which endpoint / region?]
-    B --> C[Trace:<br>which span is slow?]
-    C --> D[Logs by trace_id:<br>root cause]
+    A["Metric alert:<br>SLO burn rate"] --> B["Dashboard:<br>which endpoint / region?"]
+    B --> C["Trace:<br>which span is slow?"]
+    C --> D["Logs by trace_id:<br>root cause"]
     style A stroke:#ff6b1a,stroke-width:2px
     style D stroke:#ff6b1a,stroke-width:2px
+
 ```
 
 **Cardinality:** every unique label combination is its own time series.

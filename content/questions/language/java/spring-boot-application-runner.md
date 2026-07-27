@@ -18,13 +18,14 @@ When a Spring Boot application starts up, developers often need to execute initi
 
 ```mermaid
 flowchart TD
-    Start[SpringApplication.run()] --> Inst[Create ApplicationContext]
-    Inst --> Beans[Instantiate & Inject Beans]
-    Beans --> PostConstruct[@PostConstruct / InitializingBean]
-    PostConstruct --> ContextRefreshed[ContextRefreshedEvent Published]
-    ContextRefreshed --> EmbeddedServer[Start Embedded Tomcat Server]
-    EmbeddedServer --> Runners[Execute CommandLineRunner & ApplicationRunner Beans]
-    Runners --> AppReady[ApplicationReadyEvent Published / App Running!]
+    Start["SpringApplication.run()"] --> Inst["Create ApplicationContext"]
+    Inst --> Beans["Instantiate & Inject Beans"]
+    Beans --> PostConstruct["@PostConstruct / InitializingBean"]
+    PostConstruct --> ContextRefreshed["ContextRefreshedEvent Published"]
+    ContextRefreshed --> EmbeddedServer["Start Embedded Tomcat Server"]
+    EmbeddedServer --> Runners["Execute CommandLineRunner & ApplicationRunner Beans"]
+    Runners --> AppReady["ApplicationReadyEvent Published / App Running!"]
+
 ```
 
 **1. `@PostConstruct` vs `CommandLineRunner` / `ApplicationRunner`:**

@@ -54,12 +54,13 @@ std::thread::spawn(move || { x.set(1); });  // ERROR: Cell<i32> is not Send
 
 ```mermaid
 flowchart TD
-    A[Type T] --> B{T: Send?}
-    B -- no --> C[Cannot transfer to\nanother thread]
-    B -- yes --> D{T: Sync?}
-    D -- no --> E[Cannot share &T\nacross threads]
-    D -- yes --> F[Safe to share immutably\nacross threads]
-    F --> G[For mutation: wrap in Mutex/RwLock]
+    A["Type T"] --> B{"T: Send?"}
+    B -- no --> C["Cannot transfer to\nanother thread"]
+    B -- yes --> D{"T: Sync?"}
+    D -- no --> E["Cannot share &T\nacross threads"]
+    D -- yes --> F["Safe to share immutably\nacross threads"]
+    F --> G["For mutation: wrap in Mutex/RwLock"]
+
 ```
 
 **Result:** In Rust, data races are impossible in safe code. The borrow checker's compile-time analysis eliminates an entire class of bugs that require race detectors and stress testing in other languages.

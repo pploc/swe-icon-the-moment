@@ -27,12 +27,13 @@ Explain the MESI cache coherency protocol and how it impacts concurrent programm
 ```mermaid
 stateDiagram-v2
     [*] --> I
-    I --> E: Read (no other copies)
-    I --> S: Read (others have it)
-    E --> M: Write (now modified)
-    S --> M: Write (invalidate others → RFO)
-    M --> I: Another CPU reads/writes (writeback + invalidate)
+    I --> E: Read("no other copies")
+    I --> S: Read("others have it")
+    E --> M: Write("now modified")
+    S --> M: Write("invalidate others → RFO")
+    M --> I: Another CPU reads/writes("writeback + invalidate")
     S --> I: Another CPU writes (invalidate)
+
 ```
 
 **Read-For-Ownership (RFO):** When a CPU wants to write a cache line in state S or I, it broadcasts an "invalidate" message to other CPUs (they transition to I). This takes 100-300 cycles — much more than an L1 cache hit (4 cycles).
@@ -53,13 +54,14 @@ Remote NUMA node:  ~300-500 cycles
 ```mermaid
 flowchart LR
     subgraph Socket0
-        CPU0["CPU 0-15"] --> MEM0["Memory 0\n(fast access)"]
+        CPU0["CPU 0-15"] --> MEM0["Memory 0\n("fast access")"]
     end
     subgraph Socket1
-        CPU1["CPU 16-31"] --> MEM1["Memory 1\n(fast access)"]
+        CPU1["CPU 16-31"] --> MEM1["Memory 1\n("fast access")"]
     end
     CPU0 <-->|"~2x slower"| MEM1
     CPU1 <-->|"~2x slower"| MEM0
+
 ```
 
 **Practical implications for concurrent code:**

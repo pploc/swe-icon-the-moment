@@ -22,15 +22,16 @@ Explain the purpose of a thread pool, what problems it solves, and how you deter
 
 ```mermaid
 flowchart LR
-    T1[Task 1] --> Q[Work Queue]
-    T2[Task 2] --> Q
-    T3[Task 3] --> Q
-    Q --> W1[Worker Thread 1]
-    Q --> W2[Worker Thread 2]
-    Q --> W3[Worker Thread 3]
+    T1["Task 1"] --> Q["Work Queue"]
+    T2["Task 2"] --> Q
+    T3["Task 3"] --> Q
+    Q --> W1["Worker Thread 1"]
+    Q --> W2["Worker Thread 2"]
+    Q --> W3["Worker Thread 3"]
     W1 --> R1[Result]
     W2 --> R2[Result]
     W3 --> R3[Result]
+
 ```
 
 **Sizing rules:**

@@ -32,15 +32,16 @@ After detection, reset one pointer to `head`. Move both pointers one step at a t
 
 ```mermaid
 sequenceDiagram
-    Note over slow,fast: List: 1→2→3→4→5→3 (cycle at 3)
+    Note over slow,fast: List: 1→2→3→4→5→3("cycle at 3")
     Note over slow,fast: Phase 1: slow=fast=head
     slow->>slow: advances 1x
     fast->>fast: advances 2x
-    Note over slow,fast: They meet inside cycle (at node 5 or 4)
+    Note over slow,fast: They meet inside cycle("at node 5 or 4")
     Note over slow,fast: Phase 2: reset slow to head
     slow->>slow: 1 step at a time
     fast->>fast: 1 step at a time
     Note over slow,fast: Meet at node 3 = cycle start ✓
+
 ```
 
 **Why phase 2 works (math):**

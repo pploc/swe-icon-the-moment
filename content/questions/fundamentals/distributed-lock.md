@@ -41,14 +41,15 @@ sequenceDiagram
     participant C1 as Client 1
     participant Lock as Redis Lock
     participant DB as Database
-    C1->>Lock: Acquire (30s TTL)
+    C1->>Lock: Acquire("30s TTL")
     Note over C1: GC pause for 40 seconds!
     Note over Lock: Lock expires
     participant C2 as Client 2
-    C2->>Lock: Acquire (gets it)
+    C2->>Lock: Acquire("gets it")
     C2->>DB: Write safely
     C1->>C1: GC pause ends
     C1->>DB: Write! (C1 thinks it holds lock) ← CONFLICT
+
 ```
 
 GC pauses, process pauses, clock skew — any of these can cause a client to act after its lock expired, violating mutual exclusion.

@@ -25,15 +25,16 @@ atomic_clear(&lock);
 ```mermaid
 flowchart TD
     subgraph Spinlock
-        S1[Try to acquire] -->|"failed"| S2[Spin on CPU]
+        S1["Try to acquire"] -->|"failed"| S2["Spin on CPU"]
         S2 -->|"retry"| S1
-        S1 -->|"success"| S3[Critical section]
+        S1 -->|"success"| S3["Critical section"]
     end
     subgraph Sleeping Mutex
-        M1[Try to acquire] -->|"failed"| M2[Deschedule thread\nOS puts to sleep]
-        M2 -->|"lock released\nwake signal"| M3[Reschedule\nContext switch back]
-        M3 --> M4[Critical section]
+        M1["Try to acquire"] -->|"failed"| M2["Deschedule thread\nOS puts to sleep"]
+        M2 -->|"lock released\nwake signal"| M3["Reschedule\nContext switch back"]
+        M3 --> M4["Critical section"]
     end
+
 ```
 
 **Comparison:**

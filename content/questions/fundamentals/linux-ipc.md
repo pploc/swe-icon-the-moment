@@ -17,12 +17,13 @@ Compare the Linux IPC mechanisms: anonymous pipes, named pipes (FIFOs), Unix dom
 
 ```mermaid
 flowchart TD
-    IPC[Linux IPC] --> Pipes
-    IPC --> Sockets[Unix Domain Sockets]
-    IPC --> SHM[Shared Memory]
-    IPC --> MQ[Message Queues]
-    Pipes --> Anon[Anonymous pipe\npipe() — parent/child only]
-    Pipes --> Named[Named pipe / FIFO\nmkfifo — any processes]
+    IPC["Linux IPC"] --> Pipes
+    IPC --> Sockets["Unix Domain Sockets"]
+    IPC --> SHM["Shared Memory"]
+    IPC --> MQ["Message Queues"]
+    Pipes --> Anon["Anonymous pipe\npipe() — parent/child only"]
+    Pipes --> Named["Named pipe / FIFO\nmkfifo — any processes"]
+
 ```
 
 **Anonymous pipes (`pipe()`):**

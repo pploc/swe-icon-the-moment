@@ -59,12 +59,13 @@ public Document fetchDocumentById(Long id) {
 
 ```mermaid
 flowchart TD
-    Caller[Caller Method] --> PreCheck{@PreAuthorize}
-    PreCheck -->|Allowed| Exec[Execute Service Method]
-    PreCheck -->|Denied| Throw1[Throw AccessDeniedException]
-    Exec --> PostCheck{@PostAuthorize}
-    PostCheck -->|Allowed| Return[Return Result to Caller]
-    PostCheck -->|Denied| Throw2[Throw AccessDeniedException]
+    Caller["Caller Method"] --> PreCheck{"@PreAuthorize"}
+    PreCheck -->|Allowed| Exec["Execute Service Method"]
+    PreCheck -->|Denied| Throw1["Throw AccessDeniedException"]
+    Exec --> PostCheck{"@PostAuthorize"}
+    PostCheck -->|Allowed| Return["Return Result to Caller"]
+    PostCheck -->|Denied| Throw2["Throw AccessDeniedException"]
+
 ```
 
 **3. `@PreFilter` vs `@PostFilter` (Collection Filtering):**

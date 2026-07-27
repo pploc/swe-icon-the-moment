@@ -30,7 +30,7 @@ Thread B writes 6   ← Lost update! Expected 7
 ```mermaid
 sequenceDiagram
     participant A as Thread A
-    participant M as Memory (counter=5)
+    participant M as Memory("counter=5")
     participant B as Thread B
     A->>M: READ → 5
     B->>M: READ → 5
@@ -38,7 +38,8 @@ sequenceDiagram
     B->>B: compute 5+1=6
     A->>M: WRITE 6
     B->>M: WRITE 6 ← clobbers A's write
-    Note over M: Final value: 6 (should be 7)
+    Note over M: Final value: 6("should be 7")
+
 ```
 
 **Strategy 1 — Thread confinement:** Only one thread ever accesses the data. No synchronization needed. Examples: thread-local variables, actor model (each actor owns its state).

@@ -19,7 +19,7 @@ When two users concurrently attempt to update the same database entity (e.g., up
 ```mermaid
 sequenceDiagram
     participant UserA as User A
-    participant DB as Database (Balance = 100)
+    participant DB as Database("Balance = 100")
     participant UserB as User B
 
     UserA->>DB: 1. SELECT balance (100)
@@ -27,8 +27,9 @@ sequenceDiagram
     UserA->>UserA: 3. Deduct 30 -> New = 70
     UserB->>UserB: 4. Deduct 50 -> New = 50
     UserA->>DB: 5. UPDATE balance = 70
-    UserB->>DB: 6. UPDATE balance = 50 (OVERWRITES User A!)
-    Note over DB: Lost Update! Final balance = 50 (Should be 20)
+    UserB->>DB: 6. UPDATE balance = 50("OVERWRITES User A!")
+    Note over DB: Lost Update! Final balance = 50("Should be 20")
+
 ```
 
 **1. Optimistic Locking (`@Version`):**

@@ -18,7 +18,7 @@ Two HTTP requests arrive simultaneously to update the same user record. Walk thr
 ```mermaid
 sequenceDiagram
     participant C1 as Client 1
-    participant DB as Database (balance=100)
+    participant DB as Database("balance=100")
     participant C2 as Client 2
     C1->>DB: SELECT balance → 100
     C2->>DB: SELECT balance → 100
@@ -26,6 +26,7 @@ sequenceDiagram
     C2->>C2: compute 100 - 30 = 70
     C1->>DB: UPDATE balance = 150 ✓
     C2->>DB: UPDATE balance = 70  ← Lost C1's deposit! Should be 120
+
 ```
 
 **Solution 1 — Optimistic version column:**

@@ -37,8 +37,9 @@ sequenceDiagram
     P->>P: Signal handler: flush buffers, close connections
     P->>P: exit(0)
     Note over K,P: Graceful shutdown ✓
-    K->>P: SIGKILL (if stuck)
+    K->>P: SIGKILL("if stuck")
     Note over P: Cannot be caught — immediate termination
+
 ```
 
 **Signal handler rules (async-signal-safety):**

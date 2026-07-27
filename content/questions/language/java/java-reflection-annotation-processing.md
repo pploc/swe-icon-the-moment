@@ -41,11 +41,12 @@ Hooks into `javac` during compilation. Scans AST (Abstract Syntax Tree), inspect
 
 ```mermaid
 flowchart LR
-    Source[Java Source Files\nwith Annotations] --> Javac[javac Compiler]
-    Javac --> Processor[AnnotationProcessor\nProcess AST]
-    Processor --> GenCode[Generate New .java Files]
-    GenCode --> Javac2[Compile All .java Files]
-    Javac2 --> Bytecode[.class Files]
+    Source["Java Source Files\nwith Annotations"] --> Javac["javac Compiler"]
+    Javac --> Processor["AnnotationProcessor\nProcess AST"]
+    Processor --> GenCode["Generate New .java Files"]
+    GenCode --> Javac2["Compile All .java Files"]
+    Javac2 --> Bytecode[".class Files"]
+
 ```
 
 **Comparison Matrix:**

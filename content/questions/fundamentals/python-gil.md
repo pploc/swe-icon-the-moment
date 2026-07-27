@@ -20,11 +20,12 @@ Explain the Python Global Interpreter Lock (GIL): what it protects, why it exist
 ```mermaid
 flowchart TD
     subgraph Python Process
-        GIL[Global Interpreter Lock]
-        T1[Thread 1] -->|"acquires GIL\n(runs bytecode)"| GIL
-        T2[Thread 2] -->|"waits for GIL"| GIL
-        T3[Thread 3] -->|"waits for GIL"| GIL
+        GIL["Global Interpreter Lock"]
+        T1["Thread 1"] -->|"acquires GIL\n("runs bytecode")"| GIL
+        T2["Thread 2"] -->|"waits for GIL"| GIL
+        T3["Thread 3"] -->|"waits for GIL"| GIL
     end
+
 ```
 
 **What the GIL prevents:** True CPU parallelism for Python threads. Two Python threads on a dual-core machine do NOT run in parallel — one always waits.

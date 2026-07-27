@@ -27,17 +27,18 @@ Two shared ring buffers between user space and kernel — no per-operation sysca
 ```mermaid
 flowchart LR
     subgraph UserSpace["User Space"]
-        App --> SQ["Submission Queue (SQ)\n(write sqe here)"]
-        CQ["Completion Queue (CQ)\n(poll cqe here)"] --> App
+        App --> SQ["Submission Queue (SQ)\n("write sqe here")"]
+        CQ["Completion Queue (CQ)\n("poll cqe here")"] --> App
     end
     subgraph Kernel["Kernel (io_uring)"]
         SQT["SQ tail reader"]
         CQH["CQ head writer"]
     end
     SQ -->|"shared memory"| SQT
-    SQT -->|"execute I/O"| IO[I/O Operations]
+    SQT -->|"execute I/O"| IO["I/O Operations"]
     IO --> CQH
     CQH -->|"shared memory"| CQ
+
 ```
 
 **Submission:** User writes a Submission Queue Entry (SQE) into the ring buffer. One `io_uring_enter()` syscall can submit thousands of operations. Or use `IORING_SETUP_SQPOLL` — a kernel thread polls the SQ, eliminating the syscall entirely for the hot path.

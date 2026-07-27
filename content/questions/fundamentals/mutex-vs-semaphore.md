@@ -41,14 +41,15 @@ Thread B: sem.wait() → use resource → sem.signal()
 ```mermaid
 flowchart LR
     subgraph Mutex["Mutex (ownership)"]
-        MA[Thread A locks] --> MB[Thread A unlocks\nonly A can unlock]
+        MA["Thread A locks"] --> MB["Thread A unlocks\nonly A can unlock"]
     end
-    subgraph Semaphore["Semaphore (count=2)"]
-        SA[Thread A wait] --> SC[Both inside]
-        SB[Thread B wait] --> SC
-        SC --> SD[Thread C waits\ncount=0]
-        SC --> SE[A signals → Thread C enters]
+    subgraph Semaphore["Semaphore("count=2")"]
+        SA["Thread A wait"] --> SC["Both inside"]
+        SB["Thread B wait"] --> SC
+        SC --> SD["Thread C waits\ncount=0"]
+        SC --> SE["A signals → Thread C enters"]
     end
+
 ```
 
 **Key differences:**

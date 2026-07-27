@@ -22,11 +22,12 @@ flowchart LR
     subgraph Process["Process Address Space"]
         Code[Code]
         Heap[Heap]
-        MMap["mmap region\n(file-backed)"]
+        MMap["mmap region\n("file-backed")"]
         Stack[Stack]
     end
     MMap <-->|"page faults → kernel loads"| PC["Page Cache\n(kernel)"]
     PC <-->|"disk I/O on demand"| Disk[Disk]
+
 ```
 
 **`mmap` vs `read()`/`write()`:**

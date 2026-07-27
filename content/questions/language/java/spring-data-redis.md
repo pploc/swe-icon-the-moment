@@ -18,9 +18,10 @@ Spring Data Redis provides abstraction layers over low-level Redis drivers (Lett
 
 ```mermaid
 flowchart LR
-    App[Spring Boot Application] --> Abstraction[RedisTemplate / RedisRepository]
-    Abstraction --> Driver[Lettuce Driver\nNetty-based async/sync]
-    Driver --> RedisServer[(Redis Server Cluster / Sentinel)]
+    App["Spring Boot Application"] --> Abstraction["RedisTemplate / RedisRepository"]
+    Abstraction --> Driver["Lettuce Driver\nNetty-based async/sync"]
+    Driver --> RedisServer[("Redis Server Cluster / Sentinel")]
+
 ```
 
 **1. `RedisTemplate` Configuration & Serializers:**

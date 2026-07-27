@@ -35,10 +35,11 @@ An annotation is a form of metadata added to Java code elements (classes, method
 
 ```mermaid
 flowchart LR
-    Source[Source Code .java] -->|RetentionPolicy.SOURCE| Compiler[javac Compiler]
-    Compiler -->|RetentionPolicy.CLASS| Bytecode[.class File]
-    Bytecode -->|RetentionPolicy.RUNTIME| JVM[JVM Runtime Memory]
-    JVM -->|Reflection| Framework[Spring / Reflection]
+    Source["Source Code .java"] -->|RetentionPolicy.SOURCE| Compiler["javac Compiler"]
+    Compiler -->|RetentionPolicy.CLASS| Bytecode[".class File"]
+    Bytecode -->|RetentionPolicy.RUNTIME| JVM["JVM Runtime Memory"]
+    JVM -->|Reflection| Framework["Spring / Reflection"]
+
 ```
 
 **Creating a Custom RUNTIME Annotation:**

@@ -576,6 +576,14 @@ body {
   border-color: var(--color-ember-500);
 }
 
+.diagram-zoom-content svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  pointer-events: auto;
+}
+
 /* Shiki emits both themes as CSS variables; pick the one in play. */
 .prose .shiki,
 .prose .shiki span {

@@ -23,7 +23,7 @@ flowchart LR
         fd2["fd 2 (stderr)"] --> OFT2
         fd3["fd 3 (socket)"] --> OFT3
     end
-    subgraph OFT["Open File Table (kernel-wide)"]
+    subgraph OFT["Open File Table("kernel-wide")"]
         OFT1["file pos=0\nflags=RDONLY"]
         OFT2["file pos=47\nflags=WRONLY"]
         OFT3["file pos=0\nflags=RDWR\nref_count=2"]
@@ -36,6 +36,7 @@ flowchart LR
     OFT1 --> I1
     OFT2 --> I2
     OFT3 --> I3
+
 ```
 
 **Key rules:**

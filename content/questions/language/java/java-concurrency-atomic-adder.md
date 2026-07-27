@@ -38,11 +38,12 @@ When 100 threads concurrently attempt to update a single `AtomicLong`:
 ```mermaid
 flowchart TD
     subgraph High Contention AtomicLong
-        T1[Thread 1] & T2[Thread 2] & T3[Thread 3] & T4[Thread 4]
-        T1 & T2 & T3 & T4 -->|Contend on Single Memory Cell| Value[AtomicLong Value]
+        T1["Thread 1"] & T2["Thread 2"] & T3["Thread 3"] & T4["Thread 4"]
+        T1 & T2 & T3 & T4 -->|Contend on Single Memory Cell| Value["AtomicLong Value"]
         T1 -->|CAS Success| Value
         T2 & T3 & T4 -->|CAS Failed! Retry Spin Loop| T2 & T3 & T4
     end
+
 ```
 
 **The `LongAdder` Solution (Striped Cell Array):**
@@ -51,13 +52,14 @@ Introduced in Java 8, `LongAdder` avoids CAS contention by maintaining a dynamic
 ```mermaid
 flowchart TD
     subgraph LongAdder Under High Contention
-        Thread1[Thread 1] -->|Hash Thread ID| Cell0[Cell 0: +1]
-        Thread2[Thread 2] -->|Hash Thread ID| Cell1[Cell 1: +1]
-        Thread3[Thread 3] -->|Hash Thread ID| Cell2[Cell 2: +1]
-        Thread4[Thread 4] -->|Hash Thread ID| Base[Base Counter: +1]
+        Thread1["Thread 1"] -->|Hash Thread ID| Cell0["Cell 0: +1"]
+        Thread2["Thread 2"] -->|Hash Thread ID| Cell1["Cell 1: +1"]
+        Thread3["Thread 3"] -->|Hash Thread ID| Cell2["Cell 2: +1"]
+        Thread4["Thread 4"] -->|Hash Thread ID| Base["Base Counter: +1"]
         
-        Cell0 & Cell1 & Cell2 & Base -->|Sum on sum() Call| Total[Total Sum = 4]
+        Cell0 & Cell1 & Cell2 & Base -->|Sum on sum() Call| Total["Total Sum = 4"]
     end
+
 ```
 
 **How `LongAdder` Operates:**

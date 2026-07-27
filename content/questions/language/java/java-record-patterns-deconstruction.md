@@ -53,10 +53,11 @@ public class WindowInspector {
 
 ```mermaid
 flowchart TD
-    WindowObject[Window Record] -->|1. Match Window| CP[ColoredPoint topLeft]
-    CP -->|2. Match ColoredPoint| P[Point point]
-    P -->|3. Extract Components| X[int x = 10]
-    P -->|3. Extract Components| Y[int y = 20]
+    WindowObject["Window Record"] -->|1. Match Window| CP["ColoredPoint topLeft"]
+    CP -->|2. Match ColoredPoint| P["Point point"]
+    P -->|3. Extract Components| X["int x = 10"]
+    P -->|3. Extract Components| Y["int y = 20"]
+
 ```
 
 **3. Record Patterns in `switch` with Guard Clauses (`when`):**

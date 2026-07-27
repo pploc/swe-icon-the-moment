@@ -18,14 +18,15 @@ Spring Boot Actuator aggregates individual health checks from built-in contribut
 
 ```mermaid
 flowchart TD
-    Request[GET /actuator/health] --> Aggregator[HealthEndpointWebExtension / HealthAggregator]
+    Request["GET /actuator/health"] --> Aggregator["HealthEndpointWebExtension / HealthAggregator"]
     Aggregator --> DB[DataSourceHealthIndicator]
     Aggregator --> Redis[RedisHealthIndicator]
-    Aggregator --> Custom[Custom PaymentGatewayHealthIndicator]
+    Aggregator --> Custom["Custom PaymentGatewayHealthIndicator"]
     
-    DB & Redis & Custom -->|Aggregate Status| Decision{All UP?}
-    Decision -->|Yes| UpStatus[Status: UP\nHTTP 200]
-    Decision -->|No| DownStatus[Status: DOWN / OUT_OF_SERVICE\nHTTP 503]
+    DB & Redis & Custom -->|Aggregate Status| Decision{"All UP?"}
+    Decision -->|Yes| UpStatus["Status: UP\nHTTP 200"]
+    Decision -->|No| DownStatus["Status: DOWN / OUT_OF_SERVICE\nHTTP 503"]
+
 ```
 
 **1. Building a Custom Synchronous `HealthIndicator`:**

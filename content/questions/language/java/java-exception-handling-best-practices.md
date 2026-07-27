@@ -18,9 +18,10 @@ Explain Java Exception Architecture: Checked (`Exception`) vs Unchecked (`Runtim
 ```mermaid
 flowchart TD
     Throwable[java.lang.Throwable]
-    Throwable --> Error[java.lang.Error\nUnrecoverable JVM Faults\nOutOfMemoryError, StackOverflowError]
-    Throwable --> Exception[java.lang.Exception\nChecked Exceptions\nIOException, SQLException]
-    Exception --> RuntimeException[java.lang.RuntimeException\nUnchecked Exceptions\nNullPointerException, IllegalArgumentException]
+    Throwable --> Error["java.lang.Error\nUnrecoverable JVM Faults\nOutOfMemoryError, StackOverflowError"]
+    Throwable --> Exception["java.lang.Exception\nChecked Exceptions\nIOException, SQLException"]
+    Exception --> RuntimeException["java.lang.RuntimeException\nUnchecked Exceptions\nNullPointerException, IllegalArgumentException"]
+
 ```
 
 **1. Checked vs Unchecked Exceptions:**

@@ -17,14 +17,15 @@ Clarify the terminology: coroutines, fibers, green threads, and user-space threa
 
 ```mermaid
 flowchart TD
-    Concurrency[Concurrent Execution Units] --> OS[OS Threads\n- Preemptive\n- Kernel-managed\n- 1-8MB stack]
-    Concurrency --> User[User-Space Lightweight\n- Many M:N on OS threads]
-    User --> Coop[Cooperative\n- Must yield explicitly]
-    User --> Semi[Semi-preemptive\n- Runtime can preempt]
-    Coop --> Coroutine[Coroutines\ne.g., Python async,\nKotlin coroutines]
-    Coop --> Fiber[Fibers\ne.g., Ruby fibers,\nWin32 fibers]
-    Semi --> GreenThread[Green Threads\ne.g., old Java green threads,\nErlang processes]
-    Semi --> Goroutine[Goroutines\nGo - async preemptible]
+    Concurrency["Concurrent Execution Units"] --> OS["OS Threads\n- Preemptive\n- Kernel-managed\n- 1-8MB stack"]
+    Concurrency --> User["User-Space Lightweight\n- Many M:N on OS threads"]
+    User --> Coop["Cooperative\n- Must yield explicitly"]
+    User --> Semi["Semi-preemptive\n- Runtime can preempt"]
+    Coop --> Coroutine["Coroutines\ne.g., Python async,\nKotlin coroutines"]
+    Coop --> Fiber["Fibers\ne.g., Ruby fibers,\nWin32 fibers"]
+    Semi --> GreenThread["Green Threads\ne.g., old Java green threads,\nErlang processes"]
+    Semi --> Goroutine["Goroutines\nGo - async preemptible"]
+
 ```
 
 **Coroutines:** Execution contexts that voluntarily suspend at defined points (`yield`, `await`). Caller and coroutine take turns on the same thread. No parallelism without combining with threads. Stateful resumable functions.

@@ -71,12 +71,13 @@ sequenceDiagram
     participant CL as ClassLoader
     participant T2 as Thread 2
     T1->>CL: Load Holder class
-    CL->>CL: Initialize INSTANCE (synchronized by JVM)
+    CL->>CL: Initialize INSTANCE("synchronized by JVM")
     T2->>CL: Also triggers load
     CL-->>T2: Wait for T1's init to finish
     CL-->>T1: Holder.INSTANCE ready
     T1-->>T1: return INSTANCE
     T2-->>T2: return same INSTANCE
+
 ```
 
 **Modern Java:** Enum singleton is also thread-safe and serialization-safe:

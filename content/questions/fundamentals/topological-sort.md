@@ -19,10 +19,11 @@ Explain topological sort: what it is, when it's applicable, and walk through bot
 
 ```mermaid
 graph LR
-    A[A: Compile Core] --> C[C: Compile App]
-    B[B: Compile Utils] --> C
-    C --> D[D: Link Binary]
-    D --> E[E: Run Tests]
+    A["A: Compile Core"] --> C["C: Compile App"]
+    B["B: Compile Utils"] --> C
+    C --> D["D: Link Binary"]
+    D --> E["E: Run Tests"]
+
 ```
 Valid order: A, B, C, D, E (or B, A, C, D, E).
 
@@ -42,16 +43,17 @@ Valid order: A, B, C, D, E (or B, A, C, D, E).
 
 ```mermaid
 flowchart TD
-    A[Kahn's Algorithm] --> B[Compute in-degrees]
-    B --> C[Queue nodes with in-degree 0]
-    C --> D{Queue empty?}
-    D -- no --> E[Dequeue u, add to result]
-    E --> F[Decrement neighbors' in-degrees]
-    F --> G[Enqueue newly zero-degree nodes]
+    A["Kahn's Algorithm"] --> B["Compute in-degrees"]
+    B --> C["Queue nodes with in-degree 0"]
+    C --> D{"Queue empty?"}
+    D -- no --> E["Dequeue u, add to result"]
+    E --> F["Decrement neighbors' in-degrees"]
+    F --> G["Enqueue newly zero-degree nodes"]
     G --> D
-    D -- yes --> H{result.size == V?}
-    H -- yes --> I[Valid topological order]
-    H -- no --> J[Cycle detected!]
+    D -- yes --> H{"result.size == V?"}
+    H -- yes --> I["Valid topological order"]
+    H -- no --> J["Cycle detected!"]
+
 ```
 
 **Which to use?** Kahn's is easier to implement iteratively and gives a canonical cycle detection path. DFS-based is compact and naturally fits recursive code.

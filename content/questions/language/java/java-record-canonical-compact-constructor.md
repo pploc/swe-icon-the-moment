@@ -18,10 +18,11 @@ Java Records automatically generate a **Canonical Constructor** matching the rec
 
 ```mermaid
 flowchart TD
-    Record[Record Declaration: UserDto]
-    Record -->|Compiler Generated| Canonical[Canonical Constructor\nUserDto(Long id, String email)]
-    Record -->|Developer Validation| Compact[Compact Constructor\npublic UserDto { ... }]
-    Record -->|Overloaded Factory| Secondary[Secondary Constructor\npublic UserDto(String email)]
+    Record["Record Declaration: UserDto"]
+    Record -->|Compiler Generated| Canonical["Canonical Constructor\nUserDto("Long id, String email")"]
+    Record -->|Developer Validation| Compact["Compact Constructor\npublic UserDto { ... }"]
+    Record -->|Overloaded Factory| Secondary["Secondary Constructor\npublic UserDto("String email")"]
+
 ```
 
 **1. Compact Constructor (Validation & Normalization):**

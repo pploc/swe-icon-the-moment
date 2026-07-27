@@ -21,10 +21,11 @@ Compare Java's `BlockingQueue` implementations: `ArrayBlockingQueue`, `LinkedBlo
 
 ```mermaid
 flowchart LR
-    P1[Producer 1] --> Q[BlockingQueue]
-    P2[Producer 2] --> Q
-    Q --> C1[Consumer 1]
-    Q --> C2[Consumer 2]
+    P1["Producer 1"] --> Q[BlockingQueue]
+    P2["Producer 2"] --> Q
+    Q --> C1["Consumer 1"]
+    Q --> C2["Consumer 2"]
+
 ```
 
 **`ArrayBlockingQueue(int capacity)`:**

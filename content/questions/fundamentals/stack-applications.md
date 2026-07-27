@@ -37,11 +37,12 @@ Stacks appear throughout algorithms beyond simple LIFO storage. Name and explain
 
 ```mermaid
 flowchart TD
-    A[Next Greater Element] --> B{arr-i- > stack top?}
-    B -- yes --> C[Pop, record answer, repeat]
-    B -- no --> D[Push i]
+    A["Next Greater Element"] --> B{"arr-i- > stack top?"}
+    B -- yes --> C["Pop, record answer, repeat"]
+    B -- no --> D["Push i"]
     C --> B
     D --> A
+
 ```
 
 ## Follow-ups

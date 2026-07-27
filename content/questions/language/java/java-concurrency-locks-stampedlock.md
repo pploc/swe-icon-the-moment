@@ -17,9 +17,10 @@ Compare Java explicit locks (`java.util.concurrent.locks`): `synchronized` vs `R
 
 ```mermaid
 flowchart TD
-    Synchronized[1. synchronized keyword\nImplicit, intrinsic monitor] --> ReentrantLock[2. ReentrantLock\nExplicit tryLock, fairness, conditions]
-    ReentrantLock --> RWLock[3. ReentrantReadWriteLock\nMultiple readers, single writer]
-    RWLock --> StampedLock[4. StampedLock\nOptimistic lock-free reads, non-reentrant]
+    Synchronized["1. synchronized keyword\nImplicit, intrinsic monitor"] --> ReentrantLock["2. ReentrantLock\nExplicit tryLock, fairness, conditions"]
+    ReentrantLock --> RWLock["3. ReentrantReadWriteLock\nMultiple readers, single writer"]
+    RWLock --> StampedLock["4. StampedLock\nOptimistic lock-free reads, non-reentrant"]
+
 ```
 
 **1. `synchronized` vs `ReentrantLock`:**
