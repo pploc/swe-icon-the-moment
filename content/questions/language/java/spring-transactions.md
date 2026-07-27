@@ -18,7 +18,7 @@ Explain Spring's declarative transaction management: how `@Transactional` is imp
 ```mermaid
 sequenceDiagram
     participant C as Caller
-    participant P as Spring Proxy (AOP)
+    participant P as Spring Proxy("AOP")
     participant S as OrderService
     C->>P: orderService.placeOrder()
     P->>P: beginTransaction()
@@ -27,6 +27,7 @@ sequenceDiagram
     S-->>P: returns
     P->>P: commit() or rollback()
     P-->>C: result
+
 ```
 
 Spring wraps your bean in a JDK dynamic proxy (or CGLIB subclass proxy). The proxy intercepts method calls, manages the transaction boundary, and delegates to the real bean.

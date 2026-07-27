@@ -18,16 +18,17 @@ Email operations involve network round-trips to external SMTP servers (SendGrid,
 
 ```mermaid
 flowchart TD
-    Request["POST /api/register"] --> Controller[UserController]
+    Request["POST /api/register"] --> Controller["UserController"]
     Controller -->|1. Save User| DB[("PostgreSQL")]
     Controller -->|2. Trigger Async Email| EmailService["@Async EmailService"]
     Controller -->|3. Return 201 Created immediately!| Response["HTTP 201 Response"]
     
     subgraph Async Thread Pool
         EmailService -->|4. Render Template| Thymeleaf["Thymeleaf Engine"]
-        Thymeleaf -->|HTML Body| MailSender[JavaMailSender]
+        Thymeleaf -->|HTML Body| MailSender["JavaMailSender"]
         MailSender -->|5. SMTP Protocol| SMTP["External SMTP Server / AWS SES"]
     end
+
 
 ```
 

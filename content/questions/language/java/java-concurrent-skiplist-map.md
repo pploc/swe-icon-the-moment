@@ -23,13 +23,13 @@ Explain `ConcurrentSkipListMap` in `java.util.concurrent`: how the probabilistic
 ```mermaid
 flowchart TD
     subgraph Level 3 Express Lane
-        L3_1[Head] -->|Pointer| L3_20["Key: 20"] -->|Pointer| L3_50["Key: 50"]
+        L3_1["Head"] -->|Pointer| L3_20["Key: 20"] -->|Pointer| L3_50["Key: 50"]
     end
     subgraph Level 2 Fast Lane
-        L2_1[Head] -->|Pointer| L2_10["Key: 10"] -->|Pointer| L2_20["Key: 20"] -->|Pointer| L2_35["Key: 35"] -->|Pointer| L2_50["Key: 50"]
+        L2_1["Head"] -->|Pointer| L2_10["Key: 10"] -->|Pointer| L2_20["Key: 20"] -->|Pointer| L2_35["Key: 35"] -->|Pointer| L2_50["Key: 50"]
     end
     subgraph Level 1 Base Linked List
-        L1_1[Head] --> L1_5[5] --> L1_10[10] --> L1_15[15] --> L1_20[20] --> L1_25[25] --> L1_35[35] --> L1_40[40] --> L1_50[50]
+        L1_1["Head"] --> L1_5["5"] --> L1_10["10"] --> L1_15["15"] --> L1_20["20"] --> L1_25["25"] --> L1_35["35"] --> L1_40["40"] --> L1_50["50"]
     end
     
     L3_20 --> L2_20
@@ -38,6 +38,7 @@ flowchart TD
     L2_20 --> L1_20
     L2_35 --> L1_35
     L2_50 --> L1_50
+
 
 ```
 

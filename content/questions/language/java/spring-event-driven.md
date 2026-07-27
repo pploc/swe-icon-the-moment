@@ -75,16 +75,17 @@ public class NotificationListener {
 
 ```mermaid
 sequenceDiagram
-    participant OS as OrderService (Tx)
+    participant OS as OrderService("Tx")
     participant DB as Database
-    participant TEL as TransactionalEventListener (AFTER_COMMIT)
+    participant TEL as TransactionalEventListener("AFTER_COMMIT")
     
     OS->>DB: INSERT into orders
-    OS->>OS: publishEvent(OrderCreatedEvent)
+    OS->>OS: publishEvent("OrderCreatedEvent")
     Note over TEL: Event deferred by Spring
     OS->>DB: COMMIT Transaction
     DB-->>OS: Commit OK
     OS->>TEL: Trigger sendEmailOnOrderSuccess()
+
 ```
 
 **CRITICAL PITFALL: Writing to DB inside `AFTER_COMMIT` Listener:**

@@ -18,18 +18,20 @@ Spring Batch is a framework designed for robust processing of large volumes of r
 
 ```mermaid
 flowchart LR
-    JobLauncher[JobLauncher] -->|runs| Job[Job]
+    JobLauncher["JobLauncher"] -->|runs| Job["Job"]
     Job --> Step1["Step 1: Setup"]
     Job --> Step2["Step 2: Chunk Step"]
     
-    subgraph ChunkStep ["Chunk-Based Processing("e.g., commit-interval = 100")"]
-        Reader[ItemReader] -->|read item by item| Processor[ItemProcessor]
-        Processor -->|transform item| Writer[ItemWriter]
+    subgraph ChunkStep["Chunk-Based Processing(e.g., commit-interval = 100)"]
+        Reader["ItemReader"] -->|read item by item| Processor["ItemProcessor"]
+        Processor -->|transform item| Writer["ItemWriter"]
         Writer -->|write 100 items at once| DB[("Database / File")]
     end
     
     Step2 --> ChunkStep
     Job <--> JobRepository[("JobRepository DB Metadata")]
+
+
 
 ```
 

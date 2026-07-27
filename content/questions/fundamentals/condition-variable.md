@@ -50,13 +50,14 @@ sequenceDiagram
     participant CV as Condition Var
     participant C as Consumer
     P->>M: lock()
-    P->>CV: wait(mutex) — buffer full
+    P->>CV: wait("mutex") — buffer full
     M-->>C: lock() (mutex released by wait)
     C->>C: consume item
     C->>CV: signal()
     CV-->>P: wakeup
     P->>M: reacquire mutex
-    P->>P: check while(full)? — no → proceed
+    P->>P: check while("full")? — no → proceed
+
 ```
 
 **Why `while` not `if` (spurious wakeups):**

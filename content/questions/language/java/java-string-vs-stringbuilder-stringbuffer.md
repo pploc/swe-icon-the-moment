@@ -22,9 +22,10 @@ Text handling in Java relies on three core classes:
 ```mermaid
 flowchart TD
     CharSeq["CharSequence Interface"]
-    CharSeq --> String["String\n("Immutable, Thread-Safe")"]
-    CharSeq --> SB["StringBuilder\n("Mutable, NOT Thread-Safe, FAST")"]
-    CharSeq --> SBuffer["StringBuffer\n("Mutable, Synchronized Thread-Safe, SLOWER")"]
+    CharSeq --> String["String\n(Immutable, Thread-Safe)"]
+    CharSeq --> SB["StringBuilder\n(Mutable, NOT Thread-Safe, FAST)"]
+    CharSeq --> SBuffer["StringBuffer\n(Mutable, Synchronized Thread-Safe, SLOWER)"]
+
 
 ```
 

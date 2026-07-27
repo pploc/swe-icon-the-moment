@@ -21,11 +21,13 @@ Design an LRU (Least Recently Used) cache that supports `get(key)` and `put(key,
 
 ```mermaid
 flowchart LR
-    H[HashMap] --> N2["node key=2"]
+    H["HashMap"] --> N2["node key=2"]
     H --> N3["node key=3"]
-    subgraph DLL["Doubly Linked List (MRU→LRU)"]
+    subgraph DLL["Doubly Linked List(MRU→LRU)"]
         dummy_head <-->|<-| N3 <-->|<->| N2 <-->|<->| dummy_tail
     end
+
+
 
 ```
 

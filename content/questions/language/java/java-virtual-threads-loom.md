@@ -34,8 +34,8 @@ flowchart TD
         VT5["Virtual Thread N..."]
     end
     subgraph ForkJoinPool Scheduler
-        CT1["Carrier Thread 1\n("Platform Thread")"]
-        CT2["Carrier Thread 2\n("Platform Thread")"]
+        CT1["Carrier Thread 1\n(Platform Thread)"]
+        CT2["Carrier Thread 2\n(Platform Thread)"]
     end
     subgraph OS Kernel
         KT1["Kernel Thread 1"]
@@ -46,6 +46,7 @@ flowchart TD
     VT3 & VT4 & VT5 -->|Mounted| CT2
     CT1 --> KT1
     CT2 --> KT2
+
 
 ```
 

@@ -21,14 +21,15 @@ Every Java object has one intrinsic monitor with ONE implicit wait-set (`wait()`
 ```mermaid
 flowchart TD
     Lock["ReentrantLock Instance"]
-    Lock --> CondFull["notFull Condition Wait-Set\n("Waiting Producer Threads")"]
-    Lock --> CondEmpty["notEmpty Condition Wait-Set\n("Waiting Consumer Threads")"]
+    Lock --> CondFull["notFull Condition Wait-Set\n(Waiting Producer Threads)"]
+    Lock --> CondEmpty["notEmpty Condition Wait-Set\n(Waiting Consumer Threads)"]
     
     Producer["Producer Thread"] -->|Buffer Full| CondFull
     Consumer["Consumer Thread"] -->|Buffer Empty| CondEmpty
     
     Producer -->|Puts Item| SignalConsumer["Signal notEmpty!"]
     Consumer -->|Takes Item| SignalProducer["Signal notFull!"]
+
 
 ```
 

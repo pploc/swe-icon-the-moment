@@ -49,8 +49,9 @@ x ^ (1 << k)  Toggle bit k
 
 ```mermaid
 flowchart LR
-    A["x = 0b1011 0100"] --> B["x & x-1 = 0b1011 0000\n("lowest set bit removed")"]
-    A --> C["x & -x = 0b0000 0100\n("only lowest set bit")"]
+    A["x = 0b1011 0100"] --> B["x & x-1 = 0b1011 0000\n(lowest set bit removed)"]
+    A --> C["x & -x = 0b0000 0100\n(only lowest set bit)"]
+
 
 ```
 

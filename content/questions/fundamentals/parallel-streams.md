@@ -19,12 +19,13 @@ Explain how Java parallel streams work, what operations are safe, when they prov
 
 ```mermaid
 flowchart TD
-    Source["List("1M elements")"] --> Split["Spliterator splits\ninto chunks"]
+    Source["List(1M elements)"] --> Split["Spliterator splits\ninto chunks"]
     Split --> T1["Worker 1\nprocess 0-250k"]
     Split --> T2["Worker 2\nprocess 250k-500k"]
     Split --> T3["Worker 3\nprocess 500k-750k"]
     Split --> T4["Worker 4\nprocess 750k-1M"]
     T1 & T2 & T3 & T4 --> Merge["Combine results"]
+
 
 ```
 

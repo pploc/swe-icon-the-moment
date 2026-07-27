@@ -32,7 +32,9 @@ stateDiagram-v2
     E --> M: Write("now modified")
     S --> M: Write("invalidate others → RFO")
     M --> I: Another CPU reads/writes("writeback + invalidate")
-    S --> I: Another CPU writes (invalidate)
+    S --> I: Another CPU writes("invalidate")
+
+
 
 ```
 
@@ -54,13 +56,15 @@ Remote NUMA node:  ~300-500 cycles
 ```mermaid
 flowchart LR
     subgraph Socket0
-        CPU0["CPU 0-15"] --> MEM0["Memory 0\n("fast access")"]
+        CPU0["CPU 0-15"] --> MEM0["Memory 0\n(fast access)"]
     end
     subgraph Socket1
-        CPU1["CPU 16-31"] --> MEM1["Memory 1\n("fast access")"]
+        CPU1["CPU 16-31"] --> MEM1["Memory 1\n(fast access)"]
     end
     CPU0 <-->|"~2x slower"| MEM1
     CPU1 <-->|"~2x slower"| MEM0
+
+
 
 ```
 

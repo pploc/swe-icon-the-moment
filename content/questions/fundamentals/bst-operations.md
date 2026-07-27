@@ -29,10 +29,11 @@ Explain the Binary Search Tree invariant, its expected vs worst-case complexitie
 
 ```mermaid
 graph TD
-    A1[1] --> |right| A2[2]
-    A2 --> |right| A3[3]
-    A3 --> |right| A4[4]
+    A1["1"] --> |right| A2["2"]
+    A2 --> |right| A3["3"]
+    A3 --> |right| A4["4"]
     A4 --> |right| A5["5 ← effectively a linked list"]
+
 
 ```
 

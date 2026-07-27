@@ -26,10 +26,10 @@ Platform threads map 1:1 to OS threads. OS threads are expensive (~1 MB stack, k
 
 ```mermaid
 flowchart TD
-    subgraph VTs["Virtual Threads (millions)"]
-        VT1 --- VT2 --- VT3 --- VTn[...]
+    subgraph VTs["Virtual Threads(millions)"]
+        VT1 --- VT2 --- VT3 --- VTn["..."]
     end
-    subgraph PTs["Platform (Carrier) Threads = NCPU"]
+    subgraph PTs["Platform(Carrier) Threads = NCPU"]
         PT1
         PT2
         PT3
@@ -38,6 +38,8 @@ flowchart TD
     VT2 -->|"mounted"| PT2
     VT3 -->|"scheduled"| PT3
     Note["When VT blocks on I/O, JVM unmounts it\nfrom carrier thread → carrier picks up another VT"]
+
+
 ```
 
 **Key behavior:** When a virtual thread calls a blocking operation (JDBC, HTTP, file I/O), the JVM **unmounts** it from the carrier thread. The carrier thread is free to run other virtual threads. When the I/O completes, the virtual thread is remounted on any available carrier.

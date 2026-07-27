@@ -24,12 +24,13 @@ Explain OverlayFS: how it creates a unified view of multiple filesystem layers, 
 ```mermaid
 flowchart LR
     subgraph Container
-        M["Merged\n("what container sees")"]
+        M["Merged\n(what container sees)"]
     end
-    M -->|"read"| U["Upper dir\n("container writes")"]
-    M -->|"read("if not in upper")"| L3["Layer 3\n("nginx config")"]
-    L3 -->|"read("if not found")"| L2["Layer 2\n("nginx binary")"]
-    L2 -->|"read("if not found")"| L1["Layer 1\n("ubuntu base")"]
+    M -->|"read"| U["Upper dir\n(container writes)"]
+    M -->|"read("if not in upper")"| L3["Layer 3\n(nginx config)"]
+    L3 -->|"read("if not found")"| L2["Layer 2\n(nginx binary)"]
+    L2 -->|"read("if not found")"| L1["Layer 1\n(ubuntu base)"]
+
 
 ```
 

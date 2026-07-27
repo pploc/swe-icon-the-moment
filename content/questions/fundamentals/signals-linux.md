@@ -35,10 +35,11 @@ sequenceDiagram
     participant P as Process
     K->>P: SIGTERM
     P->>P: Signal handler: flush buffers, close connections
-    P->>P: exit(0)
+    P->>P: exit("0")
     Note over K,P: Graceful shutdown ✓
     K->>P: SIGKILL("if stuck")
     Note over P: Cannot be caught — immediate termination
+
 
 ```
 

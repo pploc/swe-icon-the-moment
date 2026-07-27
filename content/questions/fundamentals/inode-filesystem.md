@@ -27,10 +27,11 @@ Explain inodes: what metadata they store, the difference between hard links and 
 
 ```mermaid
 flowchart LR
-    D[Directory entry\n"myfile" → inode 1234] --> I["Inode 1234\nsize=4096\nuid=1000\nblocks=[12,15,...]"]
+    D[Directory entry\n"myfile" → inode 1234] --> I["Inode 1234\nsize=4096\nuid=1000\nblocks=[12,15,..."]"]
     I --> B1["Data block 12"]
     I --> B2["Data block 15"]
-    I --> B3[...]
+    I --> B3["..."]
+
 
 ```
 

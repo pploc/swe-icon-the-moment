@@ -28,8 +28,9 @@ flowchart LR
     L4 --> L3["PUD index\n9 bits"]
     L3 --> L2["PMD index\n9 bits"]
     L2 --> L1["PTE index\n9 bits"]
-    L1 --> Offset["Page offset\n12 bits("4KB pages")"]
+    L1 --> Offset["Page offset\n12 bits(4KB pages)"]
     L1 -->|"physical page frame"| PA["Physical Address"]
+
 
 ```
 

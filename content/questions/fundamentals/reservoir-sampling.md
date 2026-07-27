@@ -47,11 +47,12 @@ Every item has exactly probability k/n of being in the final sample — uniform.
 ```mermaid
 sequenceDiagram
     Note over R: k=2, reservoir=[A,B]
-    Note over S: See C("i=2"): j=random(0,2)
+    Note over S: See C("i=2"): j=random("0,2")
     S->>R: j=0 → replace A with C, reservoir=[C,B]
-    Note over S: See D("i=3"): j=random(0,3)
+    Note over S: See D("i=3"): j=random("0,3")
     S->>R: j=3 ≥ 2 → skip, reservoir=[C,B]
     Note over S: Each item has p=2/4=1/2 of being in reservoir
+
 
 ```
 

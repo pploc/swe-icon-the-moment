@@ -18,11 +18,13 @@ Introduced in Java 8, `Optional<T>` is a container object that may or may not co
 
 ```mermaid
 flowchart LR
-    Method["userRepo.findById(id)"] -->|Returns| Opt[Optional<User>]
+    Method["userRepo.findById(id)"] -->|Returns| Opt["Optional<User>"]
     Opt -->|Present| Val["User Object"]
-    Opt -->|Empty| Empty[Optional.empty]
+    Opt -->|Empty| Empty["Optional.empty"]
     
     Opt -->|Safe Usage| Map["orElseGet(() -> createDefaultUser())"]
+
+
 
 ```
 

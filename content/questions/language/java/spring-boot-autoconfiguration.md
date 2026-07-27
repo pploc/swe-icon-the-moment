@@ -21,9 +21,10 @@ Explain Spring Boot auto-configuration: how `@EnableAutoConfiguration` discovers
 flowchart LR
     Boot["@SpringBootApplication\n= @EnableAutoConfiguration\n+ @ComponentScan\n+ @Configuration"]
     Boot --> Loader["AutoConfigurationImportSelector\nloads auto-config classes"]
-    Loader --> File["META-INF/spring/\norg.springframework.boot.autoconfigure.\nAutoConfiguration.imports\n("or spring.factories in older versions")"]
-    File --> Config["Hundreds of @AutoConfiguration classes\n("DataSourceAutoConfiguration,\nJacksonAutoConfiguration, etc.")"]
+    Loader --> File["META-INF/spring/\norg.springframework.boot.autoconfigure.\nAutoConfiguration.imports\n(or spring.factories in older versions)"]
+    File --> Config["Hundreds of @AutoConfiguration classes\n(DataSourceAutoConfiguration,\nJacksonAutoConfiguration, etc.)"]
     Config --> Cond["@Conditional filters\nwhat actually gets applied"]
+
 
 ```
 

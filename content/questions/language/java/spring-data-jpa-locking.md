@@ -22,13 +22,14 @@ sequenceDiagram
     participant DB as Database("Balance = 100")
     participant UserB as User B
 
-    UserA->>DB: 1. SELECT balance (100)
-    UserB->>DB: 2. SELECT balance (100)
+    UserA->>DB: 1. SELECT balance("100")
+    UserB->>DB: 2. SELECT balance("100")
     UserA->>UserA: 3. Deduct 30 -> New = 70
     UserB->>UserB: 4. Deduct 50 -> New = 50
     UserA->>DB: 5. UPDATE balance = 70
     UserB->>DB: 6. UPDATE balance = 50("OVERWRITES User A!")
     Note over DB: Lost Update! Final balance = 50("Should be 20")
+
 
 ```
 

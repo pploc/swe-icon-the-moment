@@ -18,9 +18,10 @@ MongoDB provides an official async Netty-based reactive driver. Spring Data Mong
 
 ```mermaid
 flowchart LR
-    WebFlux["Spring WebFlux Controller"] -->|Mono / Flux| Repo[ReactiveMongoRepository]
+    WebFlux["Spring WebFlux Controller"] -->|Mono / Flux| Repo["ReactiveMongoRepository"]
     Repo -->|Reactive Commands| Driver["MongoDB Reactive Streams Driver"]
     Driver -->|Netty EventLoop| Mongo[("MongoDB Instance / Replica Set")]
+
 
 ```
 

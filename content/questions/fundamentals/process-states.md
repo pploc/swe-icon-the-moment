@@ -20,14 +20,15 @@ stateDiagram-v2
     [*] --> Running: fork() / exec()
     Running --> Runnable: preempted by scheduler
     Runnable --> Running: scheduled
-    Running --> Interruptible: wait for I/O (S)
-    Running --> Uninterruptible: kernel critical section (D)
+    Running --> Interruptible: wait for I/O("S")
+    Running --> Uninterruptible: kernel critical section("D")
     Interruptible --> Runnable: I/O complete or signal received
     Uninterruptible --> Runnable: I/O complete
     Running --> Stopped: SIGSTOP / ptrace
     Stopped --> Runnable: SIGCONT
     Running --> Zombie: exit(), waiting for parent wait()
     Zombie --> [*]: parent calls wait()
+
 ```
 
 **States (as seen in `ps`, `top`, `htop`):**

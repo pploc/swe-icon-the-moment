@@ -19,15 +19,17 @@ Explain lock striping as a technique to reduce lock contention. Describe how Jav
 
 ```mermaid
 flowchart LR
-    subgraph Striped["ConcurrentHashMap("16 stripes")"]
-        S0["Stripe 0\n[lock_0]\nbuckets 0-3"]
-        S1["Stripe 1\n[lock_1]\nbuckets 4-7"]
+    subgraph Striped["ConcurrentHashMap(16 stripes)"]
+        S0["Stripe 0\n[lock_0"]\nbuckets 0-3"]
+        S1["Stripe 1\n[lock_1"]\nbuckets 4-7"]
         S2["..."]
-        S15["Stripe 15\n[lock_15]\nbuckets 60-63"]
+        S15["Stripe 15\n[lock_15"]\nbuckets 60-63"]
     end
-    T1["Thread A\nput key=5"] -->|"hash(5) % 16 = 1"| S1
-    T2["Thread B\nput key=12"] -->|"hash(12) % 16 = 4"| S2
+    T1["Thread A\nput key=5"] -->|"hash("5") % 16 = 1"| S1
+    T2["Thread B\nput key=12"] -->|"hash("12") % 16 = 4"| S2
     Note["A and B operate on different stripes\n→ no contention!"]
+
+
 
 ```
 

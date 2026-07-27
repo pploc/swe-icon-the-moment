@@ -21,8 +21,10 @@ The ISR must be fast (interrupts disabled on the CPU). Non-urgent work is deferr
 
 ```mermaid
 flowchart LR
-    HW[Hardware\nInterrupt] --> TH["Top half (ISR)\n- Runs immediately\n- Interrupts disabled\n- Must be < microseconds\n- Acknowledges device\n- Schedules bottom half"]
-    TH --> BH["Bottom half (softirq)\n- Runs when safe\n- Interrupts enabled\n- Processes data\n- e.g., TCP packet processing"]
+    HW["Hardware\nInterrupt"] --> TH["Top half(ISR)\n- Runs immediately\n- Interrupts disabled\n- Must be < microseconds\n- Acknowledges device\n- Schedules bottom half"]
+    TH --> BH["Bottom half(softirq)\n- Runs when safe\n- Interrupts enabled\n- Processes data\n- e.g., TCP packet processing"]
+
+
 ```
 
 **Softirq types:**

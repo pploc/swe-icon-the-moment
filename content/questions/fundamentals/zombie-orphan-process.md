@@ -35,12 +35,13 @@ A process whose parent has exited before it. The kernel automatically reparents 
 sequenceDiagram
     participant Parent
     participant Child
-    participant Init as PID 1 (init)
+    participant Init as PID 1("init")
     Parent->>Child: fork()
     Child->>Child: running...
     Parent->>Parent: exit()  ← dies before child
     Note over Child: Orphaned → reparented to init
     Init->>Child: wait() when child eventually exits
+
 ```
 
 **Preventing zombies — three approaches:**

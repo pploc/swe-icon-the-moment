@@ -25,13 +25,15 @@ Explain the LMAX Disruptor pattern: why it dramatically outperforms `ArrayBlocki
 
 ```mermaid
 flowchart LR
-    subgraph RingBuffer["Ring Buffer("size = power of 2")"]
+    subgraph RingBuffer["Ring Buffer(size = power of 2)"]
         E0["Slot 0"] --- E1["Slot 1"] --- E2["Slot 2"] --- E3["Slot 3"]
         E3 -.->|wraps around| E0
     end
-    P[Producer] -->|"claim sequence, write"| RingBuffer
+    P["Producer"] -->|"claim sequence, write"| RingBuffer
     C1["Consumer 1"] -->|"wait for sequence"| RingBuffer
     C2["Consumer 2"] -->|"wait for sequence"| RingBuffer
+
+
 
 ```
 

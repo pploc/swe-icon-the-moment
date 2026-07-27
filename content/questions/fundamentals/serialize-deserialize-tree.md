@@ -63,11 +63,12 @@ sequenceDiagram
     S->>S: left null → "N,"
     S->>S: right null → "N"
     Note over D: Deserialize: consume tokens
-    D->>D: "1" → create node(1)
-    D->>D: "2" → create node(2), left child of 1
+    D->>D: "1" → create node("1")
+    D->>D: "2" → create node("2"), left child of 1
     D->>D: "N" → null left of 2
     D->>D: "N" → null right of 2
-    D->>D: "3" → create node(3), right child of 1
+    D->>D: "3" → create node("3"), right child of 1
+
 ```
 
 **Why inorder alone doesn't work:** Inorder traversal of `[1,2]` and `[2,1]` can produce the same sequence depending on tree shape. You need preorder+inorder OR null markers.

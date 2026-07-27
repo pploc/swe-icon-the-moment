@@ -69,6 +69,8 @@ flowchart LR
     B --> E["fib(2)"]
     C --> F["fib(2) ← CACHED"]
     C --> G["fib(1)"]
+
+
 ```
 With memoization, `fib(3)` and `fib(2)` are computed once. Without it: exponential work.
 

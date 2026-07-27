@@ -34,9 +34,10 @@ Quantify context switch overhead: what the kernel must save/restore, what indire
 
 ```mermaid
 flowchart LR
-    Direct["Direct cost\n~1-10 µs\n("register save/restore")"] --> Total["Total context switch cost"]
-    Cache["Cache miss cost\n0-200+ µs\n("working set reload")"] --> Total
-    TLB["TLB flush\n~10-50 µs\n("on process switch")"] --> Total
+    Direct["Direct cost\n~1-10 µs\n(register save/restore)"] --> Total["Total context switch cost"]
+    Cache["Cache miss cost\n0-200+ µs\n(working set reload)"] --> Total
+    TLB["TLB flush\n~10-50 µs\n(on process switch)"] --> Total
+
 
 ```
 

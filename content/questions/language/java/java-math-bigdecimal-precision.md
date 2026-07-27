@@ -33,9 +33,11 @@ In financial applications (banking, e-commerce, tax calculations), floating-poin
 
 ```mermaid
 flowchart LR
-    BigDecimal["BigDecimal: 123.45"] --> Unscaled["Unscaled Value: 12345 (BigInteger)"]
-    BigDecimal --> Scale["Scale: 2 (Integer)"]
+    BigDecimal["BigDecimal: 123.45"] --> Unscaled["Unscaled Value: 12345(BigInteger)"]
+    BigDecimal --> Scale["Scale: 2(Integer)"]
     Math["12345 × 10⁻² = 123.45"]
+
+
 ```
 
 **1. Critical Rule: ALWAYS Use `String` or `BigDecimal.valueOf()` Constructor!**

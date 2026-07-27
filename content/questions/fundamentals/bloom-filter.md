@@ -22,7 +22,7 @@ Explain the Bloom filter data structure: how it works, what operations it suppor
 ```mermaid
 flowchart LR
     subgraph BitArray["Bit Array m=10"]
-        b0[0] --- b1[1] --- b2[0] --- b3[1] --- b4[0] --- b5[1] --- b6[0] --- b7[0] --- b8[0] --- b9[1]
+        b0["0"] --- b1["1"] --- b2["0"] --- b3["1"] --- b4["0"] --- b5["1"] --- b6["0"] --- b7["0"] --- b8["0"] --- b9["1"]
     end
     Insert["Insert 'foo'"] -->|h1=1| b1
     Insert -->|h2=3| b3
@@ -31,6 +31,7 @@ flowchart LR
     Query -->|h2=5✓| b5
     Query -->|h3=3✓| b3
     Query -->|false positive!| Result["Returns 'maybe in set'"]
+
 
 ```
 

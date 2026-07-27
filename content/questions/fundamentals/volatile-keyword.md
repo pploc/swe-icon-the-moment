@@ -26,11 +26,12 @@ sequenceDiagram
     participant A as Thread A
     participant V as volatile flag
     participant B as Thread B
-    A->>V: flag = true (write)
+    A->>V: flag = true("write")
     Note over V: Write visible to all threads immediately
-    B->>V: while (!flag) spin (read)
+    B->>V: while("!flag") spin("read")
     B->>B: flag is true → proceed
     Note over A,B: All writes before flag=true are visible to B
+
 ```
 
 **Where `volatile` is sufficient:**

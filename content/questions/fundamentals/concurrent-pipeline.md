@@ -21,6 +21,8 @@ flowchart LR
     S1 --> |"ch2"| S2["Stage 2\n(enrich)"]
     S2 --> |"ch3"| S3["Stage 3\n(write)"]
     S3 --> Sink
+
+
 ```
 
 **Go implementation:**

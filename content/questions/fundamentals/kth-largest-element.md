@@ -44,11 +44,12 @@ def quickselect(nums, lo, hi, k):
 
 ```mermaid
 flowchart TD
-    A[Array] --> B["Partition around pivot"]
+    A["Array"] --> B["Partition around pivot"]
     B --> C{"pivot_rank == k?"}
     C -- yes --> D["Return pivot ✓"]
     C -- left side --> E["Recurse left"]
     C -- right side --> F["Recurse right"]
+
 
 ```
 

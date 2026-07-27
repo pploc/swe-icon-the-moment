@@ -19,12 +19,13 @@ Spring Security is a chain of servlet filters. Every HTTP request passes through
 
 ```mermaid
 flowchart LR
-    Request --> SC["SecurityContextPersistenceFilter\n("load SecurityContext")"]
+    Request --> SC["SecurityContextPersistenceFilter\n(load SecurityContext)"]
     SC --> CSRF["CsrfFilter"]
     CSRF --> Session["SessionManagementFilter"]
     Session --> Auth["UsernamePasswordAuthenticationFilter\nor JWT filter"]
-    Auth --> AccessControl["FilterSecurityInterceptor\n("authorization check")"]
+    Auth --> AccessControl["FilterSecurityInterceptor\n(authorization check)"]
     AccessControl --> Servlet["DispatcherServlet → Controller"]
+
 
 ```
 

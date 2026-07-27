@@ -17,15 +17,16 @@ Trace the Linux boot sequence from power-on to the first user-space process: BIO
 
 ```mermaid
 flowchart LR
-    Power["Power On"] --> BIOS["BIOS/UEFI\n("POST, hardware init,\nfind bootable device")"]
-    BIOS --> GRUB["GRUB/bootloader\n("select kernel,\nload vmlinuz + initrd")"]
-    GRUB --> Decompress["Kernel decompression\n("vmlinuz → bzImage")"]
+    Power["Power On"] --> BIOS["BIOS/UEFI\n(POST, hardware init,\nfind bootable device)"]
+    BIOS --> GRUB["GRUB/bootloader\n(select kernel,\nload vmlinuz + initrd)"]
+    GRUB --> Decompress["Kernel decompression\n(vmlinuz → bzImage)"]
     Decompress --> StartKernel["start_kernel()\narch init, mm, sched"]
-    StartKernel --> Initramfs["Mount initramfs\n("tmpfs root")\nload drivers for real FS"]
-    Initramfs --> PivotRoot["Pivot to real root\n("/dev/sda1")\nunmount initramfs"]
+    StartKernel --> Initramfs["Mount initramfs\n(tmpfs root)\nload drivers for real FS"]
+    Initramfs --> PivotRoot["Pivot to real root\n(/dev/sda1)\nunmount initramfs"]
     PivotRoot --> Init["PID 1 = systemd\nor sysvinit/openrc"]
     Init --> Targets["systemd targets:\nbasic.target\nnetwork.target\nmulti-user.target"]
     Targets --> User["Login / services\nrunning"]
+
 
 ```
 

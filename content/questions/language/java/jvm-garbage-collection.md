@@ -18,16 +18,18 @@ Explain JVM garbage collection: generational hypothesis, the main collectors (G1
 ```mermaid
 flowchart LR
     subgraph Young["Young Generation"]
-        Eden["Eden\n("new allocations")"]
+        Eden["Eden\n(new allocations)"]
         S1["Survivor 0"]
         S2["Survivor 1"]
     end
-    subgraph Old["Old (Tenured)\nGeneration"]
+    subgraph Old["Old(Tenured)\nGeneration"]
         Tenured["Long-lived objects"]
     end
     Eden -->|"Minor GC"| S1
     S1 -->|"survived N GCs"| Tenured
     Tenured -->|"Major/Full GC"| Tenured
+
+
 
 ```
 

@@ -18,9 +18,11 @@ Access Modifiers in Java regulate the visibility and accessibility of classes, c
 
 ```mermaid
 flowchart TD
-    Public["public\n("Visible Everywhere")"] --> Protected["protected\n("Same Package + Subclasses")"]
-    Protected --> Default["package-private (default)\n("Same Package Only")"]
-    Default --> Private["private\n("Same Class Only")"]
+    Public["public\n(Visible Everywhere)"] --> Protected["protected\n(Same Package + Subclasses)"]
+    Protected --> Default["package-private(default)\n(Same Package Only)"]
+    Default --> Private["private\n(Same Class Only)"]
+
+
 
 ```
 

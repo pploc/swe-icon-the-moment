@@ -18,19 +18,21 @@ Explain Java Collections Framework internals: `ArrayList` resizing, `LinkedList`
 ```mermaid
 flowchart TD
     Collection["Iterable / Collection"]
-    Collection --> List[List]
-    Collection --> Set[Set]
+    Collection --> List["List"]
+    Collection --> Set["Set"]
     Collection --> Queue["Queue / Deque"]
     
-    List --> ArrayList[ArrayList]
-    List --> LinkedList[LinkedList]
+    List --> ArrayList["ArrayList"]
+    List --> LinkedList["LinkedList"]
     
-    Set --> HashSet[HashSet]
-    Set --> TreeSet[TreeSet]
+    Set --> HashSet["HashSet"]
+    Set --> TreeSet["TreeSet"]
     
-    Map[Map] --> HashMap[HashMap]
-    Map --> TreeMap[TreeMap]
-    Map --> LinkedHashMap[LinkedHashMap]
+    Map["Map"] --> HashMap["HashMap"]
+    Map --> TreeMap["TreeMap"]
+    Map --> LinkedHashMap["LinkedHashMap"]
+
+
 
 ```
 
@@ -46,10 +48,12 @@ flowchart TD
 ```mermaid
 flowchart LR
     Bucket0["Bucket 0"] --> Node1["Key1 -> Val1"]
-    Bucket1["Bucket 1("Treeified > 8")"] --> RBT["Red-Black Tree Node"]
+    Bucket1["Bucket 1(Treeified > 8)"] --> RBT["Red-Black Tree Node"]
     RBT --> Left["Left Child"]
     RBT --> Right["Right Child"]
     Bucket2["Bucket 2"] --> Node2["Key2 -> Val2"]
+
+
 
 ```
 

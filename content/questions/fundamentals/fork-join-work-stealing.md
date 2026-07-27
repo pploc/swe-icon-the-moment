@@ -19,14 +19,16 @@ Explain the ForkJoinPool (Java) and the work-stealing algorithm that makes it ef
 
 ```mermaid
 flowchart TD
-    subgraph T1["Thread 1 (owner)"]
-        D1["Deque: [A, B, C, D] ← push/pop here"]
+    subgraph T1["Thread 1(owner)"]
+        D1["Deque: [A, B, C, D"] ← push/pop here"]
     end
-    subgraph T2["Thread 2 (stealer)"]
-        D2["Deque: [] → steal from T1's tail"]
+    subgraph T2["Thread 2(stealer)"]
+        D2["Deque: ["] → steal from T1's tail"]
     end
-    T2 -->|"steal D (tail)"| D1
+    T2 -->|"steal D("tail")"| D1
     T1 -->|"push/pop from head"| D1
+
+
 ```
 
 **Work-stealing advantages:**

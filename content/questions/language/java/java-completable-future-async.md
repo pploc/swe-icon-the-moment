@@ -52,12 +52,13 @@ CompletableFuture<UserDashboard> dashboardFuture = userFuture
 ```mermaid
 flowchart TD
     subgraph Parallel Execution
-        A[fetchUserAsync]
-        B[fetchCreditScoreAsync]
+        A["fetchUserAsync"]
+        B["fetchCreditScoreAsync"]
     end
-    A -->|User| C[thenCombine]
+    A -->|User| C["thenCombine"]
     B -->|CreditScore| C
-    C --> D[UserDashboard]
+    C --> D["UserDashboard"]
+
 ```
 
 - **`CompletableFuture.allOf` (Wait for Multiple Futures):**

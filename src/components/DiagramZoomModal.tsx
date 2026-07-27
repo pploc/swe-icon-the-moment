@@ -10,8 +10,10 @@ export function DiagramZoomModal() {
   const [scale, setScale] = useState(1)
   const [pan, setPan] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
+  
   const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
   const panStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
+  const hasDraggedRef = useRef<boolean>(false)
 
   // Listen for clicks on diagrams anywhere in the document
   useEffect(() => {
@@ -42,9 +44,7 @@ export function DiagramZoomModal() {
           // Mermaid SVG or Container
           const svg = diagramEl.querySelector('svg')
           if (svg) {
-            // Clone SVG to preserve all inline styles and attributes
             const clone = svg.cloneNode(true) as SVGElement
-            // Ensure SVG expands responsively inside modal
             clone.style.width = '100%'
             clone.style.height = 'auto'
             clone.style.maxWidth = '100%'
@@ -97,10 +97,11 @@ export function DiagramZoomModal() {
     setScale((s) => Math.min(4, Math.max(0.5, s + delta)))
   }, [])
 
-  // Mouse drag panning
+  // Mouse drag panning & click backdrop to close
   const handleMouseDown = (e: React.MouseEvent) => {
     if (e.button !== 0) return // Left click only
     setIsDragging(true)
+    hasDraggedRef.current = false
     dragStartRef.current = { x: e.clientX, y: e.clientY }
     panStartRef.current = { ...pan }
   }
@@ -109,27 +110,38 @@ export function DiagramZoomModal() {
     if (!isDragging) return
     const dx = e.clientX - dragStartRef.current.x
     const dy = e.clientY - dragStartRef.current.y
+    
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
+      hasDraggedRef.current = true
+    }
+
     setPan({
       x: panStartRef.current.x + dx,
       y: panStartRef.current.y + dy,
     })
   }
 
-  const handleMouseUp = () => {
+  const handleMouseUp = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement | null
     setIsDragging(false)
+
+    // If user clicked (without panning/dragging) on empty space outside the diagram card, close modal
+    if (!hasDraggedRef.current && target) {
+      const isContent = target.closest('.diagram-zoom-content')
+      const isControl = target.closest('.diagram-zoom-controls')
+      
+      if (!isContent && !isControl) {
+        setActiveDiagram(null)
+      }
+    }
   }
 
   if (!activeDiagram) return null
 
   return (
-    <div
-      className="diagram-zoom-modal fixed inset-0 z-50 flex flex-col bg-carbon-950/90 backdrop-blur-md animate-fade"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) setActiveDiagram(null)
-      }}
-    >
+    <div className="diagram-zoom-modal fixed inset-0 z-50 flex flex-col bg-carbon-950/90 backdrop-blur-md animate-fade">
       {/* Header bar */}
-      <div className="flex h-14 shrink-0 items-center justify-between border-b border-carbon-700 bg-carbon-900 px-4 sm:px-6">
+      <div className="diagram-zoom-controls flex h-14 shrink-0 items-center justify-between border-b border-carbon-700 bg-carbon-900 px-4 sm:px-6">
         <div className="flex items-center gap-2">
           <span className="font-mono text-xs font-semibold tracking-widest text-ember-500 uppercase">
             ■ {activeDiagram.title}
@@ -193,26 +205,26 @@ export function DiagramZoomModal() {
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
+        onMouseLeave={() => setIsDragging(false)}
       >
         <div
-          className="absolute inset-0 flex items-center justify-center p-6 transition-transform duration-75 ease-out"
+          className="absolute inset-0 flex items-center justify-center p-6 transition-transform duration-75 ease-out pointer-events-none"
           style={{
             transform: `translate(${pan.x}px, ${pan.y}px) scale(${scale})`,
             transformOrigin: 'center center',
           }}
         >
           <div
-            className="diagram-zoom-content flex min-h-[300px] min-w-[320px] max-h-[85vh] max-w-[90vw] items-center justify-center rounded-xl border border-carbon-700 bg-carbon-900 p-6 shadow-2xl overflow-auto"
+            className="diagram-zoom-content pointer-events-auto flex min-h-[300px] min-w-[320px] max-h-[85vh] max-w-[90vw] items-center justify-center rounded-xl border border-carbon-700 bg-carbon-900 p-6 shadow-2xl overflow-auto"
             dangerouslySetInnerHTML={{ __html: activeDiagram.html }}
           />
         </div>
       </div>
 
       {/* Footer hint */}
-      <div className="flex h-10 shrink-0 items-center justify-between border-t border-carbon-700 bg-carbon-900 px-4 font-mono text-[11px] text-carbon-400">
-        <span>Scroll to zoom · Drag to pan · Esc to close</span>
-        <span className="hidden sm:inline">Shortcut: + / - / 0</span>
+      <div className="diagram-zoom-controls flex h-10 shrink-0 items-center justify-between border-t border-carbon-700 bg-carbon-900 px-4 font-mono text-[11px] text-carbon-400">
+        <span>Click empty space to close · Scroll to zoom · Drag to pan</span>
+        <span className="hidden sm:inline">Shortcut: + / - / 0 / Esc</span>
       </div>
     </div>
   )

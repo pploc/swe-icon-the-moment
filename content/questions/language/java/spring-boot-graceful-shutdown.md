@@ -35,7 +35,8 @@ sequenceDiagram
     DB-->>Server: 5. All Active Requests Finish
     Server-->>App: 6. Web Server Stopped
     App->>App: 7. Close Spring ApplicationContext("Beans @PreDestroy")
-    App->>K8s: 8. Process Exits (0)
+    App->>K8s: 8. Process Exits("0")
+
 
 ```
 

@@ -21,9 +21,10 @@ Introduced in JPA 2.1 and integrated into Spring Data JPA, `@EntityGraph` allows
 
 ```mermaid
 flowchart TD
-    Query["Spring Data JPA Query: findByStatus"] --> Graph["@EntityGraph("attributePaths = {'items', 'items.product'}")"]
+    Query["Spring Data JPA Query: findByStatus"] --> Graph["@EntityGraph(attributePaths = {'items', 'items.product'})"]
     Graph --> Hibernate["Hibernate Engine"]
     Hibernate -->|Generates Single SQL JOIN| SQL["SELECT o.*, i.*, p.* FROM orders o \nLEFT JOIN order_items i ON o.id = i.order_id \nLEFT JOIN products p ON i.product_id = p.id \nWHERE o.status = ?"]
+
 
 ```
 

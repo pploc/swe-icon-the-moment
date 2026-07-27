@@ -21,12 +21,14 @@ Explain the Spring IoC (Inversion of Control) container: what a `BeanDefinition`
 
 ```mermaid
 flowchart LR
-    Config["Config Sources\n("@Configuration, @Component scan,\nXML, @Bean")"] --> BD["BeanDefinition\nRegistry"]
+    Config["Config Sources\n(@Configuration, @Component scan,\nXML, @Bean)"] --> BD["BeanDefinition\nRegistry"]
     BD --> Inst["Instantiate beans\n(constructor)"]
     Inst --> Populate["Populate properties\n(DI)"]
-    Populate --> Init["Init callbacks\n("@PostConstruct,\nInitializingBean.afterPropertiesSet("),\ninit-method)"]
+    Populate --> Init["Init callbacks\n(@PostConstruct,\nInitializingBean.afterPropertiesSet(),\ninit-method)"]
     Init --> Ready["Bean ready for use"]
-    Ready --> Destroy["Destroy callbacks\n("@PreDestroy,\nDisposableBean.destroy("))"]
+    Ready --> Destroy["Destroy callbacks\n(@PreDestroy,\nDisposableBean.destroy())"]
+
+
 
 ```
 

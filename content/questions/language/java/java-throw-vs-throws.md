@@ -21,7 +21,8 @@ In Java exception handling, `throw` and `throws` serve completely different role
 ```mermaid
 flowchart LR
     Signature["public void readFile() throws IOException"] -->|Method Signature: throws| Dec["Declares potential checked exceptions to caller"]
-    Body["throw new IOException("'File missing'");"] -->|Method Body: throw| Exec["Explicitly triggers/instantiates exception"]
+    Body["throw new IOException('File missing');"] -->|Method Body: throw| Exec["Explicitly triggers/instantiates exception"]
+
 
 ```
 

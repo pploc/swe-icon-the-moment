@@ -20,9 +20,10 @@ An API Gateway routes external traffic to dozens of downstream microservices. If
 flowchart LR
     Client["Client Request"] --> Gateway["Spring Cloud Gateway"]
     Gateway --> CB{"Resilience4j\nCircuit Breaker"}
-    CB -->|State: CLOSED\n(Healthy)| Service["Downstream Service"]
+    CB -->|State: CLOSED\n("Healthy")| Service["Downstream Service"]
     CB -->|State: OPEN\n("Failure Threshold Exceeded")| Fallback["Forward to /fallback Endpoint"]
     Fallback --> Response["Return Instant Degraded Response 503/200"]
+
 
 ```
 

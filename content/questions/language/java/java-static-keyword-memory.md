@@ -19,7 +19,7 @@ The `static` keyword denotes that a member (field, method, block, or nested clas
 ```mermaid
 flowchart TD
     subgraph Class Level Metadata("Metaspace / Heap")
-        StaticVar["static int count = 100\n("Shared by ALL instances!")"]
+        StaticVar["static int count = 100\n(Shared by ALL instances!)"]
     end
     subgraph Instance Level Heap
         Obj1["Instance 1: Person"]
@@ -27,6 +27,7 @@ flowchart TD
     end
     
     Obj1 & Obj2 -->|Shares single reference| StaticVar
+
 
 ```
 

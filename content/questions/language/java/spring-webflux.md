@@ -17,19 +17,21 @@ Compare Spring MVC (blocking) with Spring WebFlux (reactive non-blocking): the t
 
 ```mermaid
 flowchart LR
-    subgraph MVC["Spring MVC (Tomcat)"]
+    subgraph MVC["Spring MVC(Tomcat)"]
         direction TB
-        T1["Thread 1: entire request\nread → process → DB → write\n("thread blocked during DB wait")"]
+        T1["Thread 1: entire request\nread → process → DB → write\n(thread blocked during DB wait)"]
         T2["Thread 2: next request"]
         T3["Thread N..."]
     end
-    subgraph WebFlux["Spring WebFlux (Netty)"]
+    subgraph WebFlux["Spring WebFlux(Netty)"]
         direction TB
-        EL["Event Loop Thread\n("1-4 threads")"]
+        EL["Event Loop Thread\n(1-4 threads)"]
         EL --> R1["Request arrives"]
-        EL --> R2["DB query async\n("thread free while waiting")"]
-        EL --> R3["DB response → complete\n("thread handles next event")"]
+        EL --> R2["DB query async\n(thread free while waiting)"]
+        EL --> R3["DB response → complete\n(thread handles next event)"]
     end
+
+
 
 ```
 

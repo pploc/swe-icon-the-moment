@@ -23,11 +23,12 @@ sequenceDiagram
     participant M as Memory("val=5")
     T->>M: CAS("addr, 5, 6")
     M->>M: Is *addr == 5? Yes → write 6
-    M-->>T: true (success)
+    M-->>T: true("success")
     Note over T,M: Another thread changed val to 7
     T->>M: CAS("addr, 5, 6")
     M->>M: Is *addr == 5? No("*addr=7")
     M-->>T: false("retry needed")
+
 
 ```
 

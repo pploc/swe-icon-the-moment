@@ -25,15 +25,16 @@ In push-based systems (callbacks, listeners), a fast producer can overwhelm a sl
 sequenceDiagram
     participant P as Publisher
     participant S as Subscriber
-    P->>S: onSubscribe(Subscription)
-    S->>S: subscription.request(3)
-    P->>S: onNext(item1)
-    P->>S: onNext(item2)
-    P->>S: onNext(item3)
-    S->>S: subscription.request(2)
-    P->>S: onNext(item4)
-    P->>S: onNext(item5)
+    P->>S: onSubscribe("Subscription")
+    S->>S: subscription.request("3")
+    P->>S: onNext("item1")
+    P->>S: onNext("item2")
+    P->>S: onNext("item3")
+    S->>S: subscription.request("2")
+    P->>S: onNext("item4")
+    P->>S: onNext("item5")
     P->>S: onComplete()
+
 ```
 
 - **Publisher:** Produces items. Respects demand from subscribers.

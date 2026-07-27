@@ -37,14 +37,15 @@ def lowestCommonAncestor(root, p, q):
 
 ```mermaid
 graph TD
-    root[3] --> A[5]
-    root --> B[1]
-    A --> C[6]
-    A --> D[2]
-    D --> E[7]
-    D --> F[4]
-    B --> G[0]
-    B --> H[8]
+    root["3"] --> A["5"]
+    root --> B["1"]
+    A --> C["6"]
+    A --> D["2"]
+    D --> E["7"]
+    D --> F["4"]
+    B --> G["0"]
+    B --> H["8"]
+
 ```
 LCA(5, 4) = 5 (5 is an ancestor of 4).
 LCA(5, 1) = 3 (root).

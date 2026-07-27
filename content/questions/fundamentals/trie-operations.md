@@ -19,15 +19,16 @@ Explain the Trie (prefix tree) data structure, its time and space complexity, an
 graph TD
     root --> a
     root --> b
-    a --> p[p]
-    p --> pp[p]
-    pp --> ppe[e]
-    ppe --> appel[" (end: apple)"]
-    a --> ap[p]
-    ap --> app2[" (end: app)"]
-    b --> ba[a]
-    ba --> bat[t]
-    bat --> bate[" (end: bat)"]
+    a --> p["p"]
+    p --> pp["p"]
+    pp --> ppe["e"]
+    ppe --> appel["(end: apple)"]
+    a --> ap["p"]
+    ap --> app2["(end: app)"]
+    b --> ba["a"]
+    ba --> bat["t"]
+    bat --> bate["(end: bat)"]
+
 ```
 
 **Operations:**

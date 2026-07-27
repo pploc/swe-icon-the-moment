@@ -39,11 +39,12 @@ def search(nums, target):
 
 ```mermaid
 flowchart TD
-    A["[4,5,6,7,0,1,2] target=0"] --> B["mid=7, lo=4"]
+    A["[4,5,6,7,0,1,2"] target=0"] --> B["mid=7, lo=4"]
     B --> C{"Is left sorted?\nnums-lo-=4 ≤ nums-mid-=7?"}
     C -- yes --> D{"target 0 in [4,7)?"}
-    D -- no --> E["lo = mid+1, search [0,1,2]"]
+    D -- no --> E["lo = mid+1, search [0,1,2"]"]
     E --> F["mid=1, target=0 found at index 4 ✓"]
+
 
 ```
 

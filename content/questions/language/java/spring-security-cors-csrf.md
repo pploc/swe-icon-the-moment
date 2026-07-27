@@ -21,14 +21,15 @@ Explain CORS (Cross-Origin Resource Sharing) and CSRF (Cross-Site Request Forger
 ```mermaid
 flowchart TD
     subgraph CORS Scenario
-        Browser1["Browser on app.com"] -->|OPTIONS Preflight| API1[api.com]
+        Browser1["Browser on app.com"] -->|OPTIONS Preflight| API1["api.com"]
         API1 -->|Access-Control-Allow-Origin: app.com| Browser1
     end
     subgraph CSRF Scenario
-        Victim["User Logged into bank.com"] -->|Visits malicious| Evil[attacker.com]
+        Victim["User Logged into bank.com"] -->|Visits malicious| Evil["attacker.com"]
         Evil -->|Form Post + Cookie auto-sent| Bank["bank.com/transfer"]
         Bank -->|Fails if CSRF Token Missing| Blocked["Request Rejected!"]
     end
+
 
 ```
 

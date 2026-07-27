@@ -27,7 +27,9 @@ flowchart LR
     Socket2["Socket Channel 2"] -->|OP_ACCEPT ready| Selector
     Socket3["Socket Channel 3"] -->|OP_WRITE ready| Selector
     
-    Selector -->|Dispatch| Buffer[ByteBuffer]
+    Selector -->|Dispatch| Buffer["ByteBuffer"]
+
+
 
 ```
 

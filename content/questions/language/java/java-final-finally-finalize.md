@@ -22,9 +22,11 @@ Despite having similar names, `final`, `finally`, and `finalize()` are completel
 ```mermaid
 flowchart TD
     Concept["Java Keywords & Methods"]
-    Concept --> Final["final (Keyword)\nImmutability / Inheritance control"]
-    Concept --> Finally["finally (Block)\nGuaranteed execution in try-catch"]
+    Concept --> Final["final(Keyword)\nImmutability / Inheritance control"]
+    Concept --> Finally["finally(Block)\nGuaranteed execution in try-catch"]
     Concept --> Finalize["finalize() (Deprecated Method)\nPre-GC cleanup hook"]
+
+
 
 ```
 

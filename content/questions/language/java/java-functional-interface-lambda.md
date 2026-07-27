@@ -20,11 +20,13 @@ The `@FunctionalInterface` annotation informs the compiler to generate an error 
 
 ```mermaid
 flowchart TD
-    FI["@FunctionalInterface\n("Single Abstract Method SAM")"]
+    FI["@FunctionalInterface\n(Single Abstract Method SAM)"]
     FI --> Func["Function<T, R>\nInput T -> Output R\n(apply)"]
     FI --> Pred["Predicate<T>\nInput T -> boolean\n(test)"]
     FI --> Supp["Supplier<T>\nNo input -> Output T\n(get)"]
     FI --> Cons["Consumer<T>\nInput T -> void\n(accept)"]
+
+
 
 ```
 

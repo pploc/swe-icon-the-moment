@@ -31,6 +31,8 @@ flowchart TD
     Sub2 -->|Recursive Fork| Base2["Compute Base Case"]
     Base1 & Base2 -->|Join Results| Result["Final Combined Result"]
 
+
+
 ```
 
 **Code Example: Parallel Array Sum with `RecursiveTask`:**
@@ -80,13 +82,15 @@ Each worker thread in `ForkJoinPool` maintains its own double-ended queue (Deque
 
 ```mermaid
 flowchart LR
-    subgraph Worker Thread 1 (Active)
-        T1Deque["Deque 1:\n["Task A"] [Task B] [Task C] ↓ Push/Pop (Tail)"]
+    subgraph Worker Thread 1("Active")
+        T1Deque["Deque 1:\n['Task A"] [Task B] [Task C] ↓ Push/Pop("Tail")"]
     end
-    subgraph Worker Thread 2 (Idle)
+    subgraph Worker Thread 2("Idle")
         T2Deque["Deque 2: (Empty)"]
         T2Deque -->|Steals from Head!| T1Deque
     end
+
+
 
 ```
 

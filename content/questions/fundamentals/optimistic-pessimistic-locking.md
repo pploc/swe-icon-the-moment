@@ -37,7 +37,7 @@ WHERE id=1 AND version=read_version;
 ```mermaid
 flowchart LR
     subgraph Pessimistic
-        P1[Lock] --> P2[Read] --> P3[Modify] --> P4[Unlock]
+        P1["Lock"] --> P2["Read"] --> P3["Modify"] --> P4["Unlock"]
         P1 -->|"blocks"| PB["Other threads wait"]
     end
     subgraph Optimistic
@@ -46,6 +46,7 @@ flowchart LR
         O3 -- yes --> O4["Write success"]
         O3 -- no --> O5["Retry from O1"]
     end
+
 
 ```
 

@@ -25,12 +25,13 @@ sequenceDiagram
     participant A as Caller
     participant D as DynamicArray
     participant M as Memory
-    A->>D: append(x) [array full, cap=4]
-    D->>M: allocate new array[8]
+    A->>D: append("x") [array full, cap=4]
+    D->>M: allocate new array["8"]
     D->>D: copy 4 elements → new array
     D->>D: insert x at index 4
     D->>M: free old array
     D-->>A: done("size=5, cap=8")
+
 
 ```
 

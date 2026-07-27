@@ -18,13 +18,14 @@ Explain NUMA topology: what it is, how to detect it, the performance penalty for
 ```mermaid
 flowchart LR
     subgraph Node0["NUMA Node 0"]
-        CPU0["CPUs 0-15\n("24 cores")"] <-->|"local access ~80ns"| MEM0["64GB RAM"]
+        CPU0["CPUs 0-15\n(24 cores)"] <-->|"local access ~80ns"| MEM0["64GB RAM"]
     end
     subgraph Node1["NUMA Node 1"]
-        CPU1["CPUs 16-31\n("24 cores")"] <-->|"local access ~80ns"| MEM1["64GB RAM"]
+        CPU1["CPUs 16-31\n(24 cores)"] <-->|"local access ~80ns"| MEM1["64GB RAM"]
     end
     CPU0 <-->|"remote access ~140ns"| MEM1
     CPU1 <-->|"remote access ~140ns"| MEM0
+
 
 ```
 

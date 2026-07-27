@@ -24,10 +24,11 @@ A stream pipeline consists of three parts:
 
 ```mermaid
 flowchart LR
-    Source["Data Source: List"] -->|1. Build Pipeline| Filter[filter]
-    Filter -->|2. Intermediate| Map[map]
+    Source["Data Source: List"] -->|1. Build Pipeline| Filter["filter"]
+    Filter -->|2. Intermediate| Map["map"]
     Map -->|3. Intermediate| Limit["limit 10"]
     Limit -->|4. Terminal Operation| Collect["collect: Triggers Execution!"]
+
 
 ```
 

@@ -20,9 +20,10 @@ Spring Boot Validation integrates Hibernate Validator (the reference implementat
 flowchart LR
     Request["HTTP Request Payload"] --> Controller["@Valid / @Validated Parameter"]
     Controller --> Validator["Hibernate Validator Engine"]
-    Validator -->|Fails| Exception[MethodArgumentNotValidException]
+    Validator -->|Fails| Exception["MethodArgumentNotValidException"]
     Exception --> Advice["@ControllerAdvice Global Exception Handler"]
     Advice --> Response["ProblemDetail / JSON Error Response"]
+
 
 ```
 

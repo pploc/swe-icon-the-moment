@@ -19,16 +19,17 @@ In an OAuth2 architecture (e.g., with Keycloak, Auth0, Okta), the identity provi
 ```mermaid
 sequenceDiagram
     participant Client
-    participant AuthServer as Authorization Server (Keycloak)
+    participant AuthServer as Authorization Server("Keycloak")
     participant ResourceServer as Spring Boot Resource Server
     
-    Client->>AuthServer: 1. Authenticate (login)
+    Client->>AuthServer: 1. Authenticate("login")
     AuthServer-->>Client: 2. Return JWT Access Token
     Client->>ResourceServer: 3. HTTP GET /api/orders("Header: Bearer <JWT>")
-    ResourceServer->>AuthServer: 4. Fetch Public Keys via JWKS URL (Cached)
+    ResourceServer->>AuthServer: 4. Fetch Public Keys via JWKS URL("Cached")
     ResourceServer->>ResourceServer: 5. Verify Signature & Expiry
     ResourceServer->>ResourceServer: 6. Convert JWT Claims to GrantedAuthorities
     ResourceServer-->>Client: 7. 200 OK + Data
+
 
 ```
 

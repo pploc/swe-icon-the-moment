@@ -25,17 +25,19 @@ The String Pool is a native hashtable (`StringTable`) maintained by the JVM.
 ```mermaid
 flowchart TD
     subgraph Java Heap Memory
-        Pool["String Constant Pool (StringTable)\n("Moved from PermGen to Heap in Java 7")"]
+        Pool["String Constant Pool(StringTable)\n(Moved from PermGen to Heap in Java 7)"]
         Pool --> S1["'Hello' (0x100)"]
         
-        HeapObj["new String('Hello') Object\n(0x200)"] -->|Internal Value Ref| S1
+        HeapObj["new String(Hello) Object\n(0x200)"] -->|Internal Value Ref| S1
     end
     
     Literal1["String s1 = 'Hello'"] -->|Points directly to| S1
     Literal2["String s2 = 'Hello'"] -->|Points directly to| S1
-    NewObj["String s3 = new String('Hello')"] -->|Points to| HeapObj
+    NewObj["String s3 = new String(Hello)"] -->|Points to| HeapObj
     
     Check["s1 == s2 -> true\ns1 == s3 -> false\ns1.equals(s3) -> true"]
+
+
 
 ```
 

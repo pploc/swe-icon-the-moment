@@ -48,14 +48,15 @@ Fast moves 2 steps, slow moves 1 step. If there's a cycle, they meet.
 
 ```mermaid
 sequenceDiagram
-    participant S as Slow (1x)
-    participant F as Fast (2x)
+    participant S as Slow("1x")
+    participant F as Fast("2x")
     Note over S,F: Both start at head
     S->>S: advance 1
     F->>F: advance 2
     Note over S,F: Eventually meet inside cycle
     S->>S: reset to head, both move 1x
     Note over S,F: Meet again at cycle start
+
 ```
 
 *Used for: cycle detection in linked lists, finding duplicate numbers (Floyd on value→index mapping).*

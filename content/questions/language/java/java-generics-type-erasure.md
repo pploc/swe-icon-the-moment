@@ -81,9 +81,11 @@ public void addNumbers(List<? super Integer> list) {
 ```mermaid
 flowchart LR
     subgraph PECS Rule
-        Producer["Producer (Reads)"] -->|Use| Extends["? extends T"]
-        Consumer["Consumer (Writes)"] -->|Use| Super["? super T"]
+        Producer["Producer(Reads)"] -->|Use| Extends["? extends T"]
+        Consumer["Consumer(Writes)"] -->|Use| Super["? super T"]
     end
+
+
 ```
 
 **Combining Producer and Consumer (`Collections.copy`):**
