@@ -2,7 +2,7 @@
 title: How do you test Spring Boot applications effectively?
 topics: [java]
 roles: [backend]
-tags: [spring-boot-test, @SpringBootTest, MockMvc, @DataJpaTest, Testcontainers, slice-test]
+tags: [spring-boot-test, "@SpringBootTest", mockmvc, "@DataJpaTest", testcontainers, slice-test]
 time: 25
 updated: 2026-07-27
 ---

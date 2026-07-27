@@ -2,7 +2,7 @@
 title: How does Spring's transaction management work?
 topics: [java]
 roles: [backend]
-tags: [spring, transaction, @Transactional, propagation, isolation, AOP]
+tags: [spring, transaction, "@Transactional", propagation, isolation, aop]
 time: 25
 updated: 2026-07-27
 ---
