@@ -17,16 +17,16 @@ Explain the segment tree data structure. Show how to build one for range sum que
 
 ```mermaid
 graph TD
-    root["[0-5"] sum=21"] --> left["[0-2"] sum=9"]
-    root --> right["[3-5"] sum=12"]
-    left --> ll["[0-1"] sum=5"]
-    left --> lr["[2-2"] val=4"]
-    right --> rl["[3-4"] sum=7"]
-    right --> rr["[5-5"] val=5"]
-    ll --> lll["[0-0"] val=2"]
-    ll --> llr["[1-1"] val=3"]
-    rl --> rll["[3-3"] val=3"]
-    rl --> rlr["[4-4"] val=4"]
+    root["[0-5] sum=21"] --> left["[0-2] sum=9"]
+    root --> right["[3-5] sum=12"]
+    left --> ll["[0-1] sum=5"]
+    left --> lr["[2-2] val=4"]
+    right --> rl["[3-4] sum=7"]
+    right --> rr["[5-5] val=5"]
+    ll --> lll["[0-0] val=2"]
+    ll --> llr["[1-1] val=3"]
+    rl --> rll["[3-3] val=3"]
+    rl --> rlr["[4-4] val=4"]
 
 ```
 

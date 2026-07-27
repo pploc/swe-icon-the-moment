@@ -49,7 +49,7 @@ return lo if arr[lo] == target else -1
 
 ```mermaid
 flowchart LR
-    A["[1,2,2,2,3"]  target=2"] --> B["lo=0 hi=4"]
+    A["[1,2,2,2,3] target=2"] --> B["lo=0 hi=4"]
     B --> C["mid=2 arr=2 → hi=2"]
     C --> D["mid=1 arr=2 → hi=1"]
     D --> E["lo=hi=1 → return 1 ✓ (first)"]

@@ -25,13 +25,10 @@ Given K sorted linked lists, merge them into one sorted list. Compare the naive 
 
 ```mermaid
 graph TD
-    A["[L1,L2,L3,L4"]"] --> B["merge (L1,L2)=M12"]
+    A["[L1,L2,L3,L4]"] --> B["merge (L1,L2)=M12"]
     A --> C["merge (L3,L4)=M34"]
     B --> D["merge (M12,M34)=Result"]
     C --> D
-
-
-
 ```
 
 **Approach 3 — Min-heap:** Insert the head of each list into a min-heap. Repeatedly extract the minimum, add it to the result, and push the next node from that list into the heap.
