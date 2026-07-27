@@ -22,9 +22,9 @@ groups:
   infrastructure:
     name: Infrastructure & Platform
     blurb: Everything between your code and a packet arriving at a user.
-  career:
-    name: Career
-    blurb: The half of the loop that is not a whiteboard.
+  language:
+    name: Languages
+    blurb: Deep dives into the runtimes, idioms, and gotchas of specific languages.
 
 topics:
   # --- Fundamentals --------------------------------------------------------
@@ -144,9 +144,21 @@ topics:
     icon: 🚨
     blurb: On-call, error budgets, debugging production, and postmortems.
 
-  # --- Career --------------------------------------------------------------
-  - id: behavioral
-    name: Behavioral & Leadership
-    group: career
-    icon: 💬
-    blurb: Conflict, ownership, ambiguity, and STAR-shaped stories that land.
+  # --- Language ------------------------------------------------------------
+  - id: java
+    name: Java
+    group: language
+    icon: ☕
+    blurb: JVM internals, GC, concurrency, Spring, and modern Java features.
+
+  - id: go
+    name: Go
+    group: language
+    icon: 🐹
+    blurb: Goroutines, channels, the scheduler, memory model, and Go idioms.
+
+  - id: nodejs-ts
+    name: Node.js & TypeScript
+    group: language
+    icon: 🟦
+    blurb: Event loop, streams, V8, TypeScript type system, and production Node.
