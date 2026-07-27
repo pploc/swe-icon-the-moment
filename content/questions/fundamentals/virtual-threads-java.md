@@ -26,10 +26,10 @@ Platform threads map 1:1 to OS threads. OS threads are expensive (~1 MB stack, k
 
 ```mermaid
 flowchart TD
-    subgraph VTs["Virtual Threads(millions)"]
+    subgraph VTs ["Virtual Threads (millions)"]
         VT1 --- VT2 --- VT3 --- VTn["..."]
     end
-    subgraph PTs["Platform(Carrier) Threads = NCPU"]
+    subgraph PTs ["Platform (Carrier) Threads = NCPU"]
         PT1
         PT2
         PT3
@@ -38,6 +38,7 @@ flowchart TD
     VT2 -->|"mounted"| PT2
     VT3 -->|"scheduled"| PT3
     Note["When VT blocks on I/O, JVM unmounts it\nfrom carrier thread → carrier picks up another VT"]
+
 
 
 ```

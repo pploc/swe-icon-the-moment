@@ -21,11 +21,12 @@ Explain dynamic linking in Linux: how the dynamic linker resolves symbol address
 
 ```mermaid
 flowchart LR
-    Binary["ELF binary"] --> PLT["PLT\n(Procedure Linkage Table)"]
-    PLT -->|"first call"| Resolver["_dl_runtime_resolve()\n(dynamic linker)"]
-    Resolver --> GOT["GOT\n(Global Offset Table)\n(write real address)"]
+    Binary["ELF binary"] --> PLT["PLT\n (Procedure Linkage Table)"]
+    PLT -->|"first call"| Resolver["_dl_runtime_resolve ()\n (dynamic linker)"]
+    Resolver --> GOT["GOT\n (Global Offset Table)\n (write real address)"]
     PLT -->|"subsequent calls"| GOT
-    GOT -->|"jump to"| LibFunc["malloc() in libc.so"]
+    GOT -->|"jump to"| LibFunc["malloc () in libc.so"]
+
 
 
 ```

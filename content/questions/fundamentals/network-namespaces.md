@@ -45,14 +45,15 @@ ip netns exec myns ip link set veth1 up
 
 ```mermaid
 flowchart LR
-    subgraph Host["Host Network Namespace"]
+    subgraph Host ["Host Network Namespace"]
         veth0["veth0\n10.0.0.1"] <-->|"virtual cable"| veth1["veth1\n10.0.0.2"]
         docker0["docker0 bridge\n172.17.0.1"]
         veth0 --- docker0
     end
-    subgraph Container["Container Namespace"]
+    subgraph Container ["Container Namespace"]
         veth1 --- eth0["eth0\n172.17.0.2"]
     end
+
 ```
 
 **Docker networking:**

@@ -36,6 +36,7 @@ stateDiagram-v2
 
 
 
+
 ```
 
 **Read-For-Ownership (RFO):** When a CPU wants to write a cache line in state S or I, it broadcasts an "invalidate" message to other CPUs (they transition to I). This takes 100-300 cycles — much more than an L1 cache hit (4 cycles).
@@ -56,13 +57,14 @@ Remote NUMA node:  ~300-500 cycles
 ```mermaid
 flowchart LR
     subgraph Socket0
-        CPU0["CPU 0-15"] --> MEM0["Memory 0\n(fast access)"]
+        CPU0["CPU 0-15"] --> MEM0["Memory 0\n (fast access)"]
     end
     subgraph Socket1
-        CPU1["CPU 16-31"] --> MEM1["Memory 1\n(fast access)"]
+        CPU1["CPU 16-31"] --> MEM1["Memory 1\n (fast access)"]
     end
     CPU0 <-->|"~2x slower"| MEM1
     CPU1 <-->|"~2x slower"| MEM0
+
 
 
 

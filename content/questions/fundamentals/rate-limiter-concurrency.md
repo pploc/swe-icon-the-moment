@@ -19,11 +19,12 @@ A bucket holds up to `N` tokens. Tokens refill at a fixed rate. Each request con
 
 ```mermaid
 flowchart LR
-    Refill["Refill: +rate tokens/sec"] --> Bucket["Token Bucket\n(capacity=N)"]
+    Refill["Refill: +rate tokens/sec"] --> Bucket["Token Bucket\n (capacity=N)"]
     Request["Incoming Request"] --> Check{"Tokens > 0?"}
     Bucket --> Check
     Check -- yes --> Consume["Consume 1 token\nAllow request"]
     Check -- no --> Reject["Reject / Wait"]
+
 
 
 ```

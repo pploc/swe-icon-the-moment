@@ -20,7 +20,7 @@ Explain Java NIO (`java.nio`): blocking I/O vs non-blocking I/O, Channels, Buffe
 ```mermaid
 flowchart LR
     subgraph Single Reactor Thread
-        Selector["Selector\n(epoll_wait)"]
+        Selector["Selector\n (epoll_wait)"]
     end
     
     Socket1["Socket Channel 1"] -->|OP_READ ready| Selector
@@ -28,6 +28,7 @@ flowchart LR
     Socket3["Socket Channel 3"] -->|OP_WRITE ready| Selector
     
     Selector -->|Dispatch| Buffer["ByteBuffer"]
+
 
 
 

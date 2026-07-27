@@ -29,9 +29,10 @@ A nice -20 task (high priority, heavier weight) accumulates vruntime more slowly
 
 ```mermaid
 flowchart LR
-    RBT["RB-Tree(ordered by vruntime)"] --> Min["leftmost = min vruntime\n= next to schedule"]
+    RBT["RB-Tree (ordered by vruntime)"] --> Min["leftmost = min vruntime\n= next to schedule"]
     Min --> CPU["Run on CPU\nvruntime increases"]
     CPU --> RBT
+
 
 
 ```

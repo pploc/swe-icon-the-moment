@@ -34,6 +34,7 @@ flowchart TD
 
 
 
+
 ```
 
 **1. `ArrayList` vs `LinkedList`:**
@@ -48,10 +49,11 @@ flowchart TD
 ```mermaid
 flowchart LR
     Bucket0["Bucket 0"] --> Node1["Key1 -> Val1"]
-    Bucket1["Bucket 1(Treeified > 8)"] --> RBT["Red-Black Tree Node"]
+    Bucket1["Bucket 1 (Treeified > 8)"] --> RBT["Red-Black Tree Node"]
     RBT --> Left["Left Child"]
     RBT --> Right["Right Child"]
     Bucket2["Bucket 2"] --> Node2["Key2 -> Val2"]
+
 
 
 

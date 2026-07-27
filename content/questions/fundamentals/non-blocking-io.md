@@ -65,9 +65,10 @@ Java NIO wraps `epoll` on Linux. Netty and Vert.x build high-performance servers
 ```mermaid
 flowchart LR
     C1["Client 1"] & C2["Client 2"] & C3["...10k"] --> epoll
-    epoll -->|"fd1 ready"| Thread["Single Thread\n(Event Loop)"]
+    epoll -->|"fd1 ready"| Thread["Single Thread\n (Event Loop)"]
     Thread --> Handler1["Handle Read"]
     Thread --> Handler2["Handle Write"]
+
 
 
 

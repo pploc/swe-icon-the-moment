@@ -21,8 +21,9 @@ Polymorphism allows objects to take multiple forms. Java supports polymorphism t
 ```mermaid
 flowchart TD
     Poly["Polymorphism in Java"]
-    Poly --> Overload["Method Overloading\n(Compile-Time / Static Binding)\nSame class, different parameters"]
-    Poly --> Override["Method Overriding\n(Runtime / Dynamic Binding)\nParent/Child class, exact signature"]
+    Poly --> Overload["Method Overloading\n (Compile-Time / Static Binding)\nSame class, different parameters"]
+    Poly --> Override["Method Overriding\n (Runtime / Dynamic Binding)\nParent/Child class, exact signature"]
+
 
 
 ```

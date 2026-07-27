@@ -18,10 +18,11 @@ By default, object references in Java are **Strong References**. However, Java p
 
 ```mermaid
 flowchart TD
-    Strong["1. Strong Reference\nobj = new Object()"] -->|Normal App Code| NoGC["Never GC'd if reachable\nThrows OOM instead"]
+    Strong["1. Strong Reference\nobj = new Object ()"] -->|Normal App Code| NoGC["Never GC'd if reachable\nThrows OOM instead"]
     Soft["2. SoftReference<T>"] -->|Memory Sensitive| SoftGC["GC'd ONLY when JVM\nruns low on memory"]
     Weak["3. WeakReference<T>"] -->|Cache / Metadata| WeakGC["GC'd on NEXT GC cycle\nregardless of memory size"]
     Phantom["4. PhantomReference<T>"] -->|Resource Cleanup| PhantomGC["Enqueued in ReferenceQueue\nwhen object is finalized"]
+
 
 ```
 

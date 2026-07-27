@@ -18,13 +18,14 @@ Explain LVM: the three-layer abstraction (PV, VG, LV), how it enables online res
 ```mermaid
 flowchart TB
     D1["/dev/sda"] & D2["/dev/sdb"] & D3["/dev/sdc"]
-    D1 --> PV1["Physical Volume(PV)\n/dev/sda: 100GB"]
-    D2 --> PV2["Physical Volume(PV)\n/dev/sdb: 200GB"]
-    D3 --> PV3["Physical Volume(PV)\n/dev/sdc: 300GB"]
-    PV1 & PV2 & PV3 --> VG["Volume Group(VG): vg0\n600GB total"]
-    VG --> LV1["Logical Volume(LV)\n/dev/vg0/data: 400GB"]
-    VG --> LV2["Logical Volume(LV)\n/dev/vg0/logs: 100GB"]
+    D1 --> PV1["Physical Volume (PV)\n/dev/sda: 100GB"]
+    D2 --> PV2["Physical Volume (PV)\n/dev/sdb: 200GB"]
+    D3 --> PV3["Physical Volume (PV)\n/dev/sdc: 300GB"]
+    PV1 & PV2 & PV3 --> VG["Volume Group (VG): vg0\n600GB total"]
+    VG --> LV1["Logical Volume (LV)\n/dev/vg0/data: 400GB"]
+    VG --> LV2["Logical Volume (LV)\n/dev/vg0/logs: 100GB"]
     LV1 --> FS["ext4 filesystem\nmounted at /data"]
+
 
 
 ```

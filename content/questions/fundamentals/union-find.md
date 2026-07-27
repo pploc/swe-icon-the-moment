@@ -43,14 +43,15 @@ def find(x):
 
 ```mermaid
 flowchart TD
-    subgraph Before["Before path compression"]
+    subgraph Before ["Before path compression"]
         A1["A"] --> B1["B"] --> C1["C"] --> D1["D root"]
     end
-    subgraph After["After find(A) with path compression"]
+    subgraph After ["After find (A) with path compression"]
         A2["A"] --> D2["D root"]
         B2["B"] --> D2
         C2["C"] --> D2
     end
+
 
 
 

@@ -21,9 +21,10 @@ flowchart TD
     Stage1["stage1: fetchUserAsync"] -->|Success| Stage2["stage2: fetchOrdersAsync"]
     Stage1 -->|Throws Exception!| Skip["Skip thenApply / thenCompose"]
     Stage2 -->|Success| Stage3["stage3: processOrders"]
-    Skip --> ExceptionStage["exceptionally() / handle()\nRecover or Transform Error"]
+    Skip --> ExceptionStage["exceptionally () / handle ()\nRecover or Transform Error"]
     Stage3 --> ExceptionStage
     ExceptionStage --> Final["Final Response"]
+
 
 ```
 

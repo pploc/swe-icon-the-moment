@@ -19,14 +19,15 @@ Explain false sharing: what it is, why it causes severe performance degradation 
 
 ```mermaid
 flowchart TD
-    subgraph CacheLine["Cache Line(64 bytes)"]
-        A["counter_A(bytes 0-7)"]
-        B["counter_B(bytes 8-15)"]
+    subgraph CacheLine ["Cache Line (64 bytes)"]
+        A["counter_A (bytes 0-7)"]
+        B["counter_B (bytes 8-15)"]
         C["... unused ..."]
     end
     CPU1["CPU 1\nThread A\nwrites counter_A"] --> CacheLine
     CPU2["CPU 2\nThread B\nwrites counter_B"] --> CacheLine
     Note["Every write by A invalidates\nCPU2's cache line, and vice versa\n→ constant MESI invalidations"]
+
 
 
 ```

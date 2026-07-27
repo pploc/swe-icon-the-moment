@@ -20,14 +20,15 @@ const THEME_VARIABLES = {
 
 /**
  * Renders any ```mermaid blocks currently in the DOM, and re-renders them when
- * the site theme flips. Mermaid (~1MB) is imported lazily, so pages without
- * diagrams never pay for it.
+ * the site theme flips or when page content changes (e.g. revealing answers in Practice Mode).
+ * Mermaid (~1MB) is imported lazily, so pages without diagrams never pay for it.
  */
 export function useMermaid(deps: unknown[]) {
   useEffect(() => {
     let cancelled = false
+    let timer: number
 
-    function draw(rerender: boolean) {
+    function draw() {
       const blocks = Array.from(
         document.querySelectorAll<HTMLElement>('pre.mermaid'),
       )
@@ -35,14 +36,18 @@ export function useMermaid(deps: unknown[]) {
 
       const pending: HTMLElement[] = []
       for (const block of blocks) {
-        // Keep the diagram source around — rendering replaces it with SVG.
+        // Store original raw mermaid diagram text source
         block.dataset.source ??= block.textContent ?? ''
-        if (rerender && block.dataset.processed) {
+
+        // If block was previously rendered by Mermaid, restore raw source text so Mermaid can re-render it
+        if (block.dataset.processed) {
           block.textContent = block.dataset.source
           delete block.dataset.processed
         }
-        if (!block.dataset.processed) pending.push(block)
+
+        pending.push(block)
       }
+
       if (pending.length === 0) return
 
       const theme = currentTheme()
@@ -61,12 +66,16 @@ export function useMermaid(deps: unknown[]) {
       })
     }
 
-    draw(false)
+    // Schedule draw after DOM update to ensure dangerouslySetInnerHTML has rendered pre.mermaid
+    timer = window.setTimeout(() => {
+      if (!cancelled) draw()
+    }, 50)
 
-    const onThemeChange = () => draw(true)
+    const onThemeChange = () => draw()
     window.addEventListener('itm:themechange', onThemeChange)
     return () => {
       cancelled = true
+      window.clearTimeout(timer)
       window.removeEventListener('itm:themechange', onThemeChange)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

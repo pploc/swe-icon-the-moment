@@ -30,10 +30,11 @@ Explain the two kernel features that make containers possible: Linux namespaces 
 
 ```mermaid
 flowchart TD
-    Host["Host Kernel"] --> N1["Container 1\n(own namespaces\nown cgroups)"]
-    Host --> N2["Container 2\n(own namespaces\nown cgroups)"]
-    N1 --> P1["PID 1 = init\nNetwork: eth0(veth)\nFS: /var/lib/docker/..."]
-    N2 --> P2["PID 1 = nginx\nNetwork: eth0(veth)\nFS: /var/lib/docker/..."]
+    Host["Host Kernel"] --> N1["Container 1\n (own namespaces\nown cgroups)"]
+    Host --> N2["Container 2\n (own namespaces\nown cgroups)"]
+    N1 --> P1["PID 1 = init\nNetwork: eth0 (veth)\nFS: /var/lib/docker/..."]
+    N2 --> P2["PID 1 = nginx\nNetwork: eth0 (veth)\nFS: /var/lib/docker/..."]
+
 
 
 

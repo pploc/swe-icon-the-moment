@@ -26,11 +26,11 @@ Two shared ring buffers between user space and kernel — no per-operation sysca
 
 ```mermaid
 flowchart LR
-    subgraph UserSpace["User Space"]
-        App --> SQ["Submission Queue(SQ)\n(write sqe here)"]
-        CQ["Completion Queue(CQ)\n(poll cqe here)"] --> App
+    subgraph UserSpace ["User Space"]
+        App --> SQ["Submission Queue (SQ)\n (write sqe here)"]
+        CQ["Completion Queue (CQ)\n (poll cqe here)"] --> App
     end
-    subgraph Kernel["Kernel(io_uring)"]
+    subgraph Kernel ["Kernel (io_uring)"]
         SQT["SQ tail reader"]
         CQH["CQ head writer"]
     end
@@ -38,6 +38,7 @@ flowchart LR
     SQT -->|"execute I/O"| IO["I/O Operations"]
     IO --> CQH
     CQH -->|"shared memory"| CQ
+
 
 
 

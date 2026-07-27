@@ -29,9 +29,10 @@ It serves as a type metadata tag indicating to the JVM, compiler, or frameworks 
 ```mermaid
 flowchart LR
     Class["ArrayList Class"] -->|Implements| Marker["RandomAccess Marker Interface"]
-    JVM["Collections.binarySearch()"] -->|instanceof Check| Check{"list instanceof RandomAccess?"}
-    Check -->|True| Fast["Indexed Array O(1) Loop"]
+    JVM["Collections.binarySearch ()"] -->|instanceof Check| Check{"list instanceof RandomAccess?"}
+    Check -->|True| Fast["Indexed Array O (1) Loop"]
     Check -->|False| Slow["Iterator Step-by-Step Loop"]
+
 
 
 

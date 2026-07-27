@@ -23,12 +23,13 @@ In Java, sorting objects in arrays (`Arrays.sort()`) or collections (`Collection
 flowchart TD
     subgraph Comparable("Natural Order")
         Class["Person Class"] -->|Implements| Comp["Comparable Interface"]
-        Comp -->|Single Method| CompareTo["compareTo(Person other)\nDefines natural sort order"]
+        Comp -->|Single Method| CompareTo["compareTo (Person other)\nDefines natural sort order"]
     end
     subgraph Comparator("Custom / External Order")
         External["External Code / Lambda"] -->|Passes| Comp2["Comparator Interface"]
-        Comp2 -->|Single Method| Compare["compare(Person p1, Person p2)\nDefines alternative sort order"]
+        Comp2 -->|Single Method| Compare["compare (Person p1, Person p2)\nDefines alternative sort order"]
     end
+
 
 
 ```

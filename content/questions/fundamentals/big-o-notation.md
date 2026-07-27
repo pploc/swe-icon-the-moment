@@ -25,10 +25,11 @@ Given a piece of code, walk through how you determine its Big-O time and space c
 
 ```mermaid
 flowchart TD
-    A["T(n) = aT(n/b) + f(n)"] --> B{"Compare f('n') vs n^log_b_a"}
-    B -->|f("n") < n^log_b_a| C["O(n^log_b_a)\nMerge sort leaf-dominated"]
-    B -->|f("n") = n^log_b_a| D["O(n^log_b_a · log n)\nMerge sort balanced"]
-    B -->|f("n") > n^log_b_a| E["O(f(n))\nRoot-dominated"]
+    A["T (n) = aT (n/b) + f (n)"] --> B{"Compare f('n') vs n^log_b_a"}
+    B -->|f("n") < n^log_b_a| C["O (n^log_b_a)\nMerge sort leaf-dominated"]
+    B -->|f("n") = n^log_b_a| D["O (n^log_b_a · log n)\nMerge sort balanced"]
+    B -->|f("n") > n^log_b_a| E["O (f (n))\nRoot-dominated"]
+
 
 
 

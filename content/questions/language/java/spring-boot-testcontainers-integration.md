@@ -22,9 +22,10 @@ Historically, connecting Spring Boot to Testcontainers required boilerplate `@Dy
 ```mermaid
 flowchart LR
     JUnit["JUnit 5 Test Execution"] --> Testcontainers["Testcontainers Launches PostgreSQL Docker Container"]
-    Testcontainers -->|Dynamic Port e.g. 54321| ServiceConn["@ServiceConnection(Spring Boot 3.1+)"]
+    Testcontainers -->|Dynamic Port e.g. 54321| ServiceConn["@ServiceConnection (Spring Boot 3.1+)"]
     ServiceConn -->|Auto-injects spring.datasource.url| Context["Spring ApplicationContext"]
     Context --> App["OrderService Runs Integration Test"]
+
 
 
 ```

@@ -20,13 +20,14 @@ Explain how Java's `synchronized` is implemented: the object monitor, the JVM lo
 ```mermaid
 flowchart TD
     A["Thread accesses synchronized block"] --> B{"First access?"}
-    B -- yes --> C["Biased Lock\n(mark word stores thread ID)\nZero CAS on subsequent entries"]
+    B -- yes --> C["Biased Lock\n (mark word stores thread ID)\nZero CAS on subsequent entries"]
     C --> D{"Contention?"}
-    D -- yes --> E["Revoke bias\nThin Lock(CAS on mark word)"]
+    D -- yes --> E["Revoke bias\nThin Lock (CAS on mark word)"]
     E --> F{"Still contention?"}
-    F -- yes --> G["Inflate to Fat Lock\n(ObjectMonitor)\nOS mutex, threads park/unpark"]
+    F -- yes --> G["Inflate to Fat Lock\n (ObjectMonitor)\nOS mutex, threads park/unpark"]
     F -- no --> E
     D -- no --> C
+
 
 
 

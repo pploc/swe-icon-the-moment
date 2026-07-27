@@ -20,8 +20,9 @@ Explain Java MethodHandles (`java.lang.invoke.MethodHandle`) and VarHandles (`ja
 
 ```mermaid
 flowchart TD
-    Reflection["Traditional Reflection\nMethod.invoke()\nSecurity check on EVERY call\nNo JIT inlining"] --> MethodHandles["MethodHandles\nMethodHandle.invokeExact()\nSecurity check ONLY at lookup\nJIT inlinable like bytecode"]
-    MethodHandles --> VarHandles["VarHandles\nVarHandle.compareAndSet()\nReplaces sun.misc.Unsafe\nFine-grained atomic memory fences"]
+    Reflection["Traditional Reflection\nMethod.invoke ()\nSecurity check on EVERY call\nNo JIT inlining"] --> MethodHandles["MethodHandles\nMethodHandle.invokeExact ()\nSecurity check ONLY at lookup\nJIT inlinable like bytecode"]
+    MethodHandles --> VarHandles["VarHandles\nVarHandle.compareAndSet ()\nReplaces sun.misc.Unsafe\nFine-grained atomic memory fences"]
+
 
 ```
 

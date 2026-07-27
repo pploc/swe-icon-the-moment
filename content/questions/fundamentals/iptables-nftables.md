@@ -19,11 +19,11 @@ Explain `iptables`/`nftables` architecture: tables, chains, targets. How do you 
 flowchart LR
     subgraph Tables
         direction TB
-        RAW["raw\n(connection tracking skip)"]
-        Mangle["mangle\n(modify packets)"]
-        NAT["nat\n(source/dest NAT)"]
-        Filter["filter\n(allow/deny)"]
-        Security["security\n(SELinux)"]
+        RAW["raw\n (connection tracking skip)"]
+        Mangle["mangle\n (modify packets)"]
+        NAT["nat\n (source/dest NAT)"]
+        Filter["filter\n (allow/deny)"]
+        Security["security\n (SELinux)"]
     end
     subgraph Chains
         PREROUTING --> INPUT --> FORWARD
@@ -31,6 +31,7 @@ flowchart LR
         FORWARD --> POSTROUTING
         INPUT --> OUTPUT --> POSTROUTING
     end
+
 
 
 

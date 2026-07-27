@@ -18,9 +18,10 @@ Explain zero-copy I/O: the problem with the traditional read+write data path, ho
 ```mermaid
 flowchart LR
     Disk --> DMA1["DMA → kernel\nread buffer"]
-    DMA1 -->|"copy("CPU")"| UBuf["User buffer\n(read() returns)"]
+    DMA1 -->|"copy("CPU")"| UBuf["User buffer\n (read () returns)"]
     UBuf -->|"copy("CPU")"| KBuf["Kernel socket\nsend buffer"]
     KBuf --> DMA2["DMA → NIC"]
+
 
 
 ```

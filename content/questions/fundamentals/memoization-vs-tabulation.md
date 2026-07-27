@@ -63,12 +63,13 @@ Space: O(n·W). Optimize to O(W) by iterating `w` backwards in a 1D array.
 
 ```mermaid
 flowchart LR
-    A["fib(5)"] --> B["fib(4)"]
-    A --> C["fib(3)"]
-    B --> D["fib(3) ← CACHED"]
-    B --> E["fib(2)"]
-    C --> F["fib(2) ← CACHED"]
-    C --> G["fib(1)"]
+    A["fib (5)"] --> B["fib (4)"]
+    A --> C["fib (3)"]
+    B --> D["fib (3) ← CACHED"]
+    B --> E["fib (2)"]
+    C --> F["fib (2) ← CACHED"]
+    C --> G["fib (1)"]
+
 
 
 ```

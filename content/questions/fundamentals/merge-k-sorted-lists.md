@@ -25,10 +25,11 @@ Given K sorted linked lists, merge them into one sorted list. Compare the naive 
 
 ```mermaid
 graph TD
-    A["[L1,L2,L3,L4"]"] --> B["merge(L1,L2)=M12"]
-    A --> C["merge(L3,L4)=M34"]
-    B --> D["merge(M12,M34)=Result"]
+    A["[L1,L2,L3,L4"]"] --> B["merge (L1,L2)=M12"]
+    A --> C["merge (L3,L4)=M34"]
+    B --> D["merge (M12,M34)=Result"]
     C --> D
+
 
 
 ```

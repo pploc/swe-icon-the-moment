@@ -15,18 +15,19 @@ Explain the differences between threads and processes: what they share, what is 
 
 ```mermaid
 flowchart TD
-    subgraph Process["Process(isolated memory space)"]
+    subgraph Process ["Process (isolated memory space)"]
         direction TB
         Code["Code segment"]
         Heap["Heap"]
-        T1["Thread 1\n(Stack + Registers)"]
-        T2["Thread 2\n(Stack + Registers)"]
-        T3["Thread 3\n(Stack + Registers)"]
+        T1["Thread 1\n (Stack + Registers)"]
+        T2["Thread 2\n (Stack + Registers)"]
+        T3["Thread 3\n (Stack + Registers)"]
         Code --- Heap
         Heap --- T1
         Heap --- T2
         Heap --- T3
     end
+
 
 
 

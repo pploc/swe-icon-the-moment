@@ -29,9 +29,10 @@ Problems: goroutine/thread leaks, errors in child tasks lost, no clear ownership
 
 ```mermaid
 flowchart TD
-    Parent["Parent Scope\n(request handler)"] --> C1["Child Task 1\n(fetch user)"]
-    Parent --> C2["Child Task 2\n(fetch orders)"]
+    Parent["Parent Scope\n (request handler)"] --> C1["Child Task 1\n (fetch user)"]
+    Parent --> C2["Child Task 2\n (fetch orders)"]
     Parent --> Close["Scope closes:\n1. Wait for all children\n2. Cancel stragglers\n3. Propagate errors"]
+
 
 
 ```

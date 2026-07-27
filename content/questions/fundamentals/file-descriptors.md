@@ -17,18 +17,18 @@ Explain the file descriptor abstraction: the three-level table (fd table → ope
 
 ```mermaid
 flowchart LR
-    subgraph Process["Process fd table"]
-        fd0["fd 0(stdin)"] --> OFT1
-        fd1["fd 1(stdout)"] --> OFT2
-        fd2["fd 2(stderr)"] --> OFT2
-        fd3["fd 3(socket)"] --> OFT3
+    subgraph Process ["Process fd table"]
+        fd0["fd 0 (stdin)"] --> OFT1
+        fd1["fd 1 (stdout)"] --> OFT2
+        fd2["fd 2 (stderr)"] --> OFT2
+        fd3["fd 3 (socket)"] --> OFT3
     end
-    subgraph OFT["Open File Table(kernel-wide)"]
+    subgraph OFT ["Open File Table (kernel-wide)"]
         OFT1["file pos=0\nflags=RDONLY"]
         OFT2["file pos=47\nflags=WRONLY"]
         OFT3["file pos=0\nflags=RDWR\nref_count=2"]
     end
-    subgraph Inode["Inode Table"]
+    subgraph Inode ["Inode Table"]
         I1["/dev/null inode"]
         I2["/dev/tty inode"]
         I3["socket inode"]
@@ -36,6 +36,7 @@ flowchart LR
     OFT1 --> I1
     OFT2 --> I2
     OFT3 --> I3
+
 
 
 

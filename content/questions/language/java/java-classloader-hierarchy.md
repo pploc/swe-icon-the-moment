@@ -23,7 +23,7 @@ flowchart TD
     Bootstrap["1. Bootstrap ClassLoader\nC/C++ Native\nLoads java.base, java.lang.*"]
     Platform["2. Platform / Extension ClassLoader\nLoads java.sql, java.xml, etc."]
     App["3. Application / System ClassLoader\nLoads application classpath & dependencies"]
-    Custom["4. Custom ClassLoader\n(Tomcat WebAppClassLoader, OSGi)"]
+    Custom["4. Custom ClassLoader\n (Tomcat WebAppClassLoader, OSGi)"]
 
     Custom -->|1. Delegate Up| App
     App -->|2. Delegate Up| Platform
@@ -32,6 +32,7 @@ flowchart TD
     Bootstrap -->|4. If Not Found, Pass Down| Platform
     Platform -->|5. If Not Found, Pass Down| App
     App -->|6. If Not Found, Pass Down| Custom
+
 
 
 ```

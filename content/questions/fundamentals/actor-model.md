@@ -27,10 +27,11 @@ An **actor** is the fundamental unit of concurrency. Each actor has:
 
 ```mermaid
 flowchart LR
-    A["Actor A\n(state: balance=100)"] -->|"msg: Deposit 50"| B["Actor A's mailbox"]
+    A["Actor A\n (state: balance=100)"] -->|"msg: Deposit 50"| B["Actor A's mailbox"]
     B -->|"processed sequentially"| A
     A -->|"send: confirm("150")"| C["Actor B mailbox"]
     D["Actor C"] -->|"msg: Withdraw 30"| B
+
 
 
 

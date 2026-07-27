@@ -25,11 +25,12 @@ Walk through Java's `CompletableFuture`: how it differs from `Future`, the key c
 
 ```mermaid
 flowchart LR
-    A["supplyAsync(fetchUser)"] -->|"thenApply"| B["transform User → DTO"]
-    B -->|"thenCompose"| C["fetchOrders(returns new CF)"]
+    A["supplyAsync (fetchUser)"] -->|"thenApply"| B["transform User → DTO"]
+    B -->|"thenCompose"| C["fetchOrders (returns new CF)"]
     C -->|"thenCombine("cf2")"| D["merge results"]
     D -->|"exceptionally"| E["fallback on error"]
     E --> F["Result"]
+
 
 
 

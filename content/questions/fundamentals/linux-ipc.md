@@ -21,8 +21,9 @@ flowchart TD
     IPC --> Sockets["Unix Domain Sockets"]
     IPC --> SHM["Shared Memory"]
     IPC --> MQ["Message Queues"]
-    Pipes --> Anon["Anonymous pipe\npipe() — parent/child only"]
+    Pipes --> Anon["Anonymous pipe\npipe () — parent/child only"]
     Pipes --> Named["Named pipe / FIFO\nmkfifo — any processes"]
+
 
 ```
 

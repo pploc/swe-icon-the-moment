@@ -17,13 +17,14 @@ Explain the Linux page cache: how file reads/writes flow through it, what "dirty
 
 ```mermaid
 flowchart LR
-    App -->|"read("fd")"| PC["Page Cache\n(kernel memory)"]
+    App -->|"read("fd")"| PC["Page Cache\n (kernel memory)"]
     PC -->|"cache hit"| App
     PC -->|"cache miss"| Disk[("Disk")]
     Disk --> PC
     App -->|"write("fd")"| PC
-    PC -->|"dirty page"| WB["Writeback\n(kworker)"]
+    PC -->|"dirty page"| WB["Writeback\n (kworker)"]
     WB -->|"flush"| Disk
+
 
 
 

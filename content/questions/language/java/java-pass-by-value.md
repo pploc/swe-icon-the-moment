@@ -28,14 +28,15 @@ flowchart TD
         p["p = 0x100"]
     end
     subgraph Stack Frame("Method Call")
-        param["person = 0x100(Copy of Address Pointer!)"]
+        param["person = 0x100 (Copy of Address Pointer!)"]
     end
     subgraph Heap Memory
-        Obj["Person Object(0x100)\n{'name: 'Alice''}"]
+        Obj["Person Object (0x100)\n{'name': 'Alice''}"]
     end
     
     p -->|Points to| Obj
     param -->|Points to SAME| Obj
+
 
 
 
@@ -88,15 +89,16 @@ flowchart TD
         p["p = 0x100"]
     end
     subgraph Stack Frame("Method Call")
-        param["person = 0x200(Reassigned locally!)"]
+        param["person = 0x200 (Reassigned locally!)"]
     end
     subgraph Heap Memory
-        Obj1["Person Object(0x100)\n{'name: 'Alice''}"]
-        Obj2["Person Object(0x200)\n{'name: 'David''}"]
+        Obj1["Person Object (0x100)\n{'name': 'Alice''}"]
+        Obj2["Person Object (0x200)\n{'name': 'David''}"]
     end
     
     p --> Obj1
     param --> Obj2
+
 
 
 

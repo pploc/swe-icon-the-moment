@@ -26,13 +26,14 @@ Scoped Values allow sharing an unmodifiable data value safely within a bounded e
 ```mermaid
 flowchart TD
     subgraph Bounded Scope Execution Block
-        Bind["ScopedValue.where(CURRENT_USER, user)\n.run(() -> { ... })"]
+        Bind["ScopedValue.where (CURRENT_USER, user)\n.run (() -> { ... })"]
         Bind --> Step1["Call Service A"]
         Step1 --> Step2["Call Service B"]
-        Step2 --> Read["CURRENT_USER.get()\n(Unmodifiable & Safe)"]
+        Step2 --> Read["CURRENT_USER.get ()\n (Unmodifiable & Safe)"]
     end
     Read --> Exited["Scope Exits"]
     Exited --> Cleaned["ScopedValue Automatically Invalidated!\nZero memory leak risk!"]
+
 
 
 

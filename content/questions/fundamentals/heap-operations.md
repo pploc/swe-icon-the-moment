@@ -24,11 +24,12 @@ No pointers needed — cache-friendly.
 
 ```mermaid
 graph TD
-    A["1(idx 0)"] --> B["3(idx 1)"]
-    A --> C["2(idx 2)"]
-    B --> D["5(idx 3)"]
-    B --> E["4(idx 4)"]
-    C --> F["6(idx 5)"]
+    A["1 (idx 0)"] --> B["3 (idx 1)"]
+    A --> C["2 (idx 2)"]
+    B --> D["5 (idx 3)"]
+    B --> E["4 (idx 4)"]
+    C --> F["6 (idx 5)"]
+
 
 
 ```
